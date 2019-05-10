@@ -1,0 +1,64 @@
+\chapter{Klein-Gordon theory}
+\paragraph{(Real) Lagrangian density}
+\begin{align}
+	\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{m^2}{2} \phi^2
+\end{align}
+\paragraph{Quantization}
+\begin{align}
+	\begin{split}
+		\left[ \phi(\pmb{x}), \phi(\pmb{x}') \right] = \left[ \pi(\pmb{x}), \pi(\pmb{x}') \right] = 0 \\
+		\left[ \phi(\pmb{x}), \pi(\pmb{x}') \right] = i \delta^{(3)}(\pmb{x} - \pmb{x}')
+	\end{split}
+\end{align}
+\paragraph{Decomposition into Fourier modes}
+\begin{align}
+	\phi({\pmb{x}}) &= \int \frac{\dd^3 p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}} \left( a_{\pmb{p}} e^{i\pmb{p}\cdot\pmb{x}} + a_{\pmb{p}}^\dagger e^{-i \pmb{p} \cdot \pmb{x}} \right) \\
+	\pi({\pmb{x}}) &= \int \frac{\dd^3 p}{(2\pi)^3}(-i)\sqrt{\frac{E_p}{2}} \left( a_{\pmb{p}} e^{i\pmb{p}\cdot\pmb{x}} - a_{\pmb{p}}^\dagger e^{-i \pmb{p} \cdot \pmb{x}} \right)
+\end{align}
+thus the commutation relations for ladder operators:
+\begin{align}
+	\left[ a_{\pmb{p}}, a_{\pmb{p}'} \right] &= \left[ a^\dagger_{\pmb{p}}, a^\dagger_{\pmb{p}'} \right] = 0 \\
+	\left[ a_{\pmb{p}}, a^\dagger_{\pmb{p}'} \right] &= (2\pi)^3 \delta^{(3)}(\pmb{p}-\pmb{p}')
+\end{align}
+\paragraph{Hamiltonian in terms of ladder operator}
+\begin{align}
+	H = \int \frac{\dd^3 p}{(2\pi)^3} E_p \left( a_{\pmb{p}} a_{\pmb{p}} ^\dagger + \frac{1}{2} \left[ a_{\pmb{p}}, a_{\pmb{p}}^\dagger \right] \right)
+\end{align}
+\paragraph{Normlisation} it's also lorentz-invariante
+\begin{align}
+	\braket{p|q} = 2E_p (2\pi)^3 \delta^{(3)}(\pmb{p} - \pmb{q})
+\end{align}
+\section{Heisenberg-picture fields}
+\paragraph{Heisenberg-picture}
+\begin{align}
+	\ket{\psi_H} &= e^{iHt}\ket{\psi_s (t)} \\
+	O_H(t) & = e^{iHt}O_S e^{-iHt} 
+\end{align}
+\paragraph{Field operator}
+\begin{align}
+	\phi(x) = \phi({\pmb{x},t}) &= \int \frac{\dd^3 p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}} \left( a_p e^{ipx} + a_{p}^\dagger e^{-i p x} \right)
+\end{align}
+
+\section{Commutations and propogators}
+\paragraph{Commutations}
+\begin{align}
+	\left[ \phi(x), \phi(y) \right] &= D(x-y) - D(y-x)
+	\begin{cases}
+		= 0 & \text{if $(x-y)$ is space-like} \\
+		\neq 0 & \text{otherwise}
+	\end{cases} \\
+	D(x-y) &= \int\frac{\dd^3p}{(2\pi)^3} \frac{1}{2E_p} e^{-ip(x-y)}
+\end{align}
+\paragraph{Propogator}
+\begin{align}
+	\braket{0 | \phi(x) \phi(y) | 0} = D(x-y)
+\end{align}
+\paragraph{Feynman propagator}
+\begin{align}
+	\begin{split}
+	D_F(x-y) &= \braket{0 | T \phi(x) \phi(y) | 0} \\
+			 &= \Theta(x^0 - y^0)D(x-y) + \Theta(y^0 - x^0) D(y-x)
+	\end{split}\\
+	D_F(x-y) &= \int \frac{\dd^4 p}{(2\pi)^4}\frac{i}{p^2-m^2+i\epsilon} e^{-ip(x-y)}
+\end{align}
+

@@ -1,0 +1,92 @@
+\documentclass[oneside]{scrbook}
+\KOMAoptions{fontsize=11pt, paper=a4}     
+\KOMAoptions{DIV=13}                      
+
+\usepackage[utf8]{inputenc}               
+\usepackage[T1]{fontenc}                  
+\usepackage[autostyle=true]{csquotes}     
+\usepackage[varg]{txfonts}  			  %	Times-like fonts in support of mathematics
+\usepackage{siunitx}   	  				  
+\usepackage{enumitem}				      %	extra enumerate options
+
+\renewcommand{\familydefault}{\rmdefault} % font to sans serif
+
+%import external graphics and where to find these
+\usepackage{graphicx}					  
+\graphicspath{{figs/}}
+
+\RequirePackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+\RequirePackage[all]{hypcap}
+
+%There are a number of symbols defined inside txfonts that are also defined in amsmath
+% so you can just make these available again
+\let\iint\relax
+\let\iiint\relax
+\let\iiiint\relax
+\let\idotsint\relax
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{braket}
+\usepackage{slashed} % feynman slash notation
+\usepackage{simplewick} % wick contraction
+
+% This will set fancy headings to the top of the page. The page number will be
+% accompanied by the total number of pages. That way, you will know if any page
+% is missing.
+% If you do not want this for your document, you can just use
+% ``\pagestyle{plain}``.
+\usepackage{scrpage2}
+\usepackage{lastpage}
+\pagestyle{scrheadings}
+\automark{section}
+%\cfoot{\footnotesize{Page \thepage\ / \pageref*{LastPage}}}
+\chead{}
+\ihead{}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+%symbols for footnotes
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} % footnote mark with special symbols
+
+% toprule and etc.
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% NEW COMMAND SECTION %%%%%%%%%%%%%%%%%%%%
+
+%define equal
+\newcommand{\defeq}{\vcentcolon =} 
+\newcommand{\eqdef}{= \vcentcolon}
+\newcommand{\euler}{\mathrm{e}}
+
+%Lagrange density
+\newcommand{\lag}{\mathcal{L}} 
+%Hamiltonian density
+\newcommand{\ham}{\mathcal{H}}
+
+%identity matrix
+\usepackage{dsfont}
+\newcommand{\id}{\mathds{1}}
+
+\newcommand{\xv}{\pmb{x}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Quantum Field Theory}
+\begin{document}
+\maketitle
+%TODO: right now chapter 1-3 only contain summaries
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+
+\end{document}

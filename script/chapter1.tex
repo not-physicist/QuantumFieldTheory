@@ -1,0 +1,31 @@
+\chapter{Classical field theory}
+\section{Field theory in continuum}
+\paragraph{Euler-Lagrange-equation}
+\begin{align}
+	\partial_\mu \left( \frac{\partial \lag}{\partial(\partial_\mu \phi)} \right) - \frac{\partial \mathcal{L}}{\partial \phi} = 0
+\end{align}
+\paragraph{momentum density}
+\begin{align}
+	\pi(x) = \frac{\partial \lag}{\partial \dot{\phi}(\pmb{x})}
+\end{align}
+\paragraph{Hamiltonian density}
+\begin{align}
+	\ham(\phi(\pmb{x}),\pi(\pmb{x})) = \pi(\pmb{x}) \dot{\phi}(\pmb{x}) - \lag(\phi,\partial_\mu \phi)
+\end{align}
+\section{Noether Theorem}
+If a Lagrangian field theory has an infinitisimal symmetry, then there is an associated current $j^\mu$, which is conserved.
+\begin{align}
+	\partial_\mu j^\mu &= 0 \\
+	j^\mu &= \frac{\partial \lag}{\partial (\partial_\mu \phi)} \Delta \phi - X^mu
+\end{align}
+\paragraph{Energy-momentum tensor (stress-energy tensor)} \hspace{0pt}\\
+Asymmetric version
+\begin{align}
+	\Theta^\mu_\nu = \frac{\partial \lag}{\partial(\partial_\mu \phi)} \partial_\nu \phi - \delta^\mu_\nu \lag
+\end{align}
+General version
+\begin{align}
+	T^{\mu\nu} = \Theta^{\mu\nu} + \partial_\lambda f^{\mu\nu\lambda}
+\end{align}
+with $f^{\lambda\mu\nu}=-f^{\mu\lambda\nu}$ or $\partial_\mu \partial\nu f^{\lambda\mu\nu}=0$
+
