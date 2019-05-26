@@ -31,6 +31,7 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{braket}
+\usepackage{slashed} % feynman slash notation
 
 % This will set fancy headings to the top of the page. The page number will be
 % accompanied by the total number of pages. That way, you will know if any page
@@ -54,11 +55,11 @@
 % toprule and etc.
 \usepackage{booktabs}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%% NEW COMMAND SECTION %%%%%%%%%%%%%%%%%%%%
 % undertilde
 \usepackage{accents}
 \newcommand{\utilde}[1]{\underaccent{\tilde}{#1}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%% NEW COMMAND SECTION %%%%%%%%%%%%%%%%%%%%
 %define equal
 \newcommand{\defeq}{\vcentcolon =} 
 \newcommand{\eqdef}{= \vcentcolon}
@@ -69,21 +70,230 @@
 %Hamiltonian density
 \newcommand{\ham}{\mathcal{H}}
 
+%identity matrix
+\usepackage{dsfont}
+\newcommand{\id}{\mathds{1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{Formula for QFT I}
 \begin{document}
 \maketitle
 
 \section{Classical field theory}
+\subsection{Field theory in continuum}
 \paragraph{Euler-Lagrange-equation}
 \begin{align}
 	\partial_\mu \left( \frac{\partial \lag}{\partial(\partial_\mu \phi)} \right) - \frac{\partial \mathcal{L}}{\partial \phi} = 0
 \end{align}
 \paragraph{momentum density}
 \begin{align}
-	\pi(x) = \frac{\partial \lag}{\partial \dot{\phi}(\utilde{x})}
+	\pi(x) = \frac{\partial \lag}{\partial \dot{\phi}(\pmb{x})}
 \end{align}
 \paragraph{Hamiltonian density}
 \begin{align}
-	\ham(\phi(\utilde{x}),\pi(\utilde{x})) = \pi(\utilde{x}) \dot{\phi}(\utilde{x}) - \lag(\phi,\partial_\mu \phi)
+	\ham(\phi(\pmb{x}),\pi(\pmb{x})) = \pi(\pmb{x}) \dot{\phi}(\pmb{x}) - \lag(\phi,\partial_\mu \phi)
 \end{align}
+\subsection{Noether Theorem}
+If a Lagrangian field theory has an infinitisimal symmetry, then there is an associated current $j^\mu$, which is conserved.
+\begin{align}
+	\partial_\mu j^\mu &= 0 \\
+	j^\mu &= \frac{\partial \lag}{\partial (\partial_\mu \phi)} \Delta \phi - X^mu
+\end{align}
+\paragraph{Energy-momentum tensor (stress-energy tensor)} \hspace{0pt}\\
+Asymmetric version
+\begin{align}
+	\Theta^\mu_\nu = \frac{\partial \lag}{\partial(\partial_\mu \phi)} \partial_\nu \phi - \delta^\mu_\nu \lag
+\end{align}
+General version
+\begin{align}
+	T^{\mu\nu} = \Theta^{\mu\nu} + \partial_\lambda f^{\mu\nu\lambda}
+\end{align}
+with $f^{\lambda\mu\nu}=-f^{\mu\lambda\nu}$ or $\partial_\mu \partial\nu f^{\lambda\mu\nu}=0$
+
+\section{Klein-Gordon theory}
+\paragraph{(Real) Lagrangian density}
+\begin{align}
+	\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{m^2}{2} \phi^2
+\end{align}
+\paragraph{Quantization}
+\begin{align}
+	\begin{split}
+		\left[ \phi(\pmb{x}), \phi(\pmb{x}') \right] = \left[ \pi(\pmb{x}), \pi(\pmb{x}') \right] = 0 \\
+		\left[ \phi(\pmb{x}), \pi(\pmb{x}') \right] = i \delta^{(3)}(\pmb{x} - \pmb{x}')
+	\end{split}
+\end{align}
+\paragraph{Decomposition into Fourier modes}
+\begin{align}
+	\phi({\pmb{x}}) &= \int \frac{\dd^3 p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}} \left( a_{\pmb{p}} e^{i\pmb{p}\cdot\pmb{x}} + a_{\pmb{p}}^\dagger e^{-i \pmb{p} \cdot \pmb{x}} \right) \\
+	\pi({\pmb{x}}) &= \int \frac{\dd^3 p}{(2\pi)^3}(-i)\sqrt{\frac{E_p}{2}} \left( a_{\pmb{p}} e^{i\pmb{p}\cdot\pmb{x}} - a_{\pmb{p}}^\dagger e^{-i \pmb{p} \cdot \pmb{x}} \right)
+\end{align}
+thus the commutation relations for ladder operators:
+\begin{align}
+	\left[ a_{\pmb{p}}, a_{\pmb{p}'} \right] &= \left[ a^\dagger_{\pmb{p}}, a^\dagger_{\pmb{p}'} \right] = 0 \\
+	\left[ a_{\pmb{p}}, a^\dagger_{\pmb{p}'} \right] &= (2\pi)^3 \delta^{(3)}(\pmb{p}-\pmb{p}')
+\end{align}
+\paragraph{Hamiltonian in terms of ladder operator}
+\begin{align}
+	H = \int \frac{\dd^3 p}{(2\pi)^3} E_p \left( a_{\pmb{p}} a_{\pmb{p}} ^\dagger + \frac{1}{2} \left[ a_{\pmb{p}}, a_{\pmb{p}}^\dagger \right] \right)
+\end{align}
+\paragraph{Normlisation} it's also lorentz-invariante
+\begin{align}
+	\braket{p|q} = 2E_p (2\pi)^3 \delta^{(3)}(\pmb{p} - \pmb{q})
+\end{align}
+\section{Heisenberg-picture fields}
+\paragraph{Heisenberg-picture}
+\begin{align}
+	\ket{\psi_H} &= e^{iHt}\ket{\psi_s (t)} \\
+	O_H(t) & = e^{iHt}O_S e^{-iHt} 
+\end{align}
+\paragraph{Field operator}
+\begin{align}
+	\phi(x) = \phi({\pmb{x},t}) &= \int \frac{\dd^3 p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}} \left( a_p e^{ipx} + a_{p}^\dagger e^{-i p x} \right)
+\end{align}
+
+\section{Commutations and propogators}
+\paragraph{Commutations}
+\begin{align}
+	\left[ \phi(x), \phi(y) \right] &= D(x-y) - D(y-x)
+	\begin{cases}
+		= 0 & \text{if $(x-y)$ is space-like} \\
+		\neq 0 & \text{otherwise}
+	\end{cases} \\
+	D(x-y) &= \int\frac{\dd^3p}{(2\pi)^3} \frac{1}{2E_p} e^{-ip(x-y)}
+\end{align}
+\paragraph{Propogator}
+\begin{align}
+	\braket{0 | \phi(x) \phi(y) | 0} = D(x-y)
+\end{align}
+\paragraph{Feynman propagator}
+\begin{align}
+	\begin{split}
+	D_F(x-y) &= \braket{0 | T \phi(x) \phi(y) | 0} \\
+			 &= \Theta(x^0 - y^0)D(x-y) + \Theta(y^0 - x^0) D(y-x)
+	\end{split}\\
+	D_F(x-y) &= \int \frac{\dd^4 p}{(2\pi)^4}\frac{i}{p^2-m^2+i\epsilon} e^{-ip(x-y)}
+\end{align}
+
+\section{Quantization of the Dirac field}
+\subsection{Dirac equation}
+\begin{align}
+	\left(i \gamma^\mu \partial_\mu - m \right) \phi(x) = 0
+\end{align}
+\paragraph{Standard representation (Dirac's)}
+\begin{align}
+	\gamma_0 = \begin{pmatrix} \id_2 & 0 \\ 0 & -\id_2 \end{pmatrix}
+	\quad
+	\pmb{\gamma} = \begin{pmatrix} 0 & \pmb{\sigma} \\ -\pmb{\sigma} & 0 \end{pmatrix}
+\end{align}
+\paragraph{Lorentz transformation}
+\begin{align}
+	\Lambda = \exp(\frac{1}{2}\omega_{\mu\nu}M^{\mu\nu})
+\end{align}
+with $\omega$ set of parameters and $M$ the generator of Lie algebra.
+\paragraph{Spinor representation}
+\begin{align}
+	S^{\rho\sigma} &= \frac{1}{4} \left[ \gamma^\rho, \gamma^\sigma \right] = \frac{1}{2i}\sigma^{\rho\sigma} \\
+\end{align}
+\paragraph{Spinor transformation}
+\begin{align}
+	S(\Lambda) &= \exp(\frac{1}{2} \omega_{\mu\nu}S^{\mu\nu}) \\
+	\psi'_a(x) &= S_{ab}(\Lambda) \psi_b(\Lambda^{-1}x)
+\end{align}
+\paragraph{adjoint spinor}
+\begin{align}
+	\bar{\psi} = \psi^\dagger \gamma^0
+\end{align}
+\paragraph{Fifth gamma matrix}
+\begin{align}
+	\gamma^5 &\defeq i \gamma^0 \gamma^1 \gamma^2 \gamma^3 \\
+	\left\{ \gamma^\mu, \gamma^5 \right\} &= 0 \\
+	(\gamma^5)^2 &= \id_4
+\end{align}
+\paragraph{Plane wavesolutions}
+\begin{align}
+	\psi(x) = \begin{cases}
+		u(p) e^{-ipx} & \text{positive frequency} \\
+		v(p) e^{ipx} & \text{negative frequency}
+	\end{cases}
+\end{align}
+\begin{align}
+	u_s	(p) = \sqrt{E_p+m} \begin{pmatrix} \chi_s \\ \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\chi_s\end{pmatrix} e^{-ipx}
+	v_s	(p) = \sqrt{E_p+m} \begin{pmatrix} \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\tilde{\chi}_s \\ \tilde{\chi}_s \end{pmatrix} e^{ipx}
+\end{align}
+with
+\begin{align*}
+	\chi_{\frac{1}{2}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad x_{-\frac{1}{2}} = \begin{pmatrix} 0 \\ 1\end{pmatrix} \\
+	\quad s=\pm\frac{1}{2} \quad \tilde{\chi}_s = \chi_{-s}
+\end{align*}
+\paragraph{Orthogonality of spinor}
+\begin{align}
+	\bar{u}_s(p) u_{s'}(p) &= -\bar{v}_s(p) v_{s'}(p) = 2m \delta_{ss'} \\
+	\bar{u}_s(p) v_{s'}(p) &= 0
+\end{align}
+\paragraph{Spin sums}
+\begin{align}
+	\sum_{s} u_s(p)\bar{u}_s(p) &= \slashed{p} + m  \\
+	\sum_{s} v_s(p)\bar{v}_s(p) &= \slashed{p} - m 
+\end{align}
+
+\subsection{Dirac Lagrangian and quantization}
+\begin{align}
+	\lag = \bar{\psi}(x) (i\slashed{\partial} - m) \psi(x)
+\end{align}
+\paragraph{Quantization}
+\begin{align}
+	\left\{ \psi_a(\pmb{x}), \psi_b^\dagger(\pmb{x}') \right\} = \delta_{ab}\delta^{(3)}(\pmb{x}-\pmb{x}') \\
+	\left\{ \psi_a(\pmb{x}), \psi_b(\pmb{x}') \right\} = \left\{ \psi^\dagger_a(\pmb{x}), \psi^\dagger_b(\pmb{x}') \right\} = 0
+\end{align}
+\paragraph{Field operators}
+\begin{align}
+\psi(\pmb{x}) = \int \frac{\dd^3 p}{(2\pi)^3 \sqrt{2E_p}} \sum_s (a_{\pmb{p}}^s u_s(\pmb{p})e^{i\pmb{p}\cdot\pmb{x}} + b_{\pmb{p}}^{s\,\dagger} v_s(\pmb{p})e^{-i\pmb{p}\cdot\pmb{x}})
+\end{align}
+thus the anticommutations of ladder operators:
+\begin{align*}
+	\left\{ a_{\pmb{p}}^s, a_{\pmb{p'}}^{s'\,\dagger} \right\} &= \left\{ b_{\pmb{p}}^s, b_{\pmb{p'}}^{s'\,\dagger} \right\}= (2\pi)^3\delta_{ss'}\delta^{(3)}(\pmb{p}-\pmb{p}') \\
+	\left\{ a, a \right\} &= \left\{ a^\dagger, a^\dagger \right\} = \dots = 0
+\end{align*}
+\paragraph{Hamiltonian in terms of Fourier modes (with normal ordering)}
+\begin{align}
+	H = \int \frac{\dd^3 p}{(2\pi)^3} \sum_s E_p (a_{\pmb{p}}^{s\,\dagger}a_{\pmb{p}}^{s}-b_{\pmb{p}}^{s\,\dagger}b_{\pmb{p}}^{s})
+\end{align}
+\subsection{Particles and antiparticles}
+\begin{align}
+	Q &= e \int \dd^3 x \psi^\dagger(x)\psi(x) \\
+	:Q: &= e \int \frac{\dd^3 p}{(2\pi)^3} \sum_s (a_{\pmb{p}}^{s\,\dagger}a_{\pmb{p}}^s - b_{\pmb{p}}^{s\,\dagger}b_{\pmb{p}}^s)
+\end{align}
+\subsection{Dirac propagator and anticommutators}
+\begin{align}
+	\begin{split}
+	S_{ab}(x-y) &= \left\{ \psi_a(x), \bar{\psi}_b(y) \right\} \\
+				&= (i\slashed{\partial}+m) \left[ D(x-y)-D(y-x) \right]
+	\end{split}
+\end{align}
+\paragraph{Time ordering of Dirac fields}
+\begin{align}
+	T(\phi_a(x)\bar{\psi}_b(y)) = \Theta(x^0 - y^0)\psi_a(x)\bar{\psi}_b(y) - \Theta(y^0 - x^0) \bar{\psi}_b(y)\psi_a(x)
+\end{align}
+\paragraph{Feynman propogator for the Dirac field}
+\begin{align}
+	S_F(x-y) = \braket{0| T \psi(x)\bar{\psi}(y) |0} = \int \frac{\dd^4 p}{(2\pi)^4} \frac{i(\slashed{p}+m)}{p^2-m^2+i\epsilon} e^{-ip\cdot(x-y)}
+\end{align}
+
+\subsection{Discrete symmetries of the Dirac Field}
+\begin{center}
+\begin{tabular}{c c c}
+	\toprule
+& orientation perserving & orientation not perserving \\
+\midrule
+	(ortho)chronous & $\mathcal{L}_+^{\uparrow}$ & $\mathcal{L}_-^\uparrow=\mathcal{P}\mathcal{L}_+^{\uparrow}$ \\
+	non-orthochronous & $\mathcal{L}_-^\downarrow = \mathcal{T}\mathcal{L}_+^{\uparrow}$ & $\mathcal{L}_+^{\downarrow}=\mathcal{P}\mathcal{T}\mathcal{L}_+^{\uparrow}$ \\
+	\bottomrule
+\end{tabular}
+\end{center}
+
 \end{document}
