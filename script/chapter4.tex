@@ -740,7 +740,7 @@ So in general, need two field operators to annihilate the in-state and $m$ field
 New type of Feynman diagram to deal with external states. Define contractions of field operators with external states according to 
 \begin{align*}
 	\contraction{}{\phi}{(x)|}{\pmb{p}} \phi(x) \ket{\pmb{p}} &= e^{-ipx}\ket{0} \\%%% TODO diagrams
-	\contraction{\langle}{\pmb{p}}{|\;}{\phi} \bra{\pmb{p}}\phi(x)  &= e^{+ipx}\ket{0} %%% TODO diagrams
+	\contraction{\langle}{\pmb{p}}{|\;}{\phi} \bra{\pmb{p}}\phi(x)  &= e^{+ipx}\ket{0} 
 \end{align*}
 
 How does this work for $p_A p_B \rightarrow p_1 p_2$ in $\phi^4$ at $\mathcal{O}(\lambda)$? The above contains 3 types of terms: $:\phi\phi\phi\phi:$, $\contraction{}{\phi}{}{\phi}\phi\phi :\phi\phi:$ and $\contraction{}{\phi}{}{\phi}\phi\phi \contraction{}{\phi}{}{\phi}\phi\phi$.
@@ -1305,8 +1305,8 @@ then
 									   &= (2p_A \cdot p_B -2 m_A\cdot m_B) \cdot (2p_A \cdot p_B + 2 m_A\cdot m_B) = 4 \left[ (p_A p_B)^2 - m_A^2 m_B^2 \right]  \\
 									   &\quad \left[ 
 					   \begin{array}{ll}
-						   p_A = (\frac{\sqrt{s}}{2}, \pmb{p}_i) &\rightarrow m^2_A = \frac{s}{4} - |\pmb{p}_i|^2 \\
-						   p_B = (\frac{\sqrt{s}}{2}, -\pmb{p}_i) &\rightarrow m^2_B = \frac{s}{4} - |\pmb{p}_i|^2
+						   p_A = (c\sqrt{s}, \pmb{p}_i),\, c \in [0,1] &\rightarrow m^2_A = c^2s - |\pmb{p}_i|^2 \\
+						   p_B = ((1-c)\sqrt{s}, -\pmb{p}_i) &\rightarrow m^2_B = (1-c)^2 s - |\pmb{p}_i|^2
 						\end{array}
 						\right] \\
 									   & =4 \left[ (\frac{s}{4} + |\pmb{p}_i|)^2 -  (\frac{s}{4} - |\pmb{p}_i|)^2 \right] = 4 s |\pmb{p}_i|^2
@@ -1331,17 +1331,133 @@ Particles with spin (unpolarized): sum over outgoing or average over initial spi
 
 Symmetry factor $|M|^2 \rightarrow \frac{1}{s} |M|^2$ with $s = \prod_i k_i!$ if there are $k_i$ identical particles of species $i$ in the final states.
 
+If $1$ \& $2$ are identical, then facotr $\frac{1}{s} = \frac{1}{2}$ on the right hand side.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Feynman rules for fermions}
+Consider the simplest interacting theory with fermions, Yukawa-theory. We will treat QED later.
+\begin{align}
+	\lag = \frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{M^2}{2}\phi^2 + \bar{\psi} (i\slashed{\partial} - m) \psi -  g \bar{\psi} \psi \phi
+\end{align} 
 
+Feynman rules will involve:
+\begin{itemize}
+	\item scalar $\feynmandiagram[small, horizontal=a to b]{a[dot, label={\(x\)}] --[scalar] b[dot, label={\(y\)}];}; = D_F(x-y) = \int \frac{\dd^4}{(2\pi)^2} \frac{i}{p^2 - M^2 + i \epsilon} e^{-ip(x-y)}$
+	\item fermions $\feynmandiagram[small, horizontal=a to b]{a[dot, label={\(x, \alpha\)}] -- [anti fermion] b[dot, label={\(y, \beta\)}];}; = S_F(x-y)_{\alpha \beta} = \int \frac{\dd^4}{(2\pi)^4} \frac{i(\slashed{p}+m)}{p^2 - m^2 + i\epsilon} e^{-ip(x-y)}$
+	\item vertices $\feynmandiagram[baseline=(x.base),small, horizontal=x to c]{a--x[dot]; b--x; x--[scalar]c;}; = -ig\int \dd^4 x$
+\end{itemize}
 
+What previous steps need reconsideration due tot he \underline{anticommutating} fermion operators? Interaction Hamiltonina $\sim \bar{\psi}\psi \phi$ and in general compose of \underline{even} number of fermion fields (spin conservation and fermion number conservation). Thus there is no problem with time-ordered exponential in definition of S-matrix. (Time ordering always takes two or even number of fields.)
 
+Remember the relation
+\begin{align}
+	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = \textcolor{red}{-} \bar{\psi}_\beta (x) \psi_\alpha(x) \leftarrow y^0 > x^0
+\end{align}
+Similarly in normal product: 
+\begin{align}
+	:\psi^+ \psi^- = \textcolor{red}{-} \psi^- \psi^+:
+\end{align}
+Then Wick's theorem is formally the same as before
+\begin{align*}
+	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = :\psi_\alpha(x) \bar{\psi}_\beta(x): + \psi_\alpha(x) \bar{\psi}_\beta(x)
+\end{align*}
+note by definition $\contraction{}{\psi}{}{\psi} \psi\psi = \contraction{}{\bar{\psi}}{}{\bar{\psi}}\bar{\psi}\bar{\psi} = 0$
 
+Thus contractions inside normal-ordered products would be
+\begin{align*}
+	:\psi_1 \psi_2 \bar{\psi}_3 \bar{\psi}_4:= \textcolor{red}{-} \contraction{}{\psi}{_1}{\bar{\psi}}\psi_1\bar{\psi}_3 :\psi_2 \bar{\psi}_4: = \textcolor{red}{-} S_F(x_1 - x_3) :\psi_2 \bar{\psi}_4:
+\end{align*}
+because of the additional operator exchange.
 
+We will want to consider fermion-(anti-)fermion scattering. Leading contribution at $\mathcal{O}(g^2)$:
+\begin{align*}
+	\frac{1}{2!} (-ig)^2 \int \dd^4 x \dd^4 y \braket{p', k' |T\bar{\phi}(x) \phi(x) \phi(x) \bar{\phi}(y)\phi(y)|p,k}
+\end{align*}
 
+Contractions with initial-/final-state fermions?
+\begin{align*}
+	\phi^+(x) \ket{p,s} &= \int \frac{\dd^3 k}{(2\pi)^3 \sqrt{2E_k}} \sum_r a^r_k u_r(k) e^{-ik\cdot x} \sqrt(2E_p) a^{s\dagger}_p \ket{0} \\
+						&= e^{-ip\cdot x} u_s(p) \ket{0}	
+\end{align*}
 
+So define
+\begin{align}
+	\begin{split}
+	\contraction{}{\psi}{(x)|}{p,s} \psi(x) \ket{p,s} &=  e^{-ip\cdot x} u_s(p) \\
+	\contraction{\langle}{p,s}{|\;}{\bar\psi} \bra{p,s}\bar\psi(x)  &=  e^{ip\cdot x} \bar{u}_s(p)
+	\end{split}
+\end{align}
 
+note, though, for \underline{antifermion states} $\ket{p', s'}$:
+\begin{align}
+	\begin{split}
+	\contraction{}{\bar{\psi}}{(x)|}{p',s'} \bar{\psi}(x) \ket{p,s} &=  e^{-ip' \cdot x} \bar{v}_{s'}(p') \\
+	\contraction{\langle}{p',s'}{|}{\psi} \bra{p',s'}\psi(x)  &=  e^{ip'\cdot x} v_{s'}(p')
+	\end{split}
+\end{align}
 
+In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contractes with a fermion, $\contraction{\langle}{\,\;}{|}{\psi} \bra{\;}\psi$ with an antifermion; vice verse for $\bar{\psi}$.
 
+\paragraph{Momentum space feynman rule for $iM$}
+\begin{itemize}
+	\item internal propagators 
+		$ \feynmandiagram[small, horizontal=a to b]{a --[charged scalar, edge label={\(q\)}]b;};
+		=\frac{i}{q^2 - M^2 + i\epsilon}$; 
+		$\feynmandiagram[small, horizontal=a to b]{a[label={\(\beta\)}] --[edge label={\(q\)}, fermion]b[label={\(\alpha\)}];};
+		=\frac{i}{q^2 - M^2 + i\epsilon}=\frac{i(\slashed{p}+m)_{\alpha\beta}}{p^2-m^2+i\epsilon}$
+	\item vertex 
+		$\feynmandiagram[baseline=(x.base),small, horizontal=x to c]{a[label={\(\beta\)}]--[anti fermion] x[dot]; b[label={\(\alpha\)}]--[fermion]x; x--[scalar]c;}; = -ig\int \dd^4 x
+		=ig\delta_{\beta\alpha}$
+	\item external lines: 
+		\begin{itemize}
+			\item "in" and "out" scalar 
+				$\feynmandiagram[baseline=(x.base),small, horizontal=x to c]{a--[anti fermion] x[dot]; b--[fermion]x; x--[anti charged scalar, edge label={\(q\)}]c;}; = 
+\feynmandiagram[baseline=(x.base),small, horizontal=c to x]{a--[anti fermion] x[dot]; b--[anti fermion]x; x--[charged scalar, edge label={\(q\)}]c;};
+				= 1$
+			\item "in"-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=x to b]{a--[anti fermion] x[dot]; b--[fermion, edge label={\(p\)}]x; x--[scalar]c;};=u_s(p)$ and "out" fermion $\feynmandiagram[baseline=(x.base),small, horizontal=b to x]{a--[fermion] x[dot]; b--[anti fermion, edge label={\(p\)}]x; x--[scalar]c;};=\bar{u}_s(p)$
+			\item "in"-antifermion $\feynmandiagram[baseline=(x.base),small, horizontal=x to b]{a--[fermion] x[dot]; b--[anti fermion, momentum={\(k\)}]x; x--[scalar]c;};=\bar{v}_s(k)$ and "out" antifermion $\feynmandiagram[baseline=(x.base),small, horizontal=b to x]{a--[anti fermion] x[dot]; b--[fermion, momentum={\(k\)}]x; x--[scalar]c;};={v}_s(k)$
+		\end{itemize}
+	\item impose energy-momentum conservation at each vertex 
+	\item integrate over undetermined (loop) momenta 
+	\item include an overall sign for the diagram
+\end{itemize}
 
-
-
+\paragraph{note}
+\begin{itemize}
+	\item \underline{Arrowas} on the fermion lines by convention denote \underline{fermion} (or charge) \underline{flow}. They must flow consistently through the diagram. ($\equiv$ fermion number conservation) (Only potential confusion: external antifermion lines)
+	\item No symmetry factors (except vacuum bubbles \feynmandiagram[small, baseline=(a.base), horizontal=a to b]{a--[scalar]b; a--[anti fermion, half right]b; b--[anti fermion, half right] a;}; $\frac{1}{s} = \frac{1}{2}$). $\bar\psi \psi \phi$ allows for unambiguous contractions.
+	\item Dirac indices are summed over at each vertex
+		\begin{align*}
+			\lag_\text{int} \approx \bar{\psi}_\alpha(x) \psi_\alpha(x) \phi(x)
+		\end{align*}
+		$(\slashed{p}+m)$ terms in propagator are matrix-multiplied contracted with external spinors, e.g.
+		\begin{align*}
+			\feynmandiagram[small, baseline=(c.base), horizontal = a to b]{
+				a --[anti fermion, edge label={\(p_3\)}] b;
+				b --[anti fermion, edge label={\(p_2\)}] c;
+				c --[anti fermion, edge label={\(p_1\)}] d;
+				d --[anti fermion, edge label={\(p_0\)}] e;
+				x --[scalar] b;
+				y --[scalar] c;
+				z --[scalar] d;
+			};
+			\sim \bar{u}_\alpha(p_3) \frac{i(\slashed{p}+m)_{\alpha\beta}}{p^2_2 - m^2 + i\epsilon} \frac{i(\slashed{p}+m)_{\beta\gamma}}{p^2_1 - m^2 + i\epsilon} u_{\gamma}(p_0)
+		\end{align*}
+	\item closed fermion loop
+		\begin{align*}
+			\feynmandiagram[layered layout, small, horizontal=y to x,baseline=(y.base)]{
+				a --[scalar] y[dot, label=120:{\(y\)}];
+				y --[fermion, half left] x[dot, label=30:{\(x\)}];
+				x --[fermion, half left] y;
+				x --[scalar] b;
+			}; 
+			&\sim \contraction{}{\bar{\psi}}{_{\alpha} (x) \psi_{\alpha} (x) \bar{\psi}_{\beta} (y)}{\psi} 
+			\contraction{\bar{\psi}_{\alpha} (x) }{\psi}{_{\alpha} (x) }{\bar{\psi}}
+			\bar{\psi}_{\alpha} (x) \psi_{\alpha} (x) \bar{\psi}_{\beta} (y) \psi_{\beta} (y) 
+			= \textcolor{red}{-}\contraction{}{\psi}{_{\alpha} (x) }{\bar{\psi}} {\psi}_{\alpha} (x) \bar{\psi}_{\beta} (y) 
+			\contraction{}{\psi}{_{\alpha} (x) }{\bar{\psi}} \psi_{\alpha} (x) \bar{\psi}_{\beta} (y) \\
+			& = \textcolor{red}{-} S_F(y-x)_{\beta\alpha} S_F(x-y)_{\alpha\beta} 
+			= \textcolor{red}{-} \textcolor{red}{\text{Tr}} \left( S_F(y-x) S_F(x-y) \right)
+		\end{align*}
+		It always (also with more propagators/couplings) involves an overal $\textcolor{red}{(-1)}$ and a trace $\textcolor{red}{\text{Tr}}(\dots)$.
+\end{itemize}
