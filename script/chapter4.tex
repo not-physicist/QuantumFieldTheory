@@ -1432,7 +1432,7 @@ In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contractes with a fermion,
 		\end{align*}
 		$(\slashed{p}+m)$ terms in propagator are matrix-multiplied contracted with external spinors, e.g.
 		\begin{align*}
-			\feynmandiagram[small, baseline=(c.base), horizontal = a to b]{
+			\feynmandiagram[layered layout, small, baseline=(c.base), horizontal = a to b]{
 				a --[anti fermion, edge label={\(p_3\)}] b;
 				b --[anti fermion, edge label={\(p_2\)}] c;
 				c --[anti fermion, edge label={\(p_1\)}] d;
@@ -1460,4 +1460,53 @@ In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contractes with a fermion,
 			= \textcolor{red}{-} \textcolor{red}{\text{Tr}} \left( S_F(y-x) S_F(x-y) \right)
 		\end{align*}
 		It always (also with more propagators/couplings) involves an overal $\textcolor{red}{(-1)}$ and a trace $\textcolor{red}{\text{Tr}}(\dots)$.
+\end{itemize}
+
+\paragraph{Examples}
+\begin{itemize}
+	\item fermion-fermion scattering to lowest order $\mathcal{O}(g^2)$
+		\begin{align*}
+			iM &= \feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+				a--[anti fermion, edge label={\(p'\)}] x[dot];
+				b--[fermion, edge label={\(p\)}] x;
+				x--[scalar]y[dot];
+				y--[fermion,edge label={\(k'\)}]c;
+				y--[anti fermion, edge label={\(k\)}]d;
+			};
+			+
+			\begin{tikzpicture}[scale=0.6, baseline=(a.base)]
+				\begin{feynman}
+					\diagram[horizontal'=a to b] {
+				i1 [label=\(p\)]-- [fermion] a-- [draw=none] f1 [label=\(p'\)],
+				a -- [scalar] b,
+				i2 [label=\(k\)]-- [fermion] b-- [draw=none] f2 [label=\(k'\)],
+				};
+				\diagram* {
+					(a) -- [fermion] (f2),
+					(b) -- [fermion] (f1),
+				};
+				\end{feynman}
+			\end{tikzpicture}\\
+			   &= (-ig)^2 \left\{ \bar{u}(p')u(p) \frac{i}{\underbrace{(p'-p)^2}_{t}-M^2+i\epsilon} \bar{u}(k')u(k) \textcolor{red}{-} \bar{u}(p')u(k) \frac{i}{\underbrace{(p'-k)^2}{u}-M^2+i\epsilon} \bar{u}(k') u(p) \right\}
+		\end{align*}
+		Mandelstam variables $t=(p'-p)^2$ and $u=(p'-k)^2$
+	\item fermion-antifermion scattering
+		\begin{align*}
+			\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+				a--[anti fermion] x[dot];
+				b[particle=\(f\)]--[fermion] x;
+				x--[scalar]y[dot];
+				y--[anti fermion]c;
+				y--[fermion]d[particle=\(\bar{f}\)];
+			};
+			+
+			\feynmandiagram[small, vertical=x to y, baseline=(y.base)]{
+				a--[fermion] x[dot];
+				b--[anti fermion] x;
+				x--[scalar]y[dot];
+				y--[fermion]c[particle=\(\bar{f}\)];
+				y--[anti fermion]d[particle=\(f\)];
+			};
+		\end{align*}
+		These are tree diagrams. Thus there is no undetermined momenta to integrate.
 \end{itemize}

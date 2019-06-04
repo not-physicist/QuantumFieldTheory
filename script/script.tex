@@ -73,8 +73,10 @@
 \usepackage{dsfont}
 \newcommand{\id}{\mathds{1}}
 
-\newcommand{\xv}{\pmb{x}}
-
+\newcommand{\vecnab}{\pmb{\nabla}}
+\newcommand{\vecx}{\pmb{x}}
+\newcommand{\vecy}{\pmb{y}}
+\newcommand{\veck}{\pmb{k}}
 \newcommand{\N}{\mathbb{N}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -85,10 +87,15 @@
 \title{Quantum Field Theory}
 \begin{document}
 \maketitle
+\tableofcontents
 %TODO: right now chapter 1-3 only contain summaries
+
+%\iffalse
 \include{chapter1}
 \include{chapter2}
 \include{chapter3}
 \include{chapter4}
+%\fi
+\include{chapter5}
 
 \end{document}

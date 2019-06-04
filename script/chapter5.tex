@@ -1,0 +1,179 @@
+\chapter{Quantum Electrodynamics (QED)}
+\section{Classical Electrodynamics and Maxwell's equations}
+We have the gauge potential $A^\mu = (A^0, \pmb{A}) = (\phi, \pmb{A})$ \& $A_\mu = (A^0, -\pmb{A}) = (\phi, -\pmb{A})$ and the field strength tensor $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
+
+Then
+\begin{itemize}
+	\item electric field $E_i = F_{0i} = \partial_0 A_i - \partial_i A_0 \rightarrow \pmb{E} = -\dot{\pmb{A}} - \pmb{\nabla} \phi$
+	\item magnetic field $B^i = -\frac{1}{2} \epsilon^{ijk}F_{jk} \rightarrow \pmb{B} = \pmb{\nabla} \times \pmb{A}$
+\end{itemize}
+
+Lagrangian density $\lag_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} = -\frac{1}{2} (\pmb{E}\cdot\pmb{E} - \pmb{B}\cdot \pmb{B})$. The field equation $\partial_\mu \left( \frac{\partial \lag}{\partial(\partial_\mu A_\nu)} \right) - \frac{\partial \lag}{\partial A_\nu} = 0$ leads to
+\begin{align}
+	\partial_\mu F^{\mu\nu} = 0
+\end{align}
+it is half of Maxwell's equations (in vacuum).
+
+The other half are Bianchi identities following from the definition of $F_{\mu\nu}$:
+\begin{align*}
+	\partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0 \Leftrightarrow \epsilon^{\sigma \lambda \mu \nu}\partial_\lambda F_{\mu\nu} = 0\\
+	\text{or } \partial_\lambda \tilde{F}^{\sigma\lambda} = 0,\; \tilde{F}^{\sigma\lambda} = \frac{1}{2} \epsilon^{\sigma\lambda\mu\nu}F_{\mu\nu}
+\end{align*}
+
+In terms of $\pmb{E}$ and $\pmb{B}$:
+\begin{align*}
+	\pmb{\nabla}\cdot \pmb{E} = 0&,\; \dot{\pmb{E}} = \pmb{\nabla}\times \pmb{B} \quad \text{dynamical equations} \\
+	\pmb{\nabla}\cdot \pmb{B} = 0&,\; \dot{\pmb{B}} = -\pmb{\nabla}\times \pmb{E} \quad \text{Bianchi identities}
+\end{align*}
+
+Remarks
+\begin{itemize}
+	\item Lagrangian density does not depend on $\dot{A}_0$, since $A_0$ is not really dynamical.
+	\begin{align*}
+		\pmb{\nabla}\cdot \pmb{E} = 0 \rightarrow \pmb{\nabla}^2 A_0 + \pmb{\nabla}\cdot \dot{\pmb{A}} = 0 
+	\end{align*}
+	Solve this \underline{Poisson} equation for $A_0(\pmb{x},t) = \frac{1}{4\pi}\int \dd^3 y \frac{\pmb{\nabla}\cdot \dot{\pmb{A}}(\pmb{y},t)}{|\pmb{y}-\pmb{x}|}$. Thus $A_0$ is given in terms of the other components of $A$.
+	\item \underline{gauge invariance}: field strength tensor invariant under the transformation $A_\mu \longmapsto A_\mu - \partial_\mu \text{X}$ due to commuting derivatives. This leads to gauge invariance of Maxwell equations.\\
+	Choose X to satisfy $\partial_\mu \partial^\mu \text{X} = \partial^2\text{X}=\partial_\mu A^\mu$ allows us to demand the condition  (Lorenz condition)
+		\begin{align}
+			\partial_\mu A^\mu = 0
+		\end{align}
+	such that $A_\mu$ belongs to the "Lorenz gauge" and reduces the degrees of freedom from 4 to 3.
+	\begin{itemize}
+		\item Further freedom is eliminated by adding any X with $\partial^2 \text{X} = 0$, e.g.~$\frac{\partial}{\partial t} \text{X} = A_0$. Then we get the \underline{Coulomb} or \underline{radiation gauge}
+		\begin{align}
+			A_0 = 0,\; \pmb{\nabla}\cdot \pmb{A} = 0
+		\end{align}
+	\end{itemize}
+\end{itemize}
+
+Note: vice versa imposing $\pmb{\nabla} \cdot \pmb{A} = 0$ first, yields $A_0 = 0$ (using Lorenz condition?).
+
+In Coulomb gauge:
+\begin{align*}
+	&\pmb{E} = -\dot{\pmb{A}}.\; \pmb{B} = \pmb{\nabla} \times \pmb{A},\; \pmb{\nabla}\times \pmb{A} = 0 \\
+	&-\ddot{\pmb{A}} = \dot{\pmb{E}} \stackrel{\text{Maxwell}}{=} \pmb{\nabla} \times \pmb{B} =  \pmb{\nabla} \times (\pmb{\nabla} \times \pmb{A}) = \pmb{\nabla}(\underbrace{\pmb{\nabla}\cdot\pmb{A}}_{=0}) - \pmb{\nabla}^2 \pmb{A} \\
+	&\Rightarrow \partial^2 \pmb{A} = 0
+\end{align*}
+This wave equation is massless KG equation for each spatial component.
+
+Then the solutions are obvious: $\pmb{A} = \pmb{\epsilon} e^{-ik\cdot x}$ with $k^2=0$ and $\pmb{\epsilon}\cdot\pmb{k}=0$. The polarization vector $\pmb{\epsilon}$ is transverse to $\pmb{k}$.
+
+Can write the lagrangian in Coulmb gauge 
+\begin{align*}
+	\lag_\text{EM} = \frac{1}{2}\dot{\pmb{A}}\dot{\pmb{A}} - \frac{1}{2} \pmb{B}\cdot \pmb{B}
+\end{align*}
+Then the conjugate momentum to $\pmb{A}$ is $\pmb{\Pi} = \frac{\partial \lag}{\partial \dot{\phi}} = \dot{\pmb{A}} = -\pmb{E}$. (only 3 components, there is no conjugate momentum to $A_0$!) $\pmb{\Pi}$ is subject to the constraint $\pmb{\nabla}\cdot\pmb{\Pi} = 0$
+
+Hamiltonian
+\begin{align*}
+	H_{\text{EM}} = \int \dd^3 x \left( \frac{1}{2} \pmb{\Pi}\cdot\pmb{\Pi} + \frac{1}{2} \pmb{B}\cdot\pmb{B} \right)
+\end{align*}
+
+\section{Quantizing the Maxwell field}
+We would like to impose canonical commutation relations, à la
+\begin{align*}
+	&[ A_i(\pmb{x}), A_j (\pmb{y}) ] =  [ \Pi_i(\pmb{x}), \Pi_j (\pmb{y}) ] = 0 \\
+	&[A_i(\pmb{x}), \Pi_j(\pmb{y})] = i \delta_{ij} \delta^{(3)} (\pmb{x} - \pmb{y})
+\end{align*}
+
+However this cannot be true. Take either derivative of the last equation and it needs to vanish deu to $\pmb{\nabla}\cdot\pmb{A} = \pmb{\nabla}\cdot \pmb{\Pi} = 0$. But 
+\begin{align*}
+	[\partial^i A_i (\vecx), \Pi_k(\vecy)] =  i \delta_{ij} \partial^i \delta^{(3)}(\vecx-\vecy)
+\end{align*}
+here the derivative is takev with respect to $\vecx$, i.e.~$\partial^i = \frac{\partial}{\partial x_i}$.
+
+
+Replace $\delta_{ij}$ by $\Delta_{ij}$
+\begin{align*}
+	& [\partial^i A_i (\vecx), {\Pi}_{j}(\vecy)] = i \Delta_{ij} \partial^i \frac{1}{(2\pi)^3} \int \dd^3 k e^{i\pmb{k}\cdot(\vecx - \vecy)} \\
+	& = -\frac{1}{(2\pi)^3} \int \dd^3 k (k^i\Delta_{ij}) e^{i\pmb{k}\cdot(\pmb{x}-\pmb{y})} \stackrel{!}{=} 0
+\end{align*}
+it works for $\Delta_{ij} = \delta_{ij}-\frac{k_ik_j}{\pmb{k}^2}$ in momentum space or $\Delta_{ij} = \delta_{ij} - \vecnab^{-2}\partial_i \partial_j$ in position space.
+
+\begin{align}
+	[A_i(\pmb{x}), \Pi_j(\pmb{y})] = i \left( \delta_{ij} - \vecnab^{-2}\partial_i \partial_j \right) \delta^{(3)} (\pmb{x} - \pmb{y})
+\end{align}
+
+As before we have the mode expansion
+\begin{align*}
+	\pmb{A}(\vecx) &= \int \frac{\dd^3 k}{(2\pi)^3\sqrt{2|\veck|}} \left( \pmb{a}_{\veck}e^{i\veck\cdot\vecx} + \pmb{a}^\dagger_{\veck} e^{-i\veck\cdot\vecx} \right) \\
+	\pmb{\Pi}(\vecx) &= \int \frac{\dd^3 k}{(2\pi)^3} (-i)\sqrt{\frac{|\veck|}{2}}\left( \pmb{a}_{\veck}e^{i\veck\cdot\vecx} - \pmb{a}^\dagger_{\veck} e^{-i\veck\cdot\vecx} \right) \\
+\end{align*}
+with $\veck\cdot\pmb{a}_{\veck} = \veck\cdot\pmb{a}^\dagger_{\veck} = 0$.
+
+Introduce 2 orthogonal polarization vectors $\pmb{\epsilon}^{(1)}(\veck)$ and $\pmb{\epsilon}^{(2)}(\veck)$ for each $\veck$.
+\begin{align*}
+	&\pmb{a}_{\veck} = a_{\veck}^{(1)}\pmb{\epsilon}^{(1)} + a_{\veck}^{(2)}\pmb{\epsilon}^{(2)} = \sum_{\lambda=1}^2 a_{\veck}^{(\lambda)}\pmb{\epsilon}^{(\lambda)}(\veck) \\
+	& \text{with } \veck\cdot\pmb{\epsilon}^{(1)}(\veck) = \veck\cdot\pmb{\epsilon}^{(2)}(\veck) = 0,\; \pmb{\epsilon}^{(\lambda)}\cdot \pmb{\epsilon}^{(\lambda;)}=\delta_{\lambda \lambda'}
+\end{align*}
+
+Creation and annihilation operator have the standard commutation relations
+\begin{align}
+	[a_{\veck}^{(\lambda)}, a_{\veck'}^{(\lambda')\dagger}] = (2\pi)^3 \delta_{\lambda\lambda'}\delta^{(3)}(\veck-\veck')
+\end{align} 
+and all other commutators vanish. Geometrically, still possible to write
+\begin{align*}
+	[\pmb{a}_{\veck}, \pmb{a}_{\pmb{l}}] &= 	[\pmb{a}_{\veck}^\dagger, \pmb{a}_{\pmb{l}}^\dagger] = 0 \\
+	[a^i_{\veck}, a_{\pmb{l}}^{j\dagger}] &= (2\pi)^3 \left( \delta^{ij} - \frac{k^i k^j}{\veck^2} \right) \delta^{(3)}(\veck-\pmb{l})
+\end{align*}
+
+$a_{\veck}^{(\lambda)}$ and $a_{\veck}^{(\lambda)\dagger}$ create and destroy photons of momentum $\veck$, energy $|\veck|$ and (electric) polarization along $\pmb{\epsilon}^{(\lambda)}(\veck)$. 
+
+Next steps are analogout to KG theory. 
+\paragraph{Hamiltonian}
+\begin{align*}
+	H &= \frac{1}{2} \int \dd^3 x \left(\pmb{E}^2 + \pmb{B}^2 \right)= \frac{1}{2} \int \dd^3 x \left( \dot{\pmb{A}}^2 + (\vecnab \times \pmb{A})\cdot (\vecnab \times \pmb{A}) \right) \\
+	\shortintertext{using identity $\pmb{A}\cdot(\pmb{B}\times\pmb{C}) = \pmb{B}\cdot(\pmb{C}\times\pmb{A})$}
+	  &= \frac{1}{2} \int \dd^3 x \left( \dot{\pmb{A}}^2 + \pmb{A}\cdot\vecnab\times(\vecnab \times \pmb{A})\right) \\
+	  \shortintertext{using the identity $\vecnab\times(\vecnab\times\pmb{A}) = \vecnab(\vecnab\cdot\pmb{A} - \vecnab^2\pmb{A})$}
+	  &= \frac{1}{2} \int \dd^3 x \left( \dot{\pmb{A}}^2 -\pmb{A}\cdot\vecnab^2\pmb{A}+\pmb{A}\cdot\vecnab(\vecnab\cdot\pmb{A})  \right) \\
+	\shortintertext{using coulomb gauge condition}
+	  &= \frac{1}{2} \int \dd^3 x \left( \dot{\pmb{A}}^2 - \pmb{A}\cdot \nabla^2\pmb{A} \right) \\
+	  \shortintertext{the first term vanishes and use normal ordering}
+	  &= \int \frac{\dd^3 k}{(2\pi)^3} \left|\veck \right| \pmb{a}_{\veck}^\dagger \cdot \pmb{a}_{\veck} = \sum_{\lambda=1}^2 \int \frac{\dd^3 k}{(2\pi)^3} \left|\veck \right| a_{\veck}^{(\lambda \dagger)} a_{\veck}^{\lambda}
+\end{align*} 
+
+\paragraph{Heisenberg field}
+\begin{align*}
+	\pmb{A}(\pmb{x},t) = \int \frac{\dd^3 k}{(2\pi)^3}\frac{1}{\sqrt{2|\pmb{k}|}} \left( \pmb{a}_{\pmb{k}} e^{-ik\cdot x} +  \pmb{a}_{\pmb{k}}^\dagger e^{ik\cdot x}\right)
+\end{align*}
+
+\paragraph{Photon propagator}
+\begin{align}
+	\braket{0 | T A_i (x) A_j (y) | 0} \eqdef D^{\text{tr}}_{ij} (x-y) = \int\frac{\dd^4 k}{(2\pi)^4}	
+\frac{i}{k^2 + i\epsilon} \left( \delta_{ij} - \frac{k_i k_j}{|\pmb{k}|^2} \right)e^{-ik\cdot(x-y)}
+\end{align}
+$\text{tr}$ stands for transverse: photon polarization perpendicular to its momentum. This is \textcolor{red}{NOT} the final version of the photon propagator!
+
+\section{Inclusion of matter - QED}
+\begin{align}
+	\lag_\text{QED} &= -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + \bar{\psi} (i\slashed{D} - m)\psi
+	\shortintertext{where $D_\mu = \partial_\mu + ieA_\mu$ is the (gauge) covariante derivative}
+					&= \lag_\text{EM} + \lag_{D} -e \underbrace{\bar\psi \gamma^\mu \psi A_\mu}_{j^\mu}
+\end{align}
+
+Field equations would be
+\begin{align*}
+	\partial_\mu F^{\mu\nu} = e j^\nu \qquad (i\slashed{D}-m) \psi = 0
+\end{align*}
+where $ej^\nu$ is the electromagnetic 4-current.
+
+Gauge invariance under the transformation
+\begin{align*}
+	\begin{cases}
+		\psi(x) \longmapsto \psi'(x) = e^{ie\chi(x)}\psi \\
+		A_\mu(x) \longmapsto A'_\mu(x) = A_\mu(x) - \partial_\mu \chi(x)
+	\end{cases}
+\end{align*}
+
+To check the consistence: cavariant derivative transforms like $D_\mu \longmapsto D'_\mu\psi'(x) = e^{ie\chi(x)}D_\mu \psi(x)$. Since the adjoint spinor transforms like $\bar{\psi}(x) \longmapsto \bar{\psi}'(x) = \bar{\psi}(x) e^{-ie\chi(x)}$, the Lagrangian and field equations are gauge invariant.
+
+Again we choose Coulomb gauge $\vecnab \cdot \pmb{A} = 0$, then equation for $A^0$:
+\begin{align}
+	\partial_i F^{i0} &= ej^0 \notag\\ 
+	\Rightarrow -\vecnab^2 A^0 &= ej^0 =  e \bar{\psi}\gamma^0 \psi \notag\\
+							   &= e \bar{\psi}\gamma^0\psi = e\psi^\dagger\psi \notag\\
+							   &= e \rho(x)\notag\\
+	A^0(\pmb{x},t) &= e \int \dd^3 y \frac{\rho(\pmb{y}, t)}{4\pi \left| \pmb{x} - \pmb{y} \right|  }
+\end{align}
