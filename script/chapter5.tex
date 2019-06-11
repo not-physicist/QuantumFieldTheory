@@ -63,7 +63,7 @@ Can write the lagrangian in Coulmb gauge
 \begin{align*}
 	\lag_\text{EM} = \frac{1}{2}\dot{\pmb{A}}\dot{\pmb{A}} - \frac{1}{2} \pmb{B}\cdot \pmb{B}
 \end{align*}
-Then the conjugate momentum to $\pmb{A}$ is $\pmb{\Pi} = \frac{\partial \lag}{\partial \dot{\phi}} = \dot{\pmb{A}} = -\pmb{E}$. (only 3 components, there is no conjugate momentum to $A_0$!) $\pmb{\Pi}$ is subject to the constraint $\pmb{\nabla}\cdot\pmb{\Pi} = 0$
+Then the conjugate momentum to $\pmb{A}$ is $\pmb{\Pi} = \frac{\partial \lag}{\partial \dot{A}} = \dot{\pmb{A}} = -\pmb{E}$. It has only 3 components, there is no conjugate momentum to $A_0$!. Because of Coulomb gauge $\pmb{\Pi}$ is subject to the constraint $\pmb{\nabla}\cdot\pmb{\Pi} = 0$
 
 Hamiltonian
 \begin{align*}
@@ -77,7 +77,7 @@ We would like to impose canonical commutation relations, à la
 	&[A_i(\pmb{x}), \Pi_j(\pmb{y})] = i \delta_{ij} \delta^{(3)} (\pmb{x} - \pmb{y})
 \end{align*}
 
-However this cannot be true. Take either derivative of the last equation and it needs to vanish deu to $\pmb{\nabla}\cdot\pmb{A} = \pmb{\nabla}\cdot \pmb{\Pi} = 0$. But 
+However this cannot be true. Take either derivative of the last equation and it needs to vanish due to $\pmb{\nabla}\cdot\pmb{A} = \pmb{\nabla}\cdot \pmb{\Pi} = 0$. But 
 \begin{align*}
 	[\partial^i A_i (\vecx), \Pi_k(\vecy)] =  i \delta_{ij} \partial^i \delta^{(3)}(\vecx-\vecy)
 \end{align*}
@@ -112,7 +112,7 @@ Creation and annihilation operator have the standard commutation relations
 \begin{align}
 	[a_{\veck}^{(\lambda)}, a_{\veck'}^{(\lambda')\dagger}] = (2\pi)^3 \delta_{\lambda\lambda'}\delta^{(3)}(\veck-\veck')
 \end{align} 
-and all other commutators vanish. Geometrically, still possible to write
+and all other commutators vanish. Geometrically, still possible to write including the unphysical longitudinal components:
 \begin{align*}
 	[\pmb{a}_{\veck}, \pmb{a}_{\pmb{l}}] &= 	[\pmb{a}_{\veck}^\dagger, \pmb{a}_{\pmb{l}}^\dagger] = 0 \\
 	[a^i_{\veck}, a_{\pmb{l}}^{j\dagger}] &= (2\pi)^3 \left( \delta^{ij} - \frac{k^i k^j}{\veck^2} \right) \delta^{(3)}(\veck-\pmb{l})
@@ -177,3 +177,338 @@ Again we choose Coulomb gauge $\vecnab \cdot \pmb{A} = 0$, then equation for $A^
 							   &= e \rho(x)\notag\\
 	A^0(\pmb{x},t) &= e \int \dd^3 y \frac{\rho(\pmb{y}, t)}{4\pi \left| \pmb{x} - \pmb{y} \right|  }
 \end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We want to derive the interaction Hamiltonian. Note 
+\begin{align*}
+	\int \dd^3 x \frac{1}{2} \pmb{E}^2 &= \int \dd^3 x \frac{1}{2} \left(\dot{\pmb{A}} + \vecnab A^0 \right)^2 \\
+	\shortintertext{cross terms vanish after integration by parts due to $\vecnab \cdot \dot{\pmb{A}} = 0$}
+									   &= \int \dd^3 x \frac{1}{2} \left(\dot{\pmb{A}}^2 + (\vecnab A^0)^2 \right) \\
+									   &= \int \dd^3 x \frac{1}{2} \left(\dot{\pmb{A}}^0 - A^0 \vecnab^2 A^0 \right) \\
+									   \shortintertext{$-e j^0 = -e \rho$}
+									   &= \int \dd^3 x \frac{1}{2} \dot{\pmb{A}}^2 + \underbrace{\frac{e^2}{2} \int \dd^3 x \dd^3 y \frac{\rho(\pmb{x})\rho(\pmb{y})}{4\pi |\pmb{x}-\pmb{y}|}}_{=\frac{e^2}{2} j^0 A_0}
+\end{align*}
+
+Combined Hamiltonian
+\begin{align*}
+	H =& \int \dd^3 x \left\{ \frac{1}{2}\pmb\Pi\cdot \pmb\Pi + \frac{1}{2} \pmb{B}\cdot \pmb{B} + i\bar\psi \pmb{\gamma}\cdot \vecnab \psi + m \bar\psi \psi \right\}  \quad \text{free photon and fermion} \\
+	   &+ \frac{e^2}{2} \int \dd^3 x \dd^3 y \frac{\rho(\pmb{x})\rho(\pmb{y})}{4\pi |\pmb{x} - \pmb{y}|} - e \int \dd^3 x \pmb{j} \cdot \pmb{A} \quad \text{interactions}
+\end{align*}
+where $\rho = \psi^\dagger \psi = \bar\psi \gamma^0 \psi$, $\pmb{j} = \bar\psi \pmb{\gamma}\psi$ for 2 types of interactions.
+
+\section{Lorentz-invariant propagator}
+Consider $e^- e^-$ scattering at $\mathcal{O}(e^2)$
+\begin{align*}
+	\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{p3[label=\(p_3\)] --[anti fermion] x[dot] --[photon, reversed momentum=\(k\)] y[dot] --[fermion] p4[label=\(p_4\)], p1[label=\(p_1\)] --[fermion] x, y--[anti fermion]p2[label=\(p_2\)]}; \quad k = p_3 - p_1 = p_2 - p_4
+\end{align*}
+
+We expect this to involve 
+\begin{itemize}
+	\item spinors for external fermions
+	\item $-ie\gamma^\mu$
+	\item Photon propagator $D_{\mu\nu}(x-y)$
+\end{itemize}
+
+What we have found in Coulomb gauge is actually
+\begin{itemize}
+	\item %TODO diagram
+		vertices $ie\gamma^i$, transverse propagator $D^\text{tr}_{\mu\nu}(x-y)$
+	\item %TODO diagram
+		vertices $\pm ie \gamma^0$, instantaneous Coumlomb interaction $\frac{1}{4\pi |\pmb{x}- \pmb{y}|}\delta(x^0 - y^0)$
+\end{itemize}
+
+Effectively combine these propagators terms into $D_{\mu\nu}^\text{Coul}(x-y)$, where the  $D_{00}^\text{Coul}(x-y) = \frac{1}{4\pi |\pmb{x}- \pmb{y}|}\delta(x^0 - y^0)$.  This component in momentum space is simply 
+$$\int \frac{\dd^3 k}{(2\pi)^3} \frac{e^{i\pmb{k}\cdot \pmb{r}}}{|\pmb{k}|^2} = \frac{1}{4\pi|\pmb{r}|}$$
+
+Therefore Coumlomb propagator in momentum space:
+\begin{align*}
+	D^\text{Coul}_{\mu\nu}(k) = 
+	\begin{cases}
+		\frac{i}{k^2 + i \epsilon} \left(\delta_{ij} - \frac{k_ik_j}{|\pmb{k}|^2} \right) & \mu = i, \nu=j \\
+		\frac{i}{|\pmb{k}|^2} & \mu = \nu = 0\\
+		0 & \text{otherwise}
+	\end{cases}
+\end{align*}
+
+Consider contraction to scattering amplitude from vertex at x:
+\begin{align*}
+	%TODO diagram
+	\sim e \bar{u} (p_3) \gamma^\mu u(p_1) e^{i(p_3 - p_1)x} \\
+	\shortintertext{current conservation $\partial_\mu j^\mu = 0$ written in momentum space}
+	\underbrace{(p_3 - p_1)_\mu}_{k_\mu} \bar{u} (p_3) \gamma^\mu u(p_1) = 0
+\end{align*}
+so in the complete diagram $D^\text{Coul}_{\mu\nu}$ occurs in a form %TODO: How exactly? and why a and b are transverse to k?
+\begin{align*}
+	& a^\mu D^\text{Coul}_{\mu\nu}(k) b^\nu \\
+	=& a^0 \frac{i}{|\pmb{k}|^2}b^0 +  a^i \left[ \frac{i}{k^2 + i \epsilon} \left(\delta_{ij} - \frac{k_ik_j}{|\pmb{k}|^2} \right) \right]  b^j \\
+	\shortintertext{where $k^\mu a^\mu = 0, k_\mu a^\mu =0$}
+	=& i \Bigg[ \frac{\pmb{a}\cdot\pmb{b}}{k^2} {\underbrace{- \frac{k^2_0 a_0 b_0}{k^2 |\pmb{k}|^2} + \frac{a_0 b_0}{|\pmb{k}|^2} }_{=\frac{-k_0^2 a_0 b_0 + a_0 b_0 (k_0^2 - |\pmb{k}|^2)}{k^2|\pmb{k}|}^2}} \Bigg] \\
+	=& \frac{i}{k^2}(\pmb{a}\cdot\pmb{b}-a_0b_0) = -\frac{i}{k} a_\mu b^\mu
+\end{align*}
+
+\paragraph{Conclusion}
+in this diagram (and in fact, in general), we may replace the $D^\text{Coul}_{\mu\nu}(k)$ by the manifestly Lorentz covariant propagator 
+\begin{align}
+	D_{\mu\nu} (k) = - \frac{i g_{\mu\nu}}{k+i\epsilon}
+\end{align}
+
+This can be generalised to 
+\begin{align}
+	D_{\mu\nu}(k) = -\frac{i}{k^2 + i \epsilon} \left( g_{\mu\nu} - (1-\alpha)\frac{k_\mu k_\nu}{k^2} \right) 
+	\shortintertext{as, by current consevation, additional term doesn't contribute.} \notag
+\end{align}
+Feynman gauge $\alpha = 1$; Landau gauge $\alpha=0$.
+
+\paragraph{Remark} one can also try to quantise photons in a manifestly covariant way, imposing Lorentz gauge $\partial_\mu A^\mu = 0$
+\begin{align*}
+	[A_\mu (\pmb{x}), \Pi_\nu (\pmb{y})] = ig_{\mu\nu} \delta^{(3)} (\pmb{x} - \pmb{y})
+\end{align*}
+This is trouble since $\Pi^0 = \frac{\partial \lag}{\partial \dot{A}_0} = 0$. This cannot hold!
+
+We thus change the Lagrangian $$\lag = - \frac{1}{4} F_{\mu\nu} F^{\mu\nu} - \frac{1}{2\alpha} (\partial_\mu A^\mu)^2$$ with "gauge fixing term". The equation of motion from this is $$\partial^2 A^\mu - \left(1-\frac{1}{\alpha}\right)\partial^\mu (\partial_\lambda A^\lambda) = 0$$ e.g.~ $\alpha=1$ is the Feynman gauge.
+
+With this Lagrangian we can the 0th component of conjugate momentum $$\Pi^0 = -\frac{1}{\alpha} \partial_\mu A^\mu$$ but this seems as bad as before!
+
+We cannot impose Coulomb gauge condition $\partial_\mu A^\mu = 0$ as an operator identity. Instead demand a weaker condition $\braket{\text{out}|\partial_\mu A^\mu|\text{in}} = 0$ for all physical states.
+
+This in turn tells us which states are actually physical. The 4 polarisation states consist of physical, timelike(scalar) and longitudinal states. The negative-norm states cancel each ther out (Gopta-Bleuler formalism).
+
+\paragraph{Feynman rules for QED}
+diagrams constucted from electron (positron) \feynmandiagram[horizontal=a to b,small]{a--[fermion]b}; and photon \feynmandiagram[horizontal=a to b,small]{a--[photon]b};; rules for fermions are valid as before.
+
+In addition
+\begin{itemize}
+	\item vertex $\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{a--[anti fermion]x[dot, label=45:\(\mu\)]--[photon]y, b--[fermion]x}; = -ie\gamma^\mu$;
+	\item photon propagator $\feynmandiagram[horizontal=a to b,small]{a[label=\(\mu\)]--[photon, edge label=\(k\)]b[label=\(\nu\)],}; =-\frac{ig_{\mu\nu}}{k^2 + i \epsilon}$
+	\item external photons
+		\begin{align*}
+			\feynmandiagram[horizontal=a to b,small]{a[label=\(\mu\), dot]--[reversed momentum={\(k_\text{in}\)}, photon]b[label=\(\nu\)],}; = \epsilon_\mu \\
+			\feynmandiagram[horizontal=a to b,small]{a[label=\(\mu\), dot]--[momentum={\(k_\text{out}\)}, photon]b[label=\(\nu\)],}; = \epsilon_\nu^*
+		\end{align*}
+		$\epsilon_\mu$ polarisation vector of in/out photon and $\epsilon^*_\mu$ for out photon required for complex (circular) polarisation.
+\end{itemize}
+
+\section{QED process at tree level}
+\paragraph{Example $e^-e^- \rightarrow e^- e^-$}
+\begin{align*}
+	&\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+		p3[label=90:\(p_3\)] --[anti fermion] x --[photon] y --[fermion] p4[label=90:\(p_4\)],
+		p1[label=-90:\(p_1\)] --[fermion] x,
+		y --[anti fermion] p2[label=-90:\(p_2\)],
+	};
+	&&\begin{tikzpicture}[baseline=(x.base)]
+	\begin{feynman}
+		\diagram[small, horizontal=x to y]{
+		p3[label=90:\(p_3\)] --[draw=none] x --[photon] y --[draw=none] p4[label=90:\(p_4\)],
+		p1[label=-90:\(p_1\)] --[fermion] x,
+		y --[anti fermion] p2[label=-90:\(p_2\)],
+		};
+		\diagram*{
+			(p3) -- [anti fermion] (y),
+			(x) --[fermion] (p4),
+		};
+	\end{feynman}
+	\end{tikzpicture}\\
+	&\sim \frac{1}{(p_1 - p_3)^2} = \frac{1}{t}  
+	&&\sim  \frac{1}{(p_1 - p_4)^2} = \frac{1}{u}  \\
+	&\quad \text{t-channel} &&\quad \text{u-channel}
+\end{align*}
+
+\paragraph{Example $e^-e^+ \rightarrow e^- e^+$}
+\begin{align*}
+	&\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+		p3[label=90:\(p_3\)] --[anti fermion] x --[photon] y --[fermion] p4[label=90:\(p_4\)],
+		p1[label=-90:\(p_1\)] --[fermion] x,
+		y --[anti fermion] p2[label=-90:\(p_2\)],
+	};
+	&& \feynmandiagram[small, vertical=x to y, baseline=(x.base)]{
+		p4[label=90:\(p_4\)] --[anti fermion] x --[photon] y --[fermion] p2[label=-90:\(p_2\)],
+		p3[label=90:\(p_3\)] --[fermion] x,
+		y --[anti fermion] p1[label=-90:\(p_1\)],
+	}; \\
+	&\sim \frac{1}{(p_1 - p_3)^2} = \frac{1}{t}
+	&&\sim \frac{1}{(p_1 + p_2)^2} = \frac{1}{s} \\
+	&\text{t-channel} && \text{s-channel}
+\end{align*}
+
+\paragraph{Compton scattering $\gamma e^- \rightarrow \gamma e^-$}
+\begin{align*}
+	&\feynmandiagram[small, vertical=x to y, baseline=(x.base)]{
+		p4[label=90:\(p_4\)] --[anti fermion] x --[anti fermion] y --[anti fermion] p2[label=-90:\(p_2\)],
+		p3[label=90:\(p_3\)] --[photon] x,
+		y --[photon] p1[label=-90:\(p_1\)],
+	};
+	&&\begin{tikzpicture}[baseline=(x.base)]
+	\begin{feynman}
+		\diagram[small, vertical'=x to y]{
+		p3[label=90:\(p_3\)] --[draw=none] x --[anti fermion] y --[draw=none] p1[label=-90:\(p_1\)],
+		p4[label=90:\(p_4\)] --[anti fermion] x,
+		y --[anti fermion] p2[label=-90:\(p_2\)],
+		};
+		\diagram*{
+			(p3) -- [photon] (y),
+			(x) --[photon] (p1),
+		};
+	\end{feynman}
+	\end{tikzpicture} \\
+	&\text{s-channel} &&\text{u-channel}
+\end{align*}
+
+\paragraph{Example $e^+ e^- \rightarrow \gamma \gamma$}
+\begin{align*}
+	&\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+		p3 --[photon] x --[fermion] y --[photon] p4,
+		p1[label=-90:\(e^-\)] --[fermion] x,
+		y --[fermion] p2[label=-90:\(e^+\)],
+	};
+	&&\begin{tikzpicture}[baseline=(x.base)]
+	\begin{feynman}
+		\diagram[small, horizontal=x to y]{
+		p3 --[draw=none] x --[fermion] y --[draw=none] p4,
+		p1[label=-90:\(e^-\)] --[fermion] x,
+		y --[fermion] p2[label=-90:\(e^+\)],
+		};
+		\diagram*{
+			(p3) -- [photon] (y),
+			(x) --[photon] (p4),
+		};
+	\end{feynman}
+	\end{tikzpicture}\\
+	&\quad \text{t-channel} &&\quad \text{u-channel}
+\end{align*}
+These are important for lifetime of positronium.
+
+All these amplitudes are $\mathcal{O}(e^2)$, $\alpha = \frac{e^2}{4\pi}=\frac{1}{137.036}$ the fine structure constant.
+
+Muons $\mu^\pm$, like electrons, just ca. 200 times heavier.
+\begin{align*}
+e^- \mu^- \rightarrow e^- \mu^- \Rightarrow
+\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
+		p3[label=90:\(e^-\)] --[anti fermion] x --[photon] y --[fermion] p4[label=90:\(\mu^-\)],
+		p1[label=-90:\(e^-\)] --[fermion] x,
+		y --[anti fermion] p2[label=-90:\(\mu^-\)],
+}; \quad \text{Just one diagram}
+\end{align*}
+
+\begin{align*}
+e^+ e^- \rightarrow \mu^+ \mu^- \Rightarrow
+\feynmandiagram[small, vertical=x to y, baseline=(x.base)]{
+		p3[label=90:\(\mu^+\)] --[fermion] x --[photon] y --[fermion] p4[label=-90:\(e^+\)],
+		p1[label=90:\(\mu^-\)] --[anti fermion] x,
+		y --[anti fermion] p2[label=-90:\(e^-\)],
+};\quad \text{Just one diagram}
+\end{align*}
+$\mu^\pm$ decay into $e^\pm$ and neutrinos in weak interactions.
+
+For tree level diagrams the photon propagator does not need to have the $i\epsilon$ in the denominator, since we will never be able to see a singularity/pole.
+
+\subsection{Some hints and tricks for cross section calculations} See application in exercises!
+\paragraph{Example}
+$e^+ e^- \rightarrow \mu^+ \mu^-$ \\
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\feynmandiagram[small, vertical'=x to y,baseline=(x.base)]{
+		a[label=\(\mu^-\)] --[anti fermion, edge label=\(k\)] x[dot] --[photon] y[dot] --[anti fermion, edge label=\(p\)] c[label=-90:\(e^-\)],
+		b[label=\(\mu^+\)] --[fermion, edge label=\(k'\)] x,
+		y --[fermion, edge label=\(p'\)] d[label=-90:\(e^+\)],
+	};
+	\end{center}
+\end{minipage}%
+\begin{minipage}{0.6\textwidth}
+	\begin{align*}
+		iM &= \bar{\nu}_e^{s'}(-ie\gamma^\mu) u_e^s(p) \left. \frac{-ig_{\mu\nu}}{s}\right|_{s=q^2} \bar{u}^r_{\mu}(k) (-ie\gamma^\nu) \nu^{r'}_{\mu}(k') \\
+		&= \frac{ie^2}{s} \left( \bar\nu_e(p')\gamma^\mu u_e(p) \right) \left( \bar{u}_\mu(k) \gamma_\mu \nu_\mu(k') \right)
+	\end{align*}
+\end{minipage}
+
+See section \ref{sec:croSec}, $|M|^2$ is needed for cross section. $M^*$ involves things like 
+\begin{align*}
+	(\bar{\nu}\gamma^\mu u)^* &= (\bar{\nu} \gamma^\mu u)^\dagger = u^\dagger \gamma^{\mu\dagger}\gamma_0^\dagger \nu \\
+							  &= u^\dagger \gamma_0 \gamma^\mu \gamma_0\gamma_0\nu = \bar{u} \gamma^\mu \nu
+\end{align*}
+
+So 
+$$|M|^2 = \frac{e^4}{s^2} \left[ \bar{v}(p') \gamma^\mu u (p) \bar{u}(p)\gamma^\nu v(p') \right]_{e^\pm} \cdot  \left[ \bar{u}(k) \gamma_\mu v (p) \bar{v}(k')\gamma_\nu u(k) \right]_{\mu^\pm}$$
+Unpolarized scattering$=\frac{1}{4} \sum_{r,s,r',s'}|M|^2$.
+
+Now $\bar{v}\gamma^\mu u$, $\bar{u}\gamma^\nu v$ etc. are scalars in Dirac/spinor space:
+\begin{align*}
+	&\sum_{s,s'} \bar{v}_{s'}{p'} \gamma^\mu u_s(p) \bar{u}_s (p) \gamma^\nu v_{s'} (p') \\
+	\text{(taking trace of scalar) }	=& \sum_{s,s'} \text{Tr} \left(\bar{v}_{s'}{p'} \gamma^\mu u_s(p) \bar{u}_s (p) \gamma^\nu v_{s'} (p') \right) \\
+	=& \sum_{s,s'} \text{Tr} \left( v_{s'}(p')\bar{v}_{s'}(p') \gamma^\mu u_s(p) \bar{u}_s(p)\gamma^\nu \right) \\
+	\shortintertext{using spin sums}
+	=& \text{Tr} \left( (\slashed{p}' - m)\gamma^\mu (\slashed{p}+m)\gamma^\nu \right)
+\end{align*}
+
+\paragraph{Trace technology}
+\begin{itemize}
+	\item remember $\text{Tr} \gamma_\mu = 0 $
+	\item $\text{Tr}(\gamma^\mu \gamma^\nu) = 4g_{\mu\nu}$
+	\item $\text{Tr}(\text{odd number of } \gamma) = 0$
+	\item $\text{Tr}(\gamma_\mu \gamma_\nu \gamma_\alpha \gamma_\beta) = 4 \left( g_{\mu\nu}g_{\alpha\beta} + g_{\mu\beta}g_{\nu\alpha} - g_{\mu\alpha} g_{\nu\beta} \right)$
+	\item more rules involving $\gamma_5$ (weak interactions!)
+\end{itemize}
+
+So
+\begin{align*}
+	\text{Tr} \left( (\slashed{p}' - m)\gamma^\mu (\slashed{p}+m)\gamma^\nu \right) &= 4 \left( p'^\mu p^\nu + p'^\nu p^\mu - g^{\mu\nu}(p\cdot p' + m^2) \right)
+\end{align*}
+
+\paragraph{Mandelstam variables}
+with 4 equal masses, center-of-mass system (CMS): 
+$$p=(E,\pmb{p}), \quad p'=(E,-\pmb{p}),\quad k = (E, \pmb{k}),\quad \theta = \measuredangle (\pmb{p}, \pmb{k})$$
+
+\begin{align}
+	s &\stackrel{\text{CMS}}{=} (p+p')^2 = 4E^2 \\
+	t &=  (p-k)^2 = -(\pmb{p}-\pmb{k})^2 = -2 |\pmb{p}|^2 (1-\cos{\theta}) \\
+	u &= (p' - k)^2 = -2 |\pmb{p}|^2 (1+\cos{\theta})\\
+	|\pmb{p}|^2 &= E^2 - m^2 = \frac{s}{4} - m^2
+\end{align}
+
+Only 2 Mandelstam variables are independent.
+\begin{align*}
+	s + t + u &= (p_1 + p_2)^2 + (p_1 - p_3)^2 + (p_1 - p_4)^2 \\
+				&= p_1^2 + p_2^2 +p_3^2 + p_4^2 + 2 p_1 \underbrace{(p_1 + p_2 - p_3 - p_4)}_{=0} \\
+				&= \sum_i m_i^2 = \text{const}
+\end{align*}
+
+\paragraph{photon polarisation sums}
+Analogy to fermion spin sums before, Feynman rules for external photons involve $\epsilon^(*)_\mu$; e.g.~Compton amplitude of the form 
+\begin{align*}
+	M \sim \epsilon^*_\mu (p_3) \epsilon_\nu (p_1) T^{\mu\nu}
+\end{align*}
+
+Thus 
+\begin{align*}
+	\sum_{\text{spin, pol.}} |M|^2 =  \sum_{\text{spin, pol.}} \epsilon^*_\mu (p_3) \epsilon_\alpha (p_3) \epsilon^*_\beta (p_1) \epsilon_\nu (p_1) T^{\mu\nu} T^{\alpha\beta^*}
+\end{align*}
+How can we simplify $\sum_{pol} \epsilon_\mu^*(k) \epsilon_\nu(k)$? Again we have only 2 physical polarisation states, but want to do it in a covariant form.
+
+Assume a simpler process (than Compton) with a single external photon, $\epsilon^*_\mu (k) M^\mu$. Choose $$k^\mu = (k,0,0,k),\quad \epsilon_{(1)}^\mu = (0,1,0,0),\quad \epsilon_{(2)}^\mu = (0,0, 1,0)$$
+
+so $\sum_\text{pol}|\epsilon_\mu^*(k) M^\mu|^2 = |M_1|^2 + |M_2|^2$
+
+Remember that photon coupled source $j^\mu$, current sonvervation $\partial_\mu j^\mu = 0$. We will see (next term) this holds in general as \underline{Ward identity}
+\begin{align}
+	k_\mu M^\mu = 0
+\end{align}
+
+In exercises, show $p_{3 \mu} T^{\mu\nu} = 0 = p_{1\nu}T^{\mu\nu}$ for Compton
+
+Here $kM^0 - k M^3 = 0 \Rightarrow M^0 = M^3$ and we can rewrite 
+\begin{align*}
+	\sum_{pol} \epsilon_\mu^* \epsilon_\nu M^\mu M^{*\nu} = |M_1|^2 + |M_2|^2 + \underbrace{|M_3|^2 - |M_0|^2}_{=0} = -g_{\mu\nu} M^\mu M^{*\nu}
+\end{align*}
+
+so effectively
+\begin{align}
+	\sum_{pol} \epsilon^*_\mu (k) \epsilon_\nu (k) = -g_{\mu\nu}
+\end{align}
+
+\paragraph{side remark}
+\begin{itemize}
+	\item KG propagator $\frac{i}{p^2 - M^2 + i\epsilon}$
+	\item Dirac propagator $\frac{i(\slashed{p}+m)}{p^2 - m^2 + i\epsilon} = \frac{i \sum_s u_s(p) \bar{u}_s(p)}{p^2 - m^2 + i\epsilon}$
+	\item Photon propagator $\frac{-ig_{\mu\nu}}{p^2 + i\epsilon} = \frac{i\sum_{pol}\epsilon^*_\mu (p)\epsilon_\nu(p)}{p^2+i\epsilon}$
+\end{itemize}
