@@ -1,8 +1,11 @@
 \chapter{Interacting QFT}
 \section{Introduction and examples}
-Theories discussed so far are Klein-Gordon theory (spin $0$) $$\lag_{KG} = \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{m^2}{2}\phi^2$$ and Dirac theory (spin $\frac{1}{2}$) $$\lag_D = \bar{\psi}(i\slashed{\partial} - m) \psi $$
+Theories discussed so far are Klein-Gordon theory with spin $0$ 
+$$\lag_{KG} = \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{m^2}{2}\phi^2$$ 
+and Dirac theory spin $\frac{1}{2}$ 
+$$\lag_D = \bar{\psi}(i\slashed{\partial} - m) \psi $$
 
-There is also $\lag_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}$ with $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ for a massless vector filed. Its quantiasation gives photon
+There is also $\lag_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}$ with $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ for a massless vector filed. Its quantiasation gives photon.
 
 One thing they have in common is quadratic in the fields. As result:
 \begin{itemize}
@@ -13,7 +16,7 @@ One thing they have in common is quadratic in the fields. As result:
 \end{itemize}
 
 To have an interacting theory with scattering, need higher powers in the field in the Lagrangians. A few examples are following
-\paragraph{scalar $\phi^4$ theory}
+\paragraph{Scalar $\phi^4$ theory}
 \begin{align*}
 	\lag = \lag_{KG} + \frac{\lambda}{4!} \phi^4
 \end{align*}
@@ -48,7 +51,7 @@ descreibes pions and photons
 \end{align*}
 \paragraph{Remarks}
 \begin{enumerate}
-	\item Interaction terms in $H_\text{int} = \int \dd^3 \ham_\text{int} = - \int\dd^3x\lag_\text{int}$ always involves products of fields at the same point $\pmb{x}$. It ensures causality, no "instant at a distance".
+	\item Interaction terms in $H_\text{int} = \int \dd^3x \ham_\text{int} = - \int\dd^3x\lag_\text{int}$ always involves products of fields at the same point $\pmb{x}$. It ensures causality, no "instant at a distance".
 	\item There are no derivative interactions. These may complicate quantisation as $$\pi(\pmb{x}) = \frac{\partial\lag}{\partial(\partial_0 \phi(\pmb{x}))}$$
 	\item Why are we taking the examples above? There must be zillions of theories (Lagrangians)? \\
 			We have the criterion of \textbf{renormalizability}. Note the mass dimensions of fields;
@@ -90,7 +93,7 @@ Relation between interaction and Schrödinger picure states:
 Schrödinger equation becomes: 
 \begin{align}
 	i\frac{\partial}{\partial t}\ket{\psi_S} &= (H_0 + H_\text{int})\ket{\psi_S} \notag\\
-	\text{LHS} &= i \frac{\partial}{\partial t} ( e^{-iH_0t}\ket{\phi_I}) = H_0 e^{-iH_0t}\ket{\phi_I} + e^{-iH_0t}i\frac{\partial}{\partial t}\ket{\phi_I} \notag\\
+	\text{LHS} &= i \frac{\partial}{\partial t} \left( e^{-iH_0t}\ket{\phi_I} \right) = H_0 e^{-iH_0t}\ket{\phi_I} + e^{-iH_0t}i\frac{\partial}{\partial t}\ket{\phi_I} \notag\\
 	\text{RHS}														&= \left(H_0 + H_\text{int}\right)e^{-iH_0t}\ket{\phi_I} \notag\\
 	\Rightarrow i\frac{\partial}{\partial t}\ket{\phi_I} &= e^{iH_0t}H_{int} e^{-iH_0t} = H_I(t)\ket{\phi_I} \label{math:int-schr}
 \end{align}
@@ -116,11 +119,11 @@ To solve with boundary conditions: $U(t_0, t_0) = \id$. The formal solution:
 \end{align}
 
 Substitute back in and we get:
-\begin{align}
+\begin{align*}
 	U(t,t_0) = 1- i \int_{t_0}^t \dd t' H_I(t') + (-i)^2 \int_{t_0}^t \dd t' \int^{t'}_{t_0} \dd t'' H_I(t') H_I(t'') + \dots
-\end{align}
+\end{align*}
 
-Ranges of integration: $H_I$ in the product is automatically time-ordered.
+$H_I$ inside the integral is automatically time-ordered. Ranges of integration is not. 
 
 \begin{figure}[ht]
 	\centering
@@ -131,7 +134,7 @@ Ranges of integration: $H_I$ in the product is automatically time-ordered.
 
 Upper triangle has the wrong time order. We are going to "repair" it by hand.
 \begin{align}
-	U(t,t_0) &= 1-i\int_{t_0}^t \dd t' H_I(t') + \frac{(-i)^2}{2} \int_{t_0}^t \dd t' \int^{t'}_{t_0} \dd t'' T(H_I(t') H_I(t'')) + \dots \notag\\
+	U(t,t_0) &= 1-i\int_{t_0}^t \dd t' H_I(t') + \frac{(-i)^2}{2} \int_{t_0}^t \dd t' \int^{t}_{t_0} \dd t'' T(H_I(t') H_I(t'')) + \dots \notag\\
 			 &= \sum_{n=0}^{\infty} \frac{(-i)^n}{n!}\int_{t_0}^t \dd t_1 \dots \int_{t_0}^t \dd t_n T(H_I(t_1) \dots H_I(t_n))  \notag\\
 			 &= T \exp{-i\int_{t_0}^t \dd t' H_I(t') }
 \end{align}
@@ -172,7 +175,7 @@ How are we going to calculate correlation functions in the interacting theory:
 \begin{align}
 	\braket{\Omega |  \ T \phi(x)\phi(y) | \Omega}	
 \end{align}
-or more generally $\braket{\Omega | T \phi(x_1)\phi(x_2)\dots | \Omega}$, where $\ket{\Omega}$ is the vaccum/ground state of the interacting theory and $\phi(x)$ the Heisenberg operators.
+or more generally $\braket{\Omega | T \phi(x_1)\phi(x_2)\dots | \Omega}$, where $\ket{\Omega}$ is the vaccum/ground state of the interacting theory and $\phi(x)$ the Heisenberg operators?
 
 Ignore $\ket{\Omega} \neq \ket{0}$ for the moment other than saying: we want to study the time evolution from the vacuum at $t\rightarrow - \infty$ to $t \rightarrow + \infty$. So rewriting in terms $\phi_I(x)$, assuming $x^0 > y^0$ for now:
 \begin{align}
@@ -208,7 +211,11 @@ Recall \textbf{normal ordering} with $\phi(x) = \phi^+(x) + \phi^-(x)$
 \begin{align}
 	:\phi^+ \phi^-: = :\phi^- \phi^+: = \phi^- \phi^+
 \end{align} 
-
+where
+\begin{align*}
+\phi^+ &= \int \frac{\dd^3 p}{(2\pi)^3} \frac{1}{\sqrt{2E_{\pmb{p}}}} a_{\pmb{p}} e^{-ip\cdot x} \\
+	\phi^- &= \int \frac{\dd^3 p}{(2\pi)^3} \frac{1}{\sqrt{2E_{\pmb{p}}}} a^\dagger_{\pmb{p}} e^{+ip\cdot x}
+\end{align*}
 Wick's therem expresses time-ordered products in terms of normal-ordered ones. Then it is easy to take vacuum expectation values, as $\braket{0 | :\phi(x_1)\dots\phi(x_n):|0} = 0$
 
 Take two fields and $x^0 > y^0$:
@@ -434,7 +441,7 @@ In fact $D_F(x-x) = D_F(0)$ diverges!
 It has many contractions and some of the fully connected ones are of the type
 there are 
 \begin{align*}
-	& (4\times 3) [\text{choose} \phi(x)]  \times (4\times 3) [\text{choose} \phi(y)]  \times 2 [\text{x-y-cont.}] \times 2 (\text{x-y-symm.}) + 2 \text{ similar, exchanging external points} \\
+	& (4\times 3) [\text{choose } \phi(x)]  \times (4\times 3) [\text{choose } \phi(y)]  \times 2 [\text{x-y-cont.}] \times 2 (\text{x-y-symm.}) + 2 \text{ similar, exchanging external points} \\
 	 &= \frac{(-i\lambda)^2}{2} \int \dd^4 x \dd^4 y D_F(x_1 - x) D_F(x_2 -x )D_F(x_3-y)D_F(x_4-y) [D_F(x-y)]^2 + \text{2 similar} \\
 	 &
 	\begin{tikzpicture}[scale=1, transform shape]
@@ -683,9 +690,9 @@ Then
 \begin{align*}
 	& \braket{0 | T \phi_1 \dots \phi_n S | 0} \\
 	&= \sum_{\text{connected}} \; \sum_{\text{all}\{n_i\}} [\text{connected}] \times \prod_i \frac{1}{n_i !} (V_i)^{n_i}\\
-	&= \left( \sum_{\text{connected}} [\text{connected}] \right) \times \sum_{\text{all}\{n_i\}}\left( \prod(i)\frac{1}{n_i !} (V_i)^{n_i} \right) \\
-	& = \prod_{i} \left( \sum_{n_i} \frac{1}{n_i !} (V_i)^{n_i} \right) \\
-	& = \exp(\sum_{i} V_i)
+	&= \left( \sum [\text{connected}] \right) \times \sum_{\text{all}\{n_i\}}\left( \prod(i)\frac{1}{n_i !} (V_i)^{n_i} \right) \\
+	& = \left( \sum [\text{connected}] \right) \times \prod_{i} \left( \sum_{n_i} \frac{1}{n_i !} (V_i)^{n_i} \right) \\
+	& =\left( \sum [\text{connected}] \right) \times \exp(\sum_{i} V_i)
 \end{align*}
 
 Thus
@@ -710,7 +717,7 @@ Here: "connected" means connected to any external point. External points do not 
 What is the correlation function in interacting vacuum $\braket{\Omega| T {\phi_1\dots\phi_m} | \Omega}$ good for? For scattering, shouldn't we rather look at $\braket{p_1 \dots p_m | S | p_A p_B}$
 with the perturbative expansion of $S$ as before?
 
-Decomposition 
+Decompose the S-matrix
 \begin{align}
 	S_{fi} = \delta_{fi} + i T_{fi} = \delta_{fi} + i(2\pi)^4 \delta^{(4)} (p_f-p_i)M_{fi}
 \end{align}
@@ -743,12 +750,12 @@ New type of Feynman diagram to deal with external states. Define contractions of
 	\contraction{\langle}{\pmb{p}}{|\;}{\phi} \bra{\pmb{p}}\phi(x)  &= e^{+ipx}\ket{0} 
 \end{align*}
 
-How does this work for $p_A p_B \rightarrow p_1 p_2$ in $\phi^4$ at $\mathcal{O}(\lambda)$? The above contains 3 types of terms: $:\phi\phi\phi\phi:$, $\contraction{}{\phi}{}{\phi}\phi\phi :\phi\phi:$ and $\contraction{}{\phi}{}{\phi}\phi\phi \contraction{}{\phi}{}{\phi}\phi\phi$.
+How does this work for $p_A p_B \rightarrow p_1 p_2$ in $\phi^4$ at $\mathcal{O}(\lambda)$? The above contains 3 types of terms: $\phi\phi\phi\phi$, $\contraction{}{\phi}{}{\phi}\phi\phi\phi\phi$ and $\contraction{}{\phi}{}{\phi}\phi\phi \contraction{}{\phi}{}{\phi}\phi\phi$.
 
 \begin{enumerate}
 
 	\item 
-		$:\phi\phi\phi\phi:$ allows for contractions with all external states. There is $4!$ possiblities
+		$\phi\phi\phi\phi$ allows full contractions with all external states. There is $4!$ possiblities
 		\begin{align*}
 				\begin{tikzpicture}[baseline=(x.base)]
 				\begin{feynman}
@@ -866,7 +873,7 @@ How does this work for $p_A p_B \rightarrow p_1 p_2$ in $\phi^4$ at $\mathcal{O}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Feynman rules (with external lines)} 
-\paragraph{position space} calculate $iT$ by summing overall fully connected diagrams with
+\paragraph{Position space} calculate $iT$ by summing overall fully connected diagrams with
 \begin{itemize}
 	\item propagator 
 		$\feynmandiagram[inline=(x.base),horizontal=x to y]{x [dot, label=$x$]  -- y [dot, label=$y$]}; = D_F(x-y)$
@@ -892,7 +899,7 @@ How does this work for $p_A p_B \rightarrow p_1 p_2$ in $\phi^4$ at $\mathcal{O}
 	\item divide diagram by its symmetry factor $\frac{1}{S}$
 \end{itemize}
 
-\paragraph{momentum space} We have seen it before. Now (with external lines) all positions are integrated over. Result is a function of external momenta only. Integrating out all momentum-conserving $\delta$-distribution yields \underline{overall} momentum conservation: $(2\pi)^4 \delta^{(4)}(P_f - P_i)$
+\paragraph{Momentum space} We have seen it before. Now (with external lines) all positions are integrated over. Result is a function of external momenta only. Integrating out all momentum-conserving $\delta$-distribution yields \underline{overall} momentum conservation: $(2\pi)^4 \delta^{(4)}(P_f - P_i)$
 
 Momentum space Feynman rules for calculating $iM$:
 \begin{itemize}
@@ -904,7 +911,7 @@ Momentum space Feynman rules for calculating $iM$:
 			\draw (0,-2)-- (2,0);
 			\node [circle,fill,inner sep=0.1pt,label=below:\huge$x$] at (1,-1) {x};
 		\end{tikzpicture}
-		=-i\lambda \int \dd^4 x$
+		=-i\lambda$
 	\item external lines ("in" or "out") 
 		$ 
 		\feynmandiagram[inline=(x.base),horizontal=x to y]{
@@ -913,7 +920,7 @@ Momentum space Feynman rules for calculating $iM$:
 		= 1
 		$
 	\item impose 4-momentum conservation at each vertex
-	\item integrate over all undetermined momenta $\int \frac{\dd^4 p}{(2\pi)^4}$
+	\item integrate over all \underline{undetermined} momenta $\int \frac{\dd^4 p}{(2\pi)^4}$
 	\item divide diagram by its symmetry factor $\frac{1}{S}$
 \end{itemize}
 
@@ -927,22 +934,22 @@ There is still trouble in there. Consider the next-to-leading contribution to th
 		\vertex (x4) at (3,-3) ;
 		\vertex (y) at (1.5,-1.5);
 		\vertex (a) at (2,-2);
-		\vertex (b) at (2.7,-1.2);
+		\vertex (b) at (2.5,-1.5);
 		\diagram*{
 			(x1) --[anti fermion, edge label=\(p_1\)] (y) --[anti fermion, edge label'=\(p'\)] (a) --[anti fermion, edge label'=\(p_B\)] (x4);
-			(x2) --[anti fermion, edge label'=\(p_A\)] (y) --[anti fermion, edge label'=\(p_2\)](x3);
+			(x2) --[anti fermion, edge label'=\(p_2\)] (y) --[anti fermion, edge label'=\(p_A\)](x3);
 			(a) --[half left] (b) --[half left, anti fermion, edge label=\(k\)] (a);
 		};
 	\end{feynman}
 	\end{tikzpicture}
 	\begin{split}
-	= &\frac{1}{2} \int \frac{\dd^4 p'}{(2\pi)^4} \frac{i}{p'^2-m^2} \int \frac{\dd^4 k}{(2\pi)^4} \frac{i}{k^2-m^2} \times \\
-	  &(-i\lambda)(2\pi)^4 \delta^{(4)}(p_A + p' - p_1 - p_2)\cdot (-i\lambda) (2\pi)^4 \delta^{(4)}(p_B-p')
+	\quad = &\frac{1}{2} \int \frac{\dd^4 p'}{(2\pi)^4} \frac{i}{p'^2-m^2} \int \frac{\dd^4 k}{(2\pi)^4} \frac{i}{k^2-m^2} \\
+	  &\times(-i\lambda)(2\pi)^4 \delta^{(4)}(p_A + p' - p_1 - p_2)\cdot (-i\lambda) (2\pi)^4 \delta^{(4)}(p_B-p')
 	\end{split}
 \end{align*}
 This contains the internal propagator $\frac{i}{P^2_B-m^2+i\epsilon}$, but all the external particle are on their mass-shell, i.e.
 \begin{align*}
-	P^2_A = P^2_B = P^2_1 = P^2_2 = m^2 \; \Rightarrow \; \frac{i}{P^2_B + m^2} = \frac{i}{0}
+	P^2_A = P^2_B = P^2_1 = P^2_2 = m^2 \; \Rightarrow \; \frac{i}{P^2_B - m^2} = \frac{i}{0}
 \end{align*}
 
 In Addition to having \underline{fully connected} diagrams, also need to confine ourselves to \underline{amputated} diagrams: disregard all these diagrams with loops attached to external legs.
@@ -1038,7 +1045,7 @@ Then amend feynman rules above
 		};
 	\end{feynman}
 \end{tikzpicture}
-+ \dots \\
+	+ \dots && \\
 &+ \left(
 \begin{tikzpicture}[scale=1, transform shape,baseline=(x.base)]
 	\begin{feynman}
@@ -1057,7 +1064,7 @@ Then amend feynman rules above
 		};
 	\end{feynman}
 \end{tikzpicture}
-+ \dots \right) \quad \text{yields} \ket{0} \rightarrow \ket{\Omega}\\
++ \dots \right) \quad && \text{yields} \ket{0} \rightarrow \ket{\Omega}\\
 &+ \left( 
 		\begin{tikzpicture}[baseline=(x.base)]
 			\begin{feynman}
@@ -1076,7 +1083,7 @@ Then amend feynman rules above
 			\end{feynman}
 		\end{tikzpicture}
 		+ \dots
-	\right) \quad \text{yields} \ket{p}_{\text{free}} \rightarrow \ket{p}_{\text{int}}\\
+	\right) \quad && \text{yields} \ket{p}_{\text{free}} \rightarrow \ket{p}_{\text{int}}\\
 &+ \left( 
 \begin{tikzpicture}[baseline=(x.base)]
 			\begin{feynman}
@@ -1109,7 +1116,7 @@ Then amend feynman rules above
 			\end{feynman}
 		\end{tikzpicture}
 		+ \dots
-	\right) \quad \text{yields } \id \text{ in S-matrix}
+	\right) \quad &&\text{yields } \id \text{ in S-matrix}
 \end{align*}
 
 All allowed scattering diagrams $2 \rightarrow 2$ in $\phi^4$ up to $\mathcal{O}(\lambda^2)$:
@@ -1206,7 +1213,7 @@ Define the Lorentz-invariant quantities, \textit{Mandelstam variables}:
 		};
 	\end{feynman}
 \end{tikzpicture}
-= \frac{1}{2} (-i\lambda)^2 \int \frac{\dd^4 k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i\epsilon} \frac{i}{(p_A + p_B + k)^2 - m^2 +i\epsilon} \stackrel{(p_A+p_B)^2=s}{\eqdef} \frac{1}{2} (-i \lambda)^2 i J(s)
+= \frac{1}{2} (-i\lambda)^2 \int \frac{\dd^4 k}{(2\pi)^4} \frac{i}{k^2 - m^2 + i\epsilon} \frac{i}{(p_A + p_B + k)^2 - m^2 +i\epsilon} \eqdef \frac{1}{2} (-i \lambda)^2 i J(s)
 \end{align*}
 
 Then the complete invariant amplitude is
@@ -1215,7 +1222,7 @@ Then the complete invariant amplitude is
 \end{align}
 
 \section{Scattering cross section}\label{sec:croSec}
-(Itzykson \& Zuber, Chapter 5.1) \\
+This section is based on Itzykson \& Zuber, Chapter 5.1. \\
 The aim is to relate (differential) cross section to reduced/invariant matrix element $M_{fi}$. First we describe the initial states not as momentum eigenstates $\ket{p_A p_B}$, but as wave packets.
 \begin{align*}
 	\ket{i} = \int \frac{\dd^3 k_A}{(2\pi)^3 2k_A^0} \frac{\dd^3 k_B}{(2\pi)^3 2k_B^0} f(k_A) g(k_B) \ket{k_A k_B}
@@ -1229,12 +1236,12 @@ We can write the transition amplitude to the final state $\ket{f} \propto \ket{p
 \end{align*}
 Thus the \underline{transition probablity}:
 \begin{align*}
-	\omega_{fi} &= (2\pi)^8 \int \frac{\dd^3 k_A}{(2\pi)^3 2k_A^0} \frac{\dd^3 k_B}{(2\pi)^3 2k_B^0} \frac{\dd^3 q_A}{(2\pi)^3 2q_A^0} \frac{\dd^3 q_B}{(2\pi)^3 2q_B^0} f(k_A) g(k_B) f(q_A)^* g(q_B)^* \times \\
-				&\qquad \underbrace{\delta^{(4)}(p_f-k_A-k_B)\delta^{(4)}(p_f-q_A-q_B)}_{=\delta^{(4)}(q_A+q_B-k_A-k_B)\delta^{(4)}(p_f-p_A-p_B)} \underbrace{M(\textcolor{red}{f}, k_A,k_B)  M^*(\textcolor{red}{f}, q_A,q_B)}_{\approx |M(f, p_A, p_B)|^2} \\
-				&\quad \left[\delta^{(4)}(q_A+q_B-k_A-k_B) = (2\pi)^{-4} \int \dd^4 x e^{i(k_A + k_B -q_A-q_B)\cdot x}\right] \\
-				&= \underbrace{\int \dd^4 x \int  \frac{\dd^3 k_A}{(2\pi)^3 2k_A^0}\frac{\dd^3 q_A}{(2\pi)^3 2q_A^0} e^{i(k_A - q_A)\cdot x} f(k_A) f^*(q_A)}_{\defeq |\tilde{f}(x)|^2}\times \\
-				&\qquad \underbrace{\int \frac{\dd^3 k_B}{(2\pi)^3 2k_B^0} \frac{\dd^3 q_B}{(2\pi)^3 2q_B^0} e^{i(k_B-q_B)\cdot x} g(k_B)g^*(q_B)}_{\defeq |\tilde{g}(x)|^2} (2\pi)^4 \delta^{(4)}(p_f - p_A - p_B) \cdot |M(f, p_A, p_B)|^2 \\
-				&\quad \left[\text{using Fourier transformation } \tilde{g}(x) \defeq \int \frac{\dd^3 q}{(2\pi)^3 2q^0} e^{iq\cdot x}g(q) \right] \\
+	\omega_{fi} &= (2\pi)^8 \int \frac{\dd^3 k_A}{(2\pi)^3 2k_A^0} \frac{\dd^3 k_B}{(2\pi)^3 2k_B^0} \frac{\dd^3 q_A}{(2\pi)^3 2q_A^0} \frac{\dd^3 q_B}{(2\pi)^3 2q_B^0} f(k_A) g(k_B) f(q_A)^* g(q_B)^*  \\
+				&\times\qquad \underbrace{\delta^{(4)}(p_f-k_A-k_B)\delta^{(4)}(p_f-q_A-q_B)}_{=\delta^{(4)}(q_A+q_B-k_A-k_B)\delta^{(4)}(p_f-p_A-p_B)} \underbrace{M(\textcolor{red}{f}, k_A,k_B)  M^*(\textcolor{red}{f}, q_A,q_B)}_{\approx |M(f, p_A, p_B)|^2} \\
+			\shortintertext{Using the fourier representation of delta function $\delta^{(4)}(q_A+q_B-k_A-k_B) = (2\pi)^{-4} \int \dd^4 x e^{i(k_A + k_B -q_A-q_B)\cdot x}$} \\
+				&= \int \dd^4 x \underbrace{\int  \frac{\dd^3 k_A}{(2\pi)^3 2k_A^0}\frac{\dd^3 q_A}{(2\pi)^3 2q_A^0} e^{i(k_A - q_A)\cdot x} f(k_A) f^*(q_A)}_{\defeq |\tilde{f}(x)|^2} \\
+				&\times \qquad \underbrace{\int \frac{\dd^3 k_B}{(2\pi)^3 2k_B^0} \frac{\dd^3 q_B}{(2\pi)^3 2q_B^0} e^{i(k_B-q_B)\cdot x} g(k_B)g^*(q_B)}_{\defeq |\tilde{g}(x)|^2} (2\pi)^4 \delta^{(4)}(p_f - p_A - p_B) \cdot |M(f, p_A, p_B)|^2 \\
+				&\quad \shortintertext{Using Fourier transformation $\tilde{g}(x) \defeq \int \frac{\dd^3 q}{(2\pi)^3 2q^0} e^{iq\cdot x}g(q) $} \\
 				& = \textcolor{blue}{\int \dd^4 x} \textcolor{purple}{|\tilde{f}(x)|^2} \textcolor{orange}{|\tilde{g}(x)|^2} (2\pi)^4 \delta^{(4)}(p_f - p_A - p_B) \cdot |M(f, p_A, p_B)|^2
 \end{align*}
 note that $M(f,p_A, p_B)$ and $M(p_1, p_2, p_A, p_B)$ have different normalisation.
@@ -1249,29 +1256,33 @@ Product $\textcolor{purple}{\left( \text{incident flux} \right)} \cdot \textcolo
 
 Covariant renormalization of states $\braket{\pmb{p} | \pmb{q}} \sim 2p^0 \delta^{3}(\pmb{p}-\pmb{q})$ means the number of particles per unit volume is $2p_A^0 |\tilde{f}(x)|^2$ and $2p_B^0 |\tilde{g}(x)|^2$, respectively.
 
-Assume \begin{tikzpicture}[baseline=(a.base)]
+Assume 
+\begin{align*}
+\begin{tikzpicture}[baseline=(a.base)]
 	\tikzfeynmanset{every vertex = dot,};
 	\begin{feynman}
 		\vertex (a) at (0,0);
 		\vertex (b) at (2,0) ;
-		\node (c) at (2.7,0) {$\pmb{p_B}=0$};
+	\node (c) at (2.7,0) {$\pmb{p}_B=0$};
 		\diagram*{
 		(a) --[fermion, edge label=\(p_A\)] (b);
 	};
 	\end{feynman}
 \end{tikzpicture}
-in target rest frame. Then $p_B^0 = 2m_B$.
+\end{align*}
+in target rest frame. Then $2p_B^0 = 2m_B$ and $\textcolor{orange}{\text{target density}} = \textcolor{orange}{2m_B |\tilde{g}(x)|^2}$
 
 Incident flux $= |\pmb{v}_A| \cdot 2 p_A^0 |\tilde{f}(x)|^2 = \textcolor{purple}{2 |\pmb{p}_A| |\tilde{f}(x)|^2}$ since $|\pmb{v}_A| = |\pmb{p}_A|/p_A^0$. Then 
 \begin{align*}
 	\dd \sigma  &= (2\pi)^4 \delta^{(4)}(p_f -p_A -p_B) \frac{1}{4m_B |\pmb{p_A}|} |M(f,p_A,p_B)|^2 \\
-	(\text{for } A+B \rightarrow 1+2)	&= \textcolor{red}{\int_{\Delta} \frac{\dd^3 p_1}{(2\pi)^3 2p^0_1} \frac{\dd^3 p_2}{(2\pi)^3 2p^0_2}} (2\pi)^4 \delta^{(4)}(\textcolor{red}{p_1 + p_2} - p_A - p_B)\frac{1}{4m_B |\pmb{p_A}|} |M(\textcolor{red}{p_1}, \textcolor{red}{p_2},p_A,p_B)|^2 
+	\shortintertext{for $A+B \rightarrow 1+2$ processes}	\\
+				&= \textcolor{red}{\int_{\Delta} \frac{\dd^3 p_1}{(2\pi)^3 2p^0_1} \frac{\dd^3 p_2}{(2\pi)^3 2p^0_2}} (2\pi)^4 \delta^{(4)}(\textcolor{red}{p_1 + p_2} - p_A - p_B)\frac{1}{4m_B |\pmb{p_A}|} |M(\textcolor{red}{p_1}, \textcolor{red}{p_2},p_A,p_B)|^2 
 \end{align*}
 with $\Delta$ energy-momentum resolution of 4-momentum of final state $\ket{f}$.
 
 Covariant form of 
 \begin{align}
-	m_B \cdot |\pmb{p}_A| = m_B \sqrt{(p_A^0)^0 - m_A^2} = \sqrt{(p_A \cdot p_B)^2 - m_A^2 m_B^2} \eqdef F
+	m_B \cdot |\pmb{p}_A| = m_B \sqrt{(p_A^0)^2 - m_A^2} = \sqrt{(p_A \cdot p_B)^2 - m_A^2 m_B^2} \eqdef F
 \end{align}
 
 This is scattering into arbitary final state subject to 4-momentum conservation: $p_A + p_B = p_1 + p_2$.
@@ -1281,7 +1292,7 @@ Consider now \underline{differential} cross section for scattering into a partic
 	\dd \sigma &= \frac{1}{4F}\prod_f \frac{\dd^3 p_f}{(2\pi)^3 2p_f^0} (2\pi)^4 \delta^{(4)}(p_A+p_B-\sum_f p_f)|M|^2 \notag \\
 			   &\stackrel{f=1,2}{=}  \frac{1}{4F} \frac{\dd^3 p_1}{(2\pi)^3 2p_1^0} \frac{\dd^3 p_2}{(2\pi)^3 2p_2^0} (2\pi)^4 \delta^{(4)}(p_i- p_f)|M|^2 \notag\\
 			   &= \frac{1}{64\pi^2 F} \frac{\dd^3 p_1}{E_1} \frac{\dd^3 p_2}{E_2} \delta^{(4)}(p_1 + p_2 - p_i) |M|^2 \notag\\
-			   &\qquad \left[ 
+			   &\qquad \boxed{ 
 				   \begin{array}{ll}
 				   \int \frac{\dd^3 p_1}{E_1} \frac{\dd^3 p_2}{E_2} \delta^{(4)}(p_1 + p_2 - p_i)  \\ 
 				   \stackrel{\text{CMS}}{=} \int \dd |\pmb{p}_1| \dd \Omega_1 \frac{|\pmb{p}_1|^2}{E_1 E_2} \delta (E_1 + E_2 -E_i) \\
@@ -1289,7 +1300,7 @@ Consider now \underline{differential} cross section for scattering into a partic
 				   = \frac{|\pmb{p}_1|^2}{E_1 E_2} \left( \frac{|\pmb{p}_1|}{E_1} + \frac{|\pmb{p}_1|}{E_2} \right)^{-1} \dd \Omega_1 \\
 				   = \frac{|\pmb{p}_1|\dd \Omega_1}{E_1 + E_2} =  \frac{|\pmb{p}_1|\dd \Omega_1}{E_i}
 				   \end{array}
-			   \right] \notag \\
+			   } \notag \\
 			   &\frac{\dd \sigma}{\dd \Omega} = \frac{1}{64 \pi^2} \frac{|\pmb{p}_1|}{F\cdot E_i} |M|^2	
 \end{align}
 
@@ -1300,17 +1311,17 @@ Rewrite all kinematical factors in terms of $s=(p_A+p_B)^2=(p_1+p_2)^2$. Define 
 then
 \begin{align*}
 	F &= \sqrt{(p_A\cdot p_B)^2 - m_A^2 m_B^2} = \frac{1}{2} \lambda^{\frac{1}{2}}(s,m^2_A,m^2_B) = \sqrt{s} |\pmb{p}_i| \\
-	  &\qquad \left[ \begin{array}{ll}
+	  &\qquad \boxed{ \begin{array}{ll}
 			  \lambda (s,m_A^2, m_B^2) &= s^2 -2s(m_A^2 + m_B^2)-(m_A^2 - m_B^2)^2 =  (s - (m_A + m_B)^2)(s - (m_A - m_B)^2) \\
 									   &= (2p_A \cdot p_B -2 m_A\cdot m_B) \cdot (2p_A \cdot p_B + 2 m_A\cdot m_B) = 4 \left[ (p_A p_B)^2 - m_A^2 m_B^2 \right]  \\
-									   &\quad \left[ 
+									   &\quad \boxed{ 
 					   \begin{array}{ll}
 						   p_A = (c\sqrt{s}, \pmb{p}_i),\, c \in [0,1] &\rightarrow m^2_A = c^2s - |\pmb{p}_i|^2 \\
 						   p_B = ((1-c)\sqrt{s}, -\pmb{p}_i) &\rightarrow m^2_B = (1-c)^2 s - |\pmb{p}_i|^2
 						\end{array}
-						\right] \\
-									   & =4 \left[ (\frac{s}{4} + |\pmb{p}_i|)^2 -  (\frac{s}{4} - |\pmb{p}_i|)^2 \right] = 4 s |\pmb{p}_i|^2
-				  \end{array} \right] \\
+					} \\
+									   & =4 \left[ \left((c(1-c)s + p_i^2 \right)^2 + (c^2s - p_i^2)((1-c)^2s - p_i^2)\right] = 4 s |\pmb{p}_i|^2
+	  \end{array} } \\
 	|\pmb{p}_f| &= \sqrt{E^2_{1,2} - m_{1,2}^2} = \frac{1}{2\sqrt{s}} \lambda^{\frac{1}{2}}(s, m_1^2, m_2^2) \\
 	E_i & = \sqrt{s}
 \end{align*}
@@ -1326,12 +1337,12 @@ Decay rate instead of cross section means no "incident flux" to divide by, only 
 
 Particles with spin (unpolarized): sum over outgoing or average over initial spins
 \begin{align}
-	|M|^2 \rightarrow \frac{1}{(2s_A + 1)(2s_B + 1)} \sum{s_i, s_f} |M_{fi}|^2
+	|M|^2 \rightarrow \frac{1}{(2s_A + 1)(2s_B + 1)} \sum_{s_i, s_f} |M_{fi}|^2
 \end{align}
 
 Symmetry factor $|M|^2 \rightarrow \frac{1}{s} |M|^2$ with $s = \prod_i k_i!$ if there are $k_i$ identical particles of species $i$ in the final states.
 
-If $1$ \& $2$ are identical, then facotr $\frac{1}{s} = \frac{1}{2}$ on the right hand side.
+If $1$ and $2$ are identical, then facotr $\frac{1}{s} = \frac{1}{2}$ on the right hand side.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Feynman rules for fermions}
@@ -1347,11 +1358,11 @@ Feynman rules will involve:
 	\item vertices $\feynmandiagram[baseline=(x.base),small, horizontal=x to c]{a--x[dot]; b--x; x--[scalar]c;}; = -ig\int \dd^4 x$
 \end{itemize}
 
-What previous steps need reconsideration due tot he \underline{anticommutating} fermion operators? Interaction Hamiltonina $\sim \bar{\psi}\psi \phi$ and in general compose of \underline{even} number of fermion fields (spin conservation and fermion number conservation). Thus there is no problem with time-ordered exponential in definition of S-matrix. (Time ordering always takes two or even number of fields.)
+What previous steps need reconsideration due to the \underline{anticommutating} fermion operators? Interaction Hamiltonina $\sim \bar{\psi}\psi \phi$ and in general compose of \underline{even} number of fermion fields (spin conservation and fermion number conservation). Thus there is no problem with time-ordered exponential in definition of S-matrix. (Time ordering always takes two or even number of fields.)
 
 Remember the relation
 \begin{align}
-	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = \textcolor{red}{-} \bar{\psi}_\beta (x) \psi_\alpha(x) \leftarrow y^0 > x^0
+	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = \textcolor{red}{-} \bar{\psi}_\beta (x) \psi_\alpha(x) \text{ when } y^0 > x^0
 \end{align}
 Similarly in normal product: 
 \begin{align}
@@ -1359,7 +1370,7 @@ Similarly in normal product:
 \end{align}
 Then Wick's theorem is formally the same as before
 \begin{align*}
-	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = :\psi_\alpha(x) \bar{\psi}_\beta(x): + \psi_\alpha(x) \bar{\psi}_\beta(x)
+	T(\psi_\alpha(x) \bar{\psi}_\beta(x)) = :\psi_\alpha(x) \bar{\psi}_\beta(x): + \contraction{}{\psi}{_\alpha(x)}{\bar{\psi}} \psi_\alpha(x) \bar{\psi}_\beta(x)
 \end{align*}
 note by definition $\contraction{}{\psi}{}{\psi} \psi\psi = \contraction{}{\bar{\psi}}{}{\bar{\psi}}\bar{\psi}\bar{\psi} = 0$
 
@@ -1376,7 +1387,7 @@ We will want to consider fermion-(anti-)fermion scattering. Leading contribution
 
 Contractions with initial-/final-state fermions?
 \begin{align*}
-	\phi^+(x) \ket{p,s} &= \int \frac{\dd^3 k}{(2\pi)^3 \sqrt{2E_k}} \sum_r a^r_k u_r(k) e^{-ik\cdot x} \sqrt(2E_p) a^{s\dagger}_p \ket{0} \\
+	\phi^+(x) \ket{p,s} &= \int \frac{\dd^3 k}{(2\pi)^3 \sqrt{2E_k}} \sum_r a^r_k u_r(k) e^{-ik\cdot x} \sqrt{2E_p} a^{s\dagger}_p \ket{0} \\
 						&= e^{-ip\cdot x} u_s(p) \ket{0}	
 \end{align*}
 
@@ -1422,7 +1433,7 @@ In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contractes with a fermion,
 	\item include an overall sign for the diagram
 \end{itemize}
 
-\paragraph{note}
+\paragraph{Note}
 \begin{itemize}
 	\item \underline{Arrowas} on the fermion lines by convention denote \underline{fermion} (or charge) \underline{flow}. They must flow consistently through the diagram. ($\equiv$ fermion number conservation) (Only potential confusion: external antifermion lines)
 	\item No symmetry factors (except vacuum bubbles \feynmandiagram[small, baseline=(a.base), horizontal=a to b]{a--[scalar]b; a--[anti fermion, half right]b; b--[anti fermion, half right] a;}; $\frac{1}{s} = \frac{1}{2}$). $\bar\psi \psi \phi$ allows for unambiguous contractions.
@@ -1487,9 +1498,8 @@ In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contractes with a fermion,
 				};
 				\end{feynman}
 			\end{tikzpicture}\\
-			   &= (-ig)^2 \left\{ \bar{u}(p')u(p) \frac{i}{\underbrace{(p'-p)^2}_{t}-M^2+i\epsilon} \bar{u}(k')u(k) \textcolor{red}{-} \bar{u}(p')u(k) \frac{i}{\underbrace{(p'-k)^2}{u}-M^2+i\epsilon} \bar{u}(k') u(p) \right\}
+			   &= (-ig)^2 \left\{ \bar{u}(p')u(p) \frac{i}{\underbrace{(p'-p)^2}_{t}-M^2+i\epsilon} \bar{u}(k')u(k) \textcolor{red}{-} \bar{u}(p')u(k) \frac{i}{\underbrace{(p'-k)^2}_{u}-M^2+i\epsilon} \bar{u}(k') u(p) \right\}
 		\end{align*}
-		Mandelstam variables $t=(p'-p)^2$ and $u=(p'-k)^2$
 	\item fermion-antifermion scattering
 		\begin{align*}
 			\feynmandiagram[small, horizontal=x to y, baseline=(x.base)]{
