@@ -8,12 +8,12 @@ $$\lag_D = \bar{\psi}(i\slashed{\partial} - m) \psi $$
 
 There is also $\lag_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}$ with $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ for a massless vector filed. Its quantiasation gives photon.
 
-One thing they have in common is quadratic in the fields. As result:
+One thing they have in common is quadratic in the fields. As a result:
 \begin{itemize}
 	\item linear field equations
 	\item exact quantisation
 	\item multi-particle states without scattering or interaction
-	\item linear fourier decompositions , no mementum changes
+	\item linear Fourier decomposition, no mementum changes
 \end{itemize}
 
 To have an interacting theory with scattering, need higher powers in the field in the Lagrangians. A few examples are following
@@ -33,7 +33,7 @@ is nonlinear, cannot be solved by Fourier decomposition.
 \begin{align*}
 	\lag = \lag_{KG} + \lag_{D} - g \bar{\psi}\psi \phi
 \end{align*}
-It is originally developed as a theory for nuclear forces with $\psi$ nucleon, $\phi$ pion. In the Standard Model it is similar to interactions in Higgs mechanism.
+is originally developed as a theory for nuclear forces with $\psi$ nucleon, $\phi$ pion. In the Standard Model it is similar to interactions in Higgs mechanism.
 \paragraph{Quantum Electrodynamics (QED)}
 \begin{align*}
 	\lag = \lag_{EM} + \lag_{D} - eA_\mu \bar{\psi} \gamma^\mu \psi
@@ -63,7 +63,7 @@ descreibes pions and photons
 			Can add $-\frac{\mu}{3!}\phi^3$ to the $\phi^4$ theory. This leads to $[\mu] = [M]$ and all these generate renormalisable interactions. \\
 			All higher interaction terms require coupling constants of \textbf{negative} mass dimension, e.g. $G\bar{\psi}\psi\bar{\psi}\psi$ and then $[G] = [M]^{-2}$. These are nonrenormalisable and create trouble when performing higher-order calculation in perturbation theory.
 			(with energy cutoff; corrections $~G\Lambda^2$, $\Lambda \rightarrow \infty$)
-		\item we haven't quantised the photon yet. The reason is that its is a vector field, i.e. 4 degrees of freedom, but photon has just $2$ physical polarisaion states. It is linked to gauge symmetry and complicates quantisation somewhat.
+		\item We haven't quantised the photon yet. The reason is that its is a vector field, i.e. 4 degrees of freedom, but photon has just $2$ physical polarisaion states. It is linked to gauge symmetry and complicates quantisation somewhat.
 \end{enumerate}
 \section{The interaction picture}
 Consider the $\phi^4$ theory, 
@@ -76,14 +76,14 @@ Hamiltonian $H = H_0 + H_{int}$ with
 	H_{int} &= -\int\dd^3x \lag_{int} = \frac{\lambda}{4!}\int\dd^3x \phi^4 
 \end{align}
 
-Interaction picture means that operators evolve in time using $H_0$ (only), in particular 
+Interaction picture means that \textit{operators} evolve in time using $H_0$ (only), in particular 
 \begin{align}
 	\phi_I(t,\pmb{x}) = e^{iH_0t}\phi(\pmb{x})e^{-iH_0t}
 \end{align}
 
-Time-dependence of the free field, obeys classical equation of motion $\left(\partial^2+m^2 \right)\phi_I(t,\pmb{x}) = 0$. Solution in terms if fourier modes as before:
+Time-dependence of the free field obeys classical equation of motion $\left(\partial^2+m^2 \right)\phi_I(t,\pmb{x}) = 0$. Solution in terms if fourier modes as before:
 \begin{align}
-	\phi_I = \int \frac{\dd^3 p}{(2\pi)^3\sqrt{2E_p}} (a^I_{\pmb{p}}e^{-ipx} + a^{I\,\dagger}_{\pmb{p}}e^{+ipx})
+	\phi_I(t,\pmb{x}) = \int \frac{\dd^3 p}{(2\pi)^3\sqrt{2E_p}} (a^I_{\pmb{p}}e^{-ipx} + a^{I\,\dagger}_{\pmb{p}}e^{+ipx})
 \end{align}
 as in the free theory with standard commutation relations $[a^I_{\pmb{p}}, a^{I\,\dagger}_{\pmb{p}}] = (2\pi)^3\delta^{(3)}(\pmb{p}-\pmb{p}')$. The state satisfing $a^I_p \ket{0} = 0$ is the vacuum of the free, noninteratcting theory.
 
@@ -96,7 +96,7 @@ Schrödinger equation becomes:
 	i\frac{\partial}{\partial t}\ket{\psi_S} &= (H_0 + H_\text{int})\ket{\psi_S} \notag\\
 	\text{LHS} &= i \frac{\partial}{\partial t} \left( e^{-iH_0t}\ket{\phi_I} \right) = H_0 e^{-iH_0t}\ket{\phi_I} + e^{-iH_0t}i\frac{\partial}{\partial t}\ket{\phi_I} \notag\\
 	\text{RHS}														&= \left(H_0 + H_\text{int}\right)e^{-iH_0t}\ket{\phi_I} \notag\\
-	\Rightarrow i\frac{\partial}{\partial t}\ket{\phi_I} &= e^{iH_0t}H_{int} e^{-iH_0t} = H_I(t)\ket{\phi_I} \label{math:int-schr}
+	\Rightarrow i\frac{\partial}{\partial t}\ket{\phi_I} &= e^{iH_0t}H_\text{int} e^{-iH_0t} = H_I(t)\ket{\phi_I} \label{math:int-schr}
 \end{align}
 with $H_I$ interaction Hamiltonian in the interaction picture. Clearly
 \begin{align}
@@ -106,7 +106,7 @@ with $H_I$ interaction Hamiltonian in the interaction picture. Clearly
 What is the solution of~\ref{math:int-schr} for the time evolution of $\ket{\phi_I(t)}$? Define time-evolution operator in the interaction picture.
 \begin{align}
 	\ket{\phi_I(t)} &= U(t,t_0)\ket{\phi_I(t_0)}\label{math:int-schr2}\\
-	\text{where} \; U(t,t_0) &= e^{iH_0(t-t_0)}e^{-iH(t-t_0)} 
+	\text{with} \; U(t,t_0) &= e^{iH_0(t-t_0)}e^{-iH(t-t_0)} 
 \end{align}
 
 With~\ref{math:int-schr} and~\ref{math:int-schr2}:
@@ -114,7 +114,7 @@ With~\ref{math:int-schr} and~\ref{math:int-schr2}:
 	i\frac{\partial}{\partial t} U(t,t_0) = H_I(t)U(t,t_0)
 \end{align}
 
-To solve with boundary conditions: $U(t_0, t_0) = \id$. The formal solution:
+To solve with boundary conditions $U(t_0, t_0) = \id$. The formal solution is then:
 \begin{align}
 	U(t,t_0) = 1 - i \int_{t_0}^t \dd t' H_I(t')U(t',t_0) \notag
 \end{align}
@@ -147,14 +147,14 @@ It is interesing for scattering to transition into asymptotic state for $t \righ
 \end{align}
 Both $U$ and $S$ are formally unitary
 
-Composition law for time evolution operator: 
+Composition law for time evolution operator
 \begin{align}
 	U(t_2, t_0) = U(t_2, t_1) U(t,t_0) = U(t_2, t_1) U(t_0, t_1)^\dagger
 \end{align}
 
 \subsection{Scattering amplitudes and the S-matrix}
 Take $\ket{i}$ the initial (multi-particle) state and $\ket{f}$ the final (multi-particle) state. Time evolution of $\ket{i}$ then is
-$$\lim(t\rightarrow\infty)U(t,-\infty) \ket{i} = S \ket{i}$$
+$$\lim_{t\rightarrow\infty} U(t,-t) \ket{i} = S \ket{i}$$
 
 Probability that $\ket{i}$ evolves into $\ket{f}$ is proporional to the squared "\textbf{S-matrix element}"
 \begin{align}
@@ -173,12 +173,12 @@ Use momentum conservation (from translation invariance) to define matrix element
 $M_{fi}$ measures "genuine scattering" from $\ket{i}$ to $\ket{f}$.
 
 How are we going to calculate correlation functions in the interacting theory:
-\begin{align}
+\begin{align*}
 	\braket{\Omega |  \ T \phi(x)\phi(y) | \Omega}	
-\end{align}
-or more generally $\braket{\Omega | T \phi(x_1)\phi(x_2)\dots | \Omega}$, where $\ket{\Omega}$ is the vaccum/ground state of the interacting theory and $\phi(x)$ the Heisenberg operators?
+\end{align*}
+or more generally $\braket{\Omega | T \phi(x_1)\phi(x_2)\dots | \Omega}$? Here $\ket{\Omega}$ is the vaccum/ground state of the interacting theory $\ham$ (in contrast to $\ket{0}$ is the ground state of $\ham_0$) and $\phi(x)$ the Heisenberg operators.
 
-Ignore $\ket{\Omega} \neq \ket{0}$ for the moment other than saying: we want to study the time evolution from the vacuum at $t\rightarrow - \infty$ to $t \rightarrow + \infty$. So rewriting in terms $\phi_I(x)$, assuming $x^0 > y^0$ for now:
+Ignore $\ket{\Omega} \neq \ket{0}$ for the moment saying that we want to study the time evolution from the vacuum at $t\rightarrow - \infty$ to $t \rightarrow + \infty$. So rewriting in terms $\phi_I(x)$, assuming $x^0 > y^0$ for now:
 \begin{align}
 	\braket{0 | U(\infty, x^0) \phi_I(x^0)  U(x^0, y^0) \phi_I(y^0)U(y^0, -\infty) | 0}  = \braket{0|T(\phi_I(x)\phi_I(y)S)|0}
 \end{align}
@@ -186,8 +186,7 @@ still holds if $x^0 < y^0$ because of $T$.
 
 Now $\ket{\Omega} \neq \ket{0}$: this can be taken care of by dividing out the time evolution of the (free) vacuum $\braket{0|S|0}$, so
 \begin{align}
-	\braket{\Omega | T(\phi(x)\phi(y))|\Omega} \notag\\
-	&= \frac{\braket{0 | T(\phi_I(x)\phi_I(y)S)|0}}{\braket{0|S|0}} \\
+	\braket{\Omega | T(\phi(x)\phi(y))|\Omega} &= \frac{\braket{0 | T(\phi_I(x)\phi_I(y)S)|0}}{\braket{0|S|0}} \\
 	&\stackrel{\phi^4}{=} 
 	\frac{\braket{0 | T {\phi_I(x)\phi_I(y)\exp{-i\int\dd^4x' \frac{\lambda}{4!}\phi^4(x')}}| 0}}
 	{\braket{0 | T {\exp{-i\int\dd^4x' \frac{\lambda}{4!}\phi^4(x')}}| 0}
@@ -198,13 +197,12 @@ Proof can be found in Peskin. It will also be illustrated parctically later ("va
 Perturbation theory is viable when $\lambda$ (or some other coupling) is "small" and then expands $U(t,t_0)$ or $S$ in powers of $\lambda$.
 
 \section{Wick's theorem}
-From now on drop the subscript for interaction pictire fields $\phi_I(x) \rightarrow \phi(x)$.
+From now on drop the subscript for interaction pictire fields $\phi_I(x) \rightarrow \phi(x)$ for convenience.
 
-Want to calculate stuff like $\braket{0 | T\phi(x_1)\dots\phi(x_n)S | 0}$ in perturbation theory; so e.g.\ at order $\lambda^n$. So 
+Want to calculate stuff like $\braket{0 | T\phi(x_1)\dots\phi(x_n)S | 0}$ in perturbation theoryi, e.g.\ at order $\lambda^n$.  
 \begin{align}
 \frac{1}{n!} \left( -i\frac{\lambda}{4!} \right)^n \int \dd^4 y_1 \dots \dd^4 y_n \braket{0 | T\phi(x_1)\dots\phi(x_n)\phi^4(y_1)\dots\phi^4(y_n) | 0}
 \end{align}
-is tough!
 
 We know $\braket{0 | T\phi(x_1)\phi(x_2) | 0 } $ is the Feynman propagator!
 
@@ -213,10 +211,10 @@ Recall \textbf{normal ordering} with $\phi(x) = \phi^+(x) + \phi^-(x)$
 	:\phi^+ \phi^-: = :\phi^- \phi^+: = \phi^- \phi^+
 \end{align} 
 where
-\begin{align*}
+\begin{align}
 \phi^+ &= \int \frac{\dd^3 p}{(2\pi)^3} \frac{1}{\sqrt{2E_{\pmb{p}}}} a_{\pmb{p}} e^{-ip\cdot x} \\
 	\phi^- &= \int \frac{\dd^3 p}{(2\pi)^3} \frac{1}{\sqrt{2E_{\pmb{p}}}} a^\dagger_{\pmb{p}} e^{+ip\cdot x}
-\end{align*}
+\end{align}
 Wick's therem expresses time-ordered products in terms of normal-ordered ones. Then it is easy to take vacuum expectation values, as $\braket{0 | :\phi(x_1)\dots\phi(x_n):|0} = 0$
 
 Take two fields and $x^0 > y^0$:
@@ -357,8 +355,9 @@ Apply Wick's theorem to correlation functions $\braket{0 | T \{\phi_1 \dots \phi
 	&- \frac{i\lambda}{2} D_F(x_1 - x_2) \int \dd^4 x D_F(x_3 - x) D_F(x_4 - x) D_F(x-x)+ \text{5 similar} \\
 	& -\frac{i\lambda}{8} D_F(x_1 - x_2) D_F(x_3 - x_4) \int \dd^4 x D_F(x-x) + \text{2 similar}
 \end{align*}
-Permutation means permutation of $\phi(x)$ and similar means exchanging $\phi_i, \,i \in {1,2,3,4}$ without changing the diagram.
-Represented in Feynman diagrams:
+Permutation means permutation of $\phi(x)$ and similar means exchanging external states $\phi_i, \,i \in \{1,2,3,4 \}$ without changing the shape of diagram. Note that the prefactors of the integrals are called \textit{symmetry factor}. The number of permutations of first diagram is equivalent to arrangement of 4 elements, thus $4!$. The Permutations of second digram are to link two internal points to external ones and one external point can link to either of internal one, thus $ \begin{pmatrix} 4 \\ 2\end{pmatrix}\cdot 2 = 12$. There are only 3 ways to permutate a vacuum bubble.
+
+To be Represented in Feynman diagrams:
 \begin{center}
 \begin{tikzpicture}[scale=1, transform shape]
 	\begin{feynman}
@@ -502,7 +501,7 @@ there are
 \end{align*}
 
 \paragraph{Symmetry factors}
-A lot of the contractions eliminate the factors $\frac{1}{n!} \left(\frac{1}{4!}\right)^4$ in the denominators; the $\frac{1}{4!}$ was chosen as to yield 
+A lot of the contractions eliminate the factors $\frac{1}{n!} \left(\frac{1}{4!}\right)^n$ in the denominators; the $\frac{1}{4!}$ was chosen to yield 
 \begin{tikzpicture}[scale=0.5, transform shape]
 	\begin{feynman}
 		\vertex (x1) ;
@@ -521,13 +520,13 @@ See examples above. Sometimes, factors are not completely cancelled and thus pro
 
 Where does it come from?
 \begin{itemize}
-	\item factor $2$ from the line that starts and ends at the same point.
+	\item factor $2$ from the line that starts and ends at the same point
 		\feynmandiagram[small, inline=(y.base), horizontal=x to y]{x[dot] --[half left] y --[half left] x;};
-	\item two (or more) lines linking the same 2 points.
+	\item factor 2 from two (or more) lines linking the same two points
 		\feynmandiagram[small, inline=(y.base),horizontal=x to y]{
 				x[dot] --[half left] y[dot] --[half left] x;
 			};		
-	\item 2 vertices can be equivalent.			
+	\item 2 vertices can be equivalent
 		\feynmandiagram[layered layout,small, inline=(z.base),horizontal=x to z2]{
 			x --[opacity=0] y[dot] --[opacity=0] z[dot] --[opacity=0] z2;
 			x --[half left] y --[half left] x;
@@ -562,7 +561,7 @@ Examples:
 	a [dot] -- b [dot, nudge up=2.2em] -- c[dot]  -- d[dot]  -- b  -- e[dot] ,
 	c --[half left] d -- [half left] c,
 };
-	  &\quad S=3!=6
+	  &\quad S=2 \cdot 3! = 12
 \end{align*}
 \paragraph{Summary of Feynman rules}
 \begin{align*}
@@ -646,17 +645,16 @@ This imposes momentum conservation at vetex. $\delta^{(4)}$-functions make some 
 		%%% TODO
 	\item impose momentum conservation at each vertex
 	\item integrate over each undetermined momentum $\int\frac{\dd^4 p}{(2\pi)^4}$
-	\item divide by symmetry factor
+	\item To be divided by symmetry factor
 \end{itemize}
 
 e.g.:
-
 \begin{align*}
 \feynmandiagram[inline=(a.base),small,horizontal=a to c]{
 	a[dot,label=$x$] --[reversed momentum=$p$] b[dot,nudge up=1.65em] --[reversed momentum=$p$] c[dot,label=$y$];
 	b --[half left, momentum=$q$] x [nudge up=1.5em] --[half left] b;
 }; 
-	=(-i\lambda) \int \frac{\dd^4 p}{(2\pi)^4}\frac{\dd^4 1}{(2\pi)^4} \left(\frac{i}{p^2-m^2+i\epsilon}\right)^2 \frac{i}{q^2-m^2+i\epsilon} e^{-ip(x-y)}
+	=(-i\lambda) \int \frac{\dd^4 p}{(2\pi)^4}\frac{\dd^4 q}{(2\pi)^4} \left(\frac{i}{p^2-m^2+i\epsilon}\right)^2 \frac{i}{q^2-m^2+i\epsilon} e^{-ip(x-y)}
 \end{align*}
 
 \subsubsection{Vacuum diagrams}

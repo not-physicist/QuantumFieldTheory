@@ -303,20 +303,18 @@ Fourier transforming two-point function
 \begin{align*}
 	&\int \dd^4 x e^{ipx} \braket{\Omega | T\phi(x)\phi(0) | \Omega} \\
 	=& \int^\infty_0 \frac{\dd s}{2\pi} \rho(s) \frac{i}{p^2 - s + i\epsilon} \\
-	=& \frac{iZ}{p^2 - m^2 _ i\epsilon} + \int^\infty_{\sim 4m^2} \frac{\dd s}{2\pi} \rho(s) \frac{i}{p^2 - s + i\epsilon}
+	=& \frac{iZ}{p^2 - m^2 + i\epsilon} + \int^\infty_{\sim 4m^2} \frac{\dd s}{2\pi} \rho(s) \frac{i}{p^2 - s + i\epsilon} \label{math:fourTwoP}
 \end{align*}
 
 Comparing to free theory: $\braket{0| \phi(0) | \pmb{p}}=1$ hence $Z=1$.
 
 \section{LSZ reduction formula}
 
-\section{The propagator(again)}
-See also Peskin \& S. Chapter 10.2.
+\section[The propagator (again)]{The propagator (again)\footnote{see also Peskin and Schröder, Chapter 10.2}}
+How do we calculate the propagtor and the wave-function renormalization factor $Z$ in perturbation theory, using Feynman diagrams? Call mass \underline{parameter} in $\lag = \frac{1}{2}(\partial_\mu \phi_0)^2 - \frac{m^2_0}{2}\phi_0^2 - \frac{\lambda_0}{4!}\phi_0^4$ the \textit{bare mass}.
 
-How do we calculate the propagtor and the wave-function renormalization factor $Z$ in perturbation theory, using Feynman diagrams? Call mass \underline{parameter} in $\lag = \frac{1}{2}(\partial_\mu \phi_0)^2 - \frac{m^2_0}{2}\phi_0^2 - \frac{\lambda_0}{4!}\phi_0^4$ $m_0$ \textit{bare mass}.
-
-In $\phi^4$-theory "1-particle-irreducible" (1PI) contribution is
-\begin{align*}
+\paragraph{1-particle-irreducibles} (1PIs) in $\phi^4$-theory are the diagrams that cannot be disconnected by cutting internal lines. Their contributions are
+\begin{align}
 	-i\Sigma(p^2) = &
 	\begin{tikzpicture}[scale=1, transform shape]
 		\draw (0,0) -- (2,0);
@@ -333,9 +331,10 @@ In $\phi^4$-theory "1-particle-irreducible" (1PI) contribution is
 		\draw (a) (0,0) -- (2,0);
 		\draw (1,0) circle[radius=0.5];
 	\end{tikzpicture}
-	+ \dots \\
+	+ \dots \notag\\
 	\shortintertext{Then the \underline{complete} propagator using $D^0_F(p^2) = \frac{i}{p^2 - m^2_0 +i\epsilon}$ is} 
-	D_F(p^2) =& 
+	D_F(p^2) &= \int \dd^4 x e^{ipx} \braket{0 | T\phi(x)\phi(0) | 0} \\
+			 &=
 	\begin{tikzpicture}[scale=1, transform shape]
 		\draw (0,0) -- (2,0);
 	\end{tikzpicture} 
@@ -355,34 +354,42 @@ In $\phi^4$-theory "1-particle-irreducible" (1PI) contribution is
 		\draw (1.6,0) circle[radius=0.4];
 		\node at (1.6,0) {$-i\Sigma$};
 		\draw (2,0) -- (2.4,0);
-	\end{tikzpicture} \\
-	=& D^0_F(p^2) + D_F^0 (p^2) \left( -i\Sigma(p^2) \right)D^0_F(p^2)  +  D_F^0 (p^2) \left( -i\Sigma(p^2) \right) D_F^0 (p^2) \left( -i\Sigma(p^2) \right) D^0_F(p^2) \\
-	\shortintertext{It is cleary a geometric series}
-	=& \frac{D^0_F(p^2)}{1+i\Sigma(p^2)D_F^0(p^2)} = \frac{i}{p^2 - m_0^2 -\Sigma(p^2)}
-\end{align*}
+	\end{tikzpicture} \notag\\
+			 &= D^0_F(p^2) + D_F^0 (p^2) \left( -i\Sigma(p^2) \right)D^0_F(p^2)  +  D_F^0 (p^2) \left( -i\Sigma(p^2) \right) D_F^0 (p^2) \left( -i\Sigma(p^2) \right) D^0_F(p^2) \notag\\
+	\shortintertext{it is cleary a geometric series}
+			 &= \frac{D^0_F(p^2)}{1+i\Sigma(p^2)D_F^0(p^2)} \notag\\
+			 &= \frac{i}{p^2 - m_0^2 -\Sigma(p^2)} \label{math:renormD}
+\end{align}
 The pole of propagator does not occur at $m_0^2$ anynore. It will be shifted by $\Sigma \sim \mathcal{O}(\lambda)$!
 
-Choose $m^2$ by the condition 
-\begin{align}
-	m_0^2 + \Sigma(m^2) = m^2
-\end{align}
+\paragraph{Expansion of divergent integrals}\footnote{see also Cheng and Li, Chapter 2.1}
+Notice that the integral in \ref{math:M} $\propto \int \frac{\dd^4 q}{q^4}$. If we differentiate it with respect to $q$, the integral becomes convergent. This holds true for integral of general loop diagrams (although more than one differentiation might be needed). Thus we can expand this kind of integral into convergent and divergent term(s).
+
 Expand
 \begin{align}\label{math:Sigma}
 	\Sigma(p^2) = \Sigma(m^2) + (p^2 - m^2) \Sigma'(m^2) + (p^2 - m^2)\tilde{\Sigma}(p^2)
 \end{align}
-where $\tilde{\Sigma}$ represents a correction (to first order Taylor expansion) and it satisfies $\tilde{\Sigma}(m^2) = 0$.
+where $\Sigma(m^2)$ is quadratically and $\Sigma'(m^2)$ logarithmically divergent.
+$\tilde{\Sigma}$ represents a correction (to first order Taylor expansion) and it satisfies $\tilde{\Sigma}(m^2) = \tilde{\Sigma}'(m^2) = 0$.
+
+\paragraph{Mass and field renomrlization}
+The mass $m$ by the condition 
+\begin{align}
+	m^2	= m_0^2 + \Sigma(m^2)
+\end{align}
+This is indeed physical mass, since the expression for propagator in \ref{math:renormD} has a pole at $p^2 = m^2$.
 
 Then the propagator
 \begin{align}
-	D_F(p^2) =& \frac{i}{p^2 - m^2_0 - \Sigma(p^2)} = \frac{i}{(p^2 - m^2)(1+\frac{\Sigma(m^2)-\Sigma(p^2)}{p^2 - m^2})} \notag \\
+	D_F(p^2) =& \frac{i}{p^2 - m^2_0 - \Sigma(p^2)} = \frac{i}{p^2 - m^2 - (p^2 - m^2)(\Sigma '(m^2) + \tilde{\Sigma}(p^2))} \notag \\
 	\shortintertext{using \ref{math:Sigma}}
 	=& \frac{i}{(p^2 - m^2)(1-\Sigma'(m^2)-\tilde{\Sigma}(p^2))} \notag\\
 	=& \frac{iZ}{p^2 - m^2} \cdot \frac{1}{1-Z\tilde{\Sigma}(p^2)} \notag \\
-	=& \frac{iZ}{p^2 - m^2} + \text{regular}
+	=& \frac{iZ}{p^2 - m^2} + \text{(regular at $p^2 = m^2$)}
 \end{align}
-with $Z = \left( 1 - \frac{\partial}{\partial p^2} \left.\Sigma(p^2)\right\rvert_{p^2 = m^2} \right)^{-1}$
+with $Z = \left( 1 - \Sigma '(m^2) \right)^{-1}$. This expression is to be compared with \ref{math:fourTwoP}.
 
-Starting point Lagrangian is $\lag = \frac{1}{2}(\partial_\mu \phi_0)^2 - \frac{m^2_0}{2}\phi_0^2 - \frac{\lambda_0}{4!}\phi_0^4$. To remove $Z$ from numerator frome the propagator and instead put $\sqrt{Z}$ onto the couplings at each end. Since each internal vertex has 4 lines (remember the vertex carries the coupling constant)
+Starting point Lagrangian is $\lag = \frac{1}{2}(\partial_\mu \phi_0)^2 - \frac{m^2_0}{2}\phi_0^2 - \frac{\lambda_0}{4!}\phi_0^4$. To remove $Z$ from numerator in the propagator and instead put $\sqrt{Z}$ onto the couplings at each end. Since each internal vertex has 4 lines (remember the vertex carries the coupling constant)
 \begin{align}
 	\lambda_0 \longmapsto \lambda_1 = Z^2 \lambda_0
 \end{align}
@@ -403,15 +410,16 @@ Define the renomalized field
 \begin{align}
 	Z^{-\frac{1}{2}} \phi_0 = \phi
 \end{align}
-Then $D'_F$ is the Fourier transform of $\braket{0 | T\phi(x)\phi(y) | 0}$
+then $D'_F$ is the Fourier transform of $\braket{0 | T\phi(x)\phi(y) | 0}$
 
 Rewrite the Lagrangian as
 \begin{align}
 	\lag = \frac{1}{2} \left( (\partial_\mu \phi)^2 - m^2 \phi^2 \right) \boxed{-\frac{\lambda_1}{4!}\phi^4 \underbrace{- \frac{1}{2}\delta m^2 \phi^2 + \frac{1}{2}(Z-1) \left( (\partial_\mu \phi)^2 - m^2 \phi^2 \right)}_{\text{counter-terms}} }
 \end{align}
-where $\delta m^2 = -Z(m^2 + m_0^2) = -Z\Sigma(m^2) = -\Sigma_1 (m^2)$. Everythin inside the $\boxed{\text{box}}$ can be considered as "interaction". May look weird given the kinetic/mass-like terms, but no contradiction. Consider just $\lag = \frac{1}{2}(\partial \phi)^2 - \frac{m^2}{2}\phi^2$. The mass-term $\equiv$ "interaction".
+where $\delta m^2 = -Z(m^2 + m_0^2) = -Z\Sigma(m^2) = -\Sigma_1 (m^2)$. Everythin inside the $\boxed{\text{box}}$ can be considered as "interaction". 
 
-A massless propagator $\feynmandiagram[small, horizontal=a to b, baseline=(a.base)]{a--b}; = \frac{i}{p^2}$ and interaction $\feynmandiagram[small, horizontal=a to b, baseline=(a.base)]{a --[insertion=0.5] b;};=-im^2$. The resummed propagator is then
+It may look weird given the kinetic/mass-like terms, but no contradiction. Consider just $\lag = \frac{1}{2}(\partial \phi)^2 - \frac{m^2}{2}\phi^2$. The mass-term $\equiv$ "interaction".
+A massless propagator $$\feynmandiagram[small, horizontal=a to b, baseline=(a.base)]{a--b}; = \frac{i}{p^2}$$ and interaction $$\feynmandiagram[small, horizontal=a to b, baseline=(a.base)]{a --[insertion=0.5] b;};=-im^2$$ The resummed propagator is then
 \begin{align*}
 	\feynmandiagram[layered layout, horizontal=a to x, small, baseline=(x.base)]{
 		a -- x[blob] -- b;
@@ -423,8 +431,8 @@ A massless propagator $\feynmandiagram[small, horizontal=a to b, baseline=(a.bas
 	+
 	\feynmandiagram[small, horizontal=a to b, baseline=(a.base)]{a --[insertion=0.33, insertion=0.66] b;};
 	+ \dots \\
-	=& \frac{i}{p^2} \left( 1 + \frac{i}{p^2}\cdot(-im^2)+\dots \right) \\
-	=& \frac{i}{p^2} \left( 1 - (-im^2)\frac{i}{p^2} \right)^{-1} = \frac{i}{p^2 - m^2} 
+	=& \frac{i}{p^2} \left( 1 + \frac{i}{p^2}(-im^2)+\dots \right) \\
+	=& \frac{i}{p^2} \left( 1 - \frac{i}{p^2} (-im^2)\right)^{-1} = \frac{i}{p^2 - m^2} 
 \end{align*}
 
 Actually this is not all. We will also have to further renomalize $\lambda_1$
@@ -478,66 +486,370 @@ Actually this is not all. We will also have to further renomalize $\lambda_1$
 	\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
 		\draw (0,0) to  (0.6,-0.5) to[out=-45, in=45] (0.6, -1.5) to (0,-2);
 		\draw (0.6, -0.5) to [out=180, in=-180] (0.6,-1.5);
+		\draw (0.6, -0.5) to [out=0, in=90] (2, -2);
+		\draw (0.6, -1.5) to [out=0, in=-90] (2,0);
 	\end{tikzpicture}
+	+ \dots = \lambda_1 \left\{ 1 + L + \Gamma(s,t,u) \right\}
 \end{align*}
 
-%%%%%%%%%%%%%%%%%%% TODO: complete the rest
+$L$ is value of the sum of all 1PI vertex contributions at the \underline{same} kinematical point and $\Gamma$ defined by $\Gamma(s=t=u=\frac{4}{3}M^2)=0$ (for instance, $P_i^2=M^2$ and $P_i P_j = -\frac{M^2}{3}$ with $i\neq j$).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Define 
+\begin{align}
+	Z_\lambda \defeq (1+L)^{-1}
+\end{align}
+and the renormalized coupling is
+\begin{align}
+	\lambda = Z_\lambda^{-1} \lambda_1 = Z_\lambda^{-1}Z^2 \lambda_0
+\end{align}
+Write Lagrangian in terms of renormalized $\lambda$ and add another counterterm $-\frac{(Z_\lambda-1)}{4!}\lambda \phi^4$.
+
+Note that all counter-terms we have introduced are of the \underline{same form} as the original Lagrangian: $(\partial \phi)^2$, $\phi^2$ and $\phi^4$. There is no need to introduce new structure or new coupling parameters. It is property of a \underline{renormalizable theory}.
+
+\section{Divergent graphs and dimensional regularization}
 \begin{align*}
+	\begin{tikzpicture}[scale=1, transform shape]
+	\draw (0,0) -- (2,0);
+	\draw (1,0.25) circle[radius=0.25];
+	\end{tikzpicture} 
+\quad 
+M_2 = \frac{\lambda}{2} \frac{1}{i} \int \frac{\dd^4 k}{(2\pi)^4} \frac{1}{k^2 - M^2 + i\epsilon}
+\end{align*}
+\begin{align*}	
+\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\vertex (x1);
+		\vertex (x2) at (2,0);
+		\vertex (x3) at (0,-2);
+		\vertex (x4) at (2,-2);
+		\vertex (x) at (0.6,-1);
+		\vertex (y) at (1.4,-1);
+		\diagram*{
+			(x1)-- (x) --(x3),
+			(x2)-- (y) --(x4),
+			(x) --[quarter left] (y) --[quarter left] (x),
+		};
+	\end{feynman}
+\end{tikzpicture}
+\quad
+M_4 = \frac{\lambda^2}{2}\frac{1}{i}\int \frac{\dd^4 k}{(2\pi)^4} \frac{1}{(k^2 - M^2 +i\epsilon)((k-p)^2-M^2+i\epsilon)}
+\end{align*}
+
+\paragraph{Wick rotation}
+Poles of $M_2$ in the complex $k^0$-plane at $k^0 = \pm \sqrt{\pmb{k}^2 + M^2 - i\epsilon}$. The position of the poles allow us to \underline{rotate} the integration path to go $-i\infty \mapsto +i\infty$ instead. So no sigularities are hit!
+
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+	\draw[->] (-2,0) -- (2,0);	
+	\draw[->] (0,-2) -- (0,2);
+	\node [below] at (2,0) {$\Re(k^0)$};
+	\node [left] at (0,2) {$\Im(k^0)$};
+	\draw[->, thick, blue] (-1.7,0) -- (-0.5,0);
+	\draw[->, thick, blue] (-0.5,0) -- (1,0);
+	\draw[thick, blue] (1,0) -- (1.7,0);
+	\draw[->, thick, red] (0,-1.7) -- (0,-0.5);
+	\draw[->, thick, red] (0,-0.5) -- (0,1);
+	\draw[thick, red] (0,1) -- (0,1.7);
+	\draw[->,red, dashed] (1.5,0) to [out=90, in=0] (0,1.5);
+	\draw[->,red, dashed] (-1.5,0) to [out=-90, in=-180] (0,-1.5);
+\end{tikzpicture}
+\end{center}
+
+Define a Euclidean momentum $k^0 = ik_E^0$, $\pmb{k} = \pmb{k}_E$
+\begin{align*}
+	\frac{1}{i}\int \frac{\dd k^0 \dd^3 k}{(2\pi)^4} \frac{1}{(k_0)^2 - \pmb{k}^2 - M^2 +i\epsilon} \longmapsto - \int \frac{\dd^4 k_E}{(2\pi)^4} \frac{1}{k^2_E + M^2 -i\epsilon}
+\end{align*}
+Now we are far from singularities, $i\epsilon$ can thus be ignored.
+
+This form allows us to see
+\begin{itemize}[label={}]
+	\item 
+\begin{tikzpicture}[scale=1, transform shape]
+	\draw (0,0) -- (2,0);
+	\draw (1,0.25) circle[radius=0.25];
+\end{tikzpicture} 
+$\sim \int \frac{\dd k k^3}{k^2}$ is quadratically divergent
+
+\item
+\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\vertex (x1);
+		\vertex (x2) at (2,0);
+		\vertex (x3) at (0,-2);
+		\vertex (x4) at (2,-2);
+		\vertex (x) at (0.6,-1);
+		\vertex (y) at (1.4,-1);
+		\diagram*{
+			(x1)-- (x) --(x3),
+			(x2)-- (y) --(x4),
+			(x) --[quarter left] (y) --[quarter left] (x),
+		};
+	\end{feynman}
+\end{tikzpicture}
+$\sim \int \frac{\dd k k^3}{k^4}$ is logarithmically divergent
+\end{itemize}
+
+Hope of renormalization program is that all such divergences can be absorbed into bare/unrenormalized couplings to produce physical/renormalized/observable parameters.
+
+There are different methods to regularize divergent loop integrals in order to keep track of divergences
+\begin{enumerate}
+	\item momentum ($\Lambda$) cutoff: study the limit $\Lambda \longmapsto \infty$ in the end
+	\item Pauli-Villars: subtract propagator(s) with heavy mass(es)\footnote{for details see Ryder, Chapter 9.2}
+		\begin{align*}
+			\frac{1}{k^2} \longmapsto \frac{1}{k^2} - \frac{1}{k^2 - M^2_\text{PV}}, M_\text{PV} \longmapsto \infty
+		\end{align*}
+	\item dimensional regularization: work in $d$ dimension instead of $4$, $1$ time-like, $d-1$ space-like. For small $d$ integral converge, consider $d \longmapsto 4$ in the end. The divergences appear as poles in $\frac{1}{d-4}$.
+\end{enumerate}
+Main advantage of dimensional regularization is that all symmetries are perserved (massless photons etc.). Downside is that it is somewhat unphysical and unintuitive.
+
+\paragraph{Feynman parameters}\footnote{see also Peskin and Schröder, Chapter 6.3; Ryder, Chapter 9.2} Combine multiple propagators into one (to some power)
+\begin{align}
+	\frac{1}{A_1 \dots A_n} = \int^1_0 \dd x_1 \dots \dd x_n \delta(\sum_i^n x_i - 1) \frac{(n-1)!}{(x_1 A_1 + \dots + x_n A_n)^n}
+\end{align}
+using 
+\begin{align*}
+	\frac{1}{A_i} &= \int^\infty_0 \dd \alpha_i e^{-\alpha_i A_i} \\
+	\int \dd \alpha_1 \dots \dd \alpha_n e^{-\sum_i \alpha_i A_i} &= \int^1_0 \dd x_1 \dots \dd x_n \delta \left(\sum^n_i x_i - 1\right) \int^\infty_0 \dd t\; t^{n-1} e^{-t\sum_i x_i A_i}
+\end{align*}
+
+Special case
+\begin{align}
+	\frac{1}{AB} = \int^1_0 \dd x \frac{1}{ \left[ xA + (1-x)B \right]^2  }
+\end{align}
+
+With $A = (k-p)^2 - M^2$ and $B=k^2-M^2$
+ \begin{align*}
+	xA+(1-x)B = k^2 - xp(2k-p) - M^2 = (k-p)^2 - (M^2 -x(1-x)p^2)
+\end{align*}
+
+Thus after shifting the integration variable $k \longmapsto k+xp$ and with $\Delta(x) \defeq M^2 - x(1-x)p^2$
+\begin{align*}
+	\int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2-M^2)((k-p)^2-M^2)} = \int^1_0 \dd x \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{[k^2 - \Delta(x)]^2}
+\end{align*}
+
+\paragraph{Dimensional regularization formula}\footnote{see also Peskin and Schröder, Chapter 7.5}
+\begin{align}
+	\frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2 - \Delta)^n} = \frac{(-1)^n}{(4\pi)^{d/2}} \frac{\Gamma(n-d/2)}{\Gamma(n)} \frac{1}{\Delta^{n-d/2}}
+\end{align}
+$\Gamma$-function has following definition and properties
+\begin{itemize}
+	\item $\Gamma(n+1) = \int^\infty_0 \dd x x^n e^{-x}$
+	\item $\Gamma(n+1) = n!$ for $n \in \N$, $n\Gamma(n) = \Gamma(n+1)$
+	\item $\Gamma(n)$ has poles for negative integers $n=0, -1, -2, \dots$
+\end{itemize}
+
+\paragraph{Proof by induction}
+\begin{itemize}
+\item $n=1$: introduce \underline{Schwinger parameter} $\alpha$ and $i\epsilon$ part enforces convergence.
+\begin{align*}
+	\frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{k^2 - \Delta + i\epsilon} 
+	&= -\int^\infty_0 \dd \alpha \int \frac{\dd^d k}{(2\pi)^d} e^{i\alpha (k^2 - \Delta + i\epsilon)} \\
+	\shortintertext{using Wick rotation}
+	&= -i\int^\infty_0 \dd \alpha \int \frac{\dd^d k_E}{(2\pi)^d}e^{-i\alpha (k_E^2 + \Delta - i\epsilon)}\\
+	\shortintertext{Gaussian integral in higher dimension; in general $ \int \exp\left( - \frac 1 2 x \cdot A \cdot x +J \cdot x \right) d^nx = \sqrt{\frac{(2\pi)^n}{\det A}} \exp \left( {1\over 2} J \cdot A^{-1} \cdot J \right)$}
+	&= \frac{-i}{(2\pi)^d} \int^\infty_0 \dd \alpha {\sqrt{\frac{\pi}{i\alpha}}}^d e^{-i\alpha \Delta} \\
+	&= \frac{-i}{(4\pi)^{d/2}} \int^\infty_0 \dd \alpha (i\alpha)^{-d/2} e^{-i\alpha \Delta} \\
+	&= -\frac{1}{(4\pi)^{d/2}} \frac{1}{\Delta^{1-d/2}} \int^\infty_0 \dd x x^{-d/2} e^{-x} \\
+	&= \frac{(-1)}{(4\pi)^{d/2}}\frac{1}{\Delta^{1-d/2}} \Gamma(1-d/2)
+\end{align*}
+\item Induction $n \rightarrow n+1$
+	\begin{align*}
+		\frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2-\Delta)^{n+1}}
+		&= \frac{1}{n} \frac{\partial}{\partial \Delta} \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2-\Delta)^n} \\
+		&= \frac{1}{n} \frac{\partial}{\partial \Delta} \left( \frac{(-1)^n}{(4\pi)^{d/2}} \frac{\Gamma(n-d/2)}{\Gamma(n)} \frac{1}{\Delta^{n-d/2}} \right) \\
+		&= \frac{(-1)^{n+1}}{(4\pi)^{d/2}} \frac{\Gamma(n-d/2)}{n\Gamma(n)} \left( n-\frac d 2 \right)  \frac{1}{\Delta^{n+1-d/2}} \\
+		&= \frac{(-1)^{n+1}}{(4\pi)^{d/2}} \frac{\Gamma(n+1-d/2)}{\Gamma(n+1)} \frac{1}{\Delta^{n+1-d/2}} \qquad \square
+	\end{align*}
+\end{itemize}
+
+There is another change in $d$ dimensions. Since $S=\int\dd^d x \lag$ is dimensionless (keep in mind we are working in natural units), $[\lag] = M^d$. So $\lag_{\text{KG}} = \frac{1}{2}(\partial_\mu \phi)^2 - \frac{M^2}{2}\phi^2$ suggests now $[\phi]=M^{d/2-1}$ and in Dirac theory $[\psi] = M^{\frac{d-1}{2}}$. So in order to keep $[\lambda] = M^0 = 1$, $\lag_{\phi^4}=-\mu^{4-d} \frac{\lambda}{4!} \phi^4$ with $\mu$ an arbitary mass parameter $[\mu] = M^1$.
+
+With dimensional regularization 
+\begin{align*}
+	\begin{tikzpicture}[scale=1, transform shape]
+		\draw (0,0) -- (2,0);
+		\draw (1,0.25) circle[radius=0.25];
+	\end{tikzpicture} 
+	&= \frac{\mu^{4-d}\lambda}{2} \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{k^2 - M^2 + i\epsilon} \\
+	&= \frac{\lambda}{2} \mu^{4-d} \left( -\frac{1}{(4\pi)^{d/2}} \right) M^{d-2}\Gamma(1-d/2) \\
+	&\boxed{
+		\begin{array}{ll}
+			&\text{Laurent expansion} \\
+			 \Gamma(z) &= \frac{1}{z} - \gamma_E + \mathcal{O}(z), \quad  z\rightarrow 0\\
+			\Gamma(z-1) &= \frac{1}{z-1} \Gamma(z), \quad z\rightarrow 0\\
+						&= -\left( 1+z+\mathcal{O}(z^2) \right) \Gamma(z) \\
+						&= -\frac{1}{z} + \gamma_E - 1 + \mathcal{O}(z) \\
+			\gamma_E &= 0.5772\dots
+		\end{array}
+	}\\
+	&= -\frac{\lambda}{2} 	\frac{M^2}{8\pi^2} \left( \frac{M^2}{4\pi\mu^2} \right)^{\frac{d-4}{2}} \left[ \frac{1}{d-4} + \frac{1}{2}(\gamma_E - 1) + \mathcal{O}(d-4) \right] \\
+	&= -\frac{\lambda}{2} 	\frac{M^2}{8\pi^2} \left\{ \frac{1}{d-4} + \frac 1 2 \left[ \gamma_E - 1 - \ln(4\pi) \right] + \ln{\frac{M}{\mu}}  + \mathcal{O}(d-4) \right\}
+\end{align*}
+
+\begin{align*}
+	\shortintertext{with $\Delta(x) = M^2 - x(1-x)p^2$}
 	\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
-		\begin{feynman}
-			\vertex (x1);
-			\vertex (x2) at (2,0);
-			\vertex (x3) at (0,-2);
-			\vertex (x4) at (2,-2);
-			\vertex (x) at (0.6,-1);
-			\vertex (y) at (1.4,-1);
-			\diagram*{
-				(x1)-- (x) --(x3),
-				(x2)-- (y) --(x4),
-				(x) --[quarter left] (y) --[quarter left] (x),
-			};
-		\end{feynman}
+	\begin{feynman}
+		\vertex (x1);
+		\vertex (x2) at (2,0);
+		\vertex (x3) at (0,-2);
+		\vertex (x4) at (2,-2);
+		\vertex (x) at (0.6,-1);
+		\vertex (y) at (1.4,-1);
+		\diagram*{
+			(x1)-- (x) --(x3),
+			(x2)-- (y) --(x4),
+			(x) --[quarter left] (y) --[quarter left] (x),
+		};
+	\end{feynman}
 	\end{tikzpicture}
-	= \frac{\mu^{2(4-d)\lambda^2}\lambda^2}{2} \int^1_0 \dd x \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{[k^2 - \Delta(x)]^2} \\
-	= \frac{\lambda^2}{2} \mu^{2(4-d)} \int_0^1 \dd x \frac{1}{(4\pi)^{d/2}} \frac{\Gamma(2-d/2)}{\Gamma(2)} \frac{1}{\Delta(x)^(2-d/2)} \\
-	= \frac{\lambda^2}{2} \frac{\mu^{4-d}}{(4\pi)^2} \left\{ -2 \left[ \frac{1}{d-4} + \frac{1}{2}(\gamma_E - \log{4\pi} + \log(\frac{M}{\mu})) \right] - \int^1_0 \dd x \log{\frac{\Delta(x)}{M^2}} \right\} \quad \Delta(x)= M^2 - x(1-x)p^2 \\ 
-	\int_0^1 \dd x \log{\frac{M^2-x(1-x)p^2}{M^2}} = \int_0^1 \dd x \log{ \left[ (\frac{\sigma+1}{2} - x)(x+\frac{\sigma-1}{2}) \right] } - \log{\frac{\sigma^2 - 1}{4}} , \quad \sigma = \sqrt{1-\frac{4M^2}{p^2}} \\
-	= \sigma \log{\frac{\sigma+1}{\sigma-1}} - 2
+	&= \frac{\mu^{2(4-d)} \lambda^2}{2} \frac{1}{i} \int_0^1 \dd x \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{[k^2 - \Delta(x)]^2} \\
+	&= \frac{\lambda^2}{2} \mu^{2(4-d)} \int^1_0 \dd x \frac{1}{(4\pi)^{d/2}}\frac{\Gamma(2-d/2)}{2} \frac{1}{\Delta(x)^{(2-d/2)}} \\
+	&= \frac{\lambda^2}{2} \frac{\mu^{4-d}}{(4\pi)^2} \left\{ -2 \left[ \frac{1}{d-4} + \frac{1}{2}(\gamma_E - \ln(4\pi)) + \ln(\frac{M}{\mu}) \right] - \int^1_0 \dd x \ln(\frac{\Delta(x)}{M^2}) \right\}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\int^1_0 \dd x \ln(\frac{\Delta(x)}{M^2})&=\int_0^1 \dd x \ln{\frac{M^2-x(1-x)p^2}{M^2}}  \\
+											 &= \int_0^1 \dd x \ln{ \left[ \left(\frac{\sigma+1}{2} - x \right)\left(x+\frac{\sigma-1}{2}\right) \right] } - \ln{\frac{\sigma^2 - 1}{4}} , \quad \sigma = \sqrt{1-\frac{4M^2}{p^2}} \\
+	&= \sigma \ln{\frac{\sigma+1}{\sigma-1}} - 2
 \end{align*}
 Valid for $p^2 < 0$, rest by analytic contination
 
 Compare $M(s) - M(0)$ calculated based on Cutkosky and dispersion integral. Easier 
 \begin{align*}
-	M(0) = \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2 - M^2)^2} = \frac{\partial}{\partial M^2} \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{k^2 - M^2} \\
-	= \frac{\partial}{\partial M^2} \left\{ -\frac{M^2}{8\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2}(\gamma_E - 1 -\log{4\pi}) + \frac{1}{2} \log{\frac{M^2}{\mu^2}} \right] \right\} \\
-	\shortintertext{$1$ cancalled by the derivative of $\log$}
-	= - \frac{1}{8\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2} (\gamma_E - \log(4\pi) + \frac{1}{2} \log{\frac{M^2}{\mu^2}}) \right]
+	M(0) &= \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{(k^2 - M^2)^2} \\
+		 &= \frac{\partial}{\partial M^2} \frac{1}{i} \int \frac{\dd^d k}{(2\pi)^d} \frac{1}{k^2 - M^2} \\
+		 &= \frac{\partial}{\partial M^2} \left\{ -\frac{M^2}{8\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2}(\gamma_E - 1 -\log{4\pi}) + \frac{1}{2} \log{\frac{M^2}{\mu^2}} \right] \right\} \\
+	\shortintertext{$1$ gets cancalled by the derivative of $\log$}
+		 &= - \frac{1}{8\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2} \left(\gamma_E - \log(4\pi) + \frac{1}{2} \log{\frac{M^2}{\mu^2}}\right) \right]
 \end{align*}
 
 Lets summarise the renormalization of $\phi^4$ at one loop
 \begin{itemize}
-	\item   %TODO diagram
-		is \underline{indeoendt} of $p^2$! Hence $\Sigma(p^2)$ at $\mathcal{O}(\lambda)$ only renormalises the \underline{mass}, there is no wavefunction renormalisation $Z (\sim \frac{\partial \Sigma}{\partial p^3} |_{p^2 = M^2})$. Thus $Z=1 + \mathcal{O}(\lambda^2)$
-	This does change at $\mathcal{O}{\lambda^2}$: % TODO: diagram 
-	$\rightarrow Z\neq 1$
+	\item
+	\begin{tikzpicture}[scale=1, transform shape]
+		\draw (0,0) -- (2,0);
+		\draw (1,0.25) circle[radius=0.25];
+	\end{tikzpicture} 
+		is \underline{independent} of $p^2$! Hence $\Sigma(p^2)$ at $\mathcal{O}(\lambda)$ only renormalises the \underline{mass}, there is no wavefunction renormalisation $Z (\sim \frac{\partial \Sigma}{\partial p^2} |_{p^2 = M^2}) \quad \rightarrow Z=1 + \mathcal{O}(\lambda^2)$ \\
+		This does change at $\mathcal{O}(\lambda^2)$ 
+	\feynmandiagram[layered layout, small, horizontal=a to b, baseline=(a.base)]{
+	a -- x;
+	x --[half left] y;
+	x --[half right] y;
+	x -- y;
+	y -- b;
+	};	
+$\rightarrow Z\neq 1$
 \item Mass renomalisation
-	% TODO: diagram
+	\begin{align*}
+		\feynmandiagram[layered layout, horizontal=a to x, small, baseline=(x.base)]{
+			a -- x[blob, label=\(-iM^2\)] -- b;
+		}; 
+		=
+		\feynmandiagram[layered layout, horizontal=a to x, small, baseline=(x.base)]{
+			a -- x[blob, label=\(-iM^2\)] -- b;
+		};
+		+
+		\begin{tikzpicture}[scale=1, transform shape]
+			\draw (0,0) -- (2,0);
+			\draw (1,0.25) circle[radius=0.25];
+		\end{tikzpicture} 
+		+
+		\feynmandiagram[layered layout, horizontal=a to x, small, baseline=(x.base)]{
+			a -- x[blob, label=\(-i\delta M^2\)] -- b;
+		};,
+		\quad \delta M^2 = M_0^2 - M^2
+	\end{align*}
 	Then 
 	\begin{align*}
-	M^2 = M^2 + \frac{\lambda M^2}{16\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2} (\gamma_E - 1 -\log{4\pi} + \log{\frac{M}{\mu}}) \right]- M^2 + M^2 \\
-	= M^2_0 + \frac{\lambda M^2}{16\pi^2} \left[ \frac{1}{d-4}  + \frac{1}{2}(\gamma_E - 1 - \log{4\pi} + \log{\frac{M}{\mu}}) + \mathcal{O}(\lambda, (d-4)) \right] \\
-	M^2_\text{physical} \neq f(\mu), \quad \lambda \mu^{4-d} M^2 = \lambda_0 M_0^2 + \mathcal{O}(\lambda^2) \text{ and $\lambda_0$ and $M_0$ are independent of $\mu$}
+		M^2 &= M^2 + \frac{\lambda M^2}{16\pi^2} \left[ \frac{1}{d-4} + \frac{1}{2} \left(\gamma_E - 1 -\log{4\pi} + \log{\frac{M}{\mu}}\right) \right]- M^2 + M^2 \\
+			&= M^2_0 + \frac{\lambda M^2}{16\pi^2} \left[ \frac{1}{d-4}  + \frac{1}{2}(\gamma_E - 1 - \log{4\pi} + \log{\frac{M}{\mu}}) + \mathcal{O}(\lambda, (d-4)) \right] \\
 	\end{align*}
+	Physical mass $M^2_\text{phy}$ cannot be dependent on $\mu$, meaning $\lambda \mu^{4-d} M^2 = \lambda_0 M_0^2 + \mathcal{O}(\lambda^2)$ and $\lambda_0$ and $M_0$ are independent of $\mu$.
 	\item Coupling constant renormlaisation. Lets choose renormlisation point for $\lambda$ at $s=t=u=0$ for simplicity:
-		%TODO: diagram
+\begin{align*}
+	\feynmandiagram[small, baseline=(x.base),layered layout]{
+		x1 -- x[blob] -- x2;
+		x3 -- x -- x4;
+	};
+	&=
+	\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\node (x1) ;
+		\node (x2) at (2,0);
+		\node (x3) at (0,-2);
+		\node (x4) at (2,-2);
+		\vertex (x)[dot] at (1,-1);
+		\diagram*{
+			(x1)-- (x) --(x2),
+			(x3)-- (x) --(x4),
+		};
+	\end{feynman}
+\end{tikzpicture}
++
+	\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\node (x1);
+		\node (x2) at (2,0);
+		\node (x3) at (0,-2);
+		\node (x4) at (2,-2);
+		\vertex (xx) at (1,-0.6);
+		\vertex (y) at (1,-1.4);
+		\diagram*{
+			(x1)-- (xx) --(x2),
+			(x3)-- (y) --(x4),
+			(xx) --[quarter left] (y) --[quarter left] (xx),
+		};
+	\end{feynman}
+\end{tikzpicture}
++
+\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\node (x1);
+		\node (x2) at (2,0);
+		\node (x3) at (0,-2);
+		\node (x4) at (2,-2);
+		\vertex (x) at (0.6,-1);
+		\vertex (y) at (1.4,-1);
+		\diagram*{
+			(x1)-- (x) --(x3),
+			(x2)-- (y) --(x4),
+			(x) --[quarter left] (y) --[quarter left] (x),
+		};
+	\end{feynman}
+\end{tikzpicture}
++
+\begin{tikzpicture}[scale=1, transform shape, baseline=(x.base)]
+	\begin{feynman}
+		\node (x2) at (0,0);
+		\node (x1) at (2,0);
+		\node (x3) at (0,-2);
+		\node (x4) at (2,-2);
+		\vertex (x) at (0.6,-1);
+		\vertex (y) at (1.4,-1);
+		\diagram*{
+			(x1)--[quarter right] (x) --(x3),
+			(x2)--[quarter left] (y) --(x4),
+			(x) --[quarter left] (y) --[quarter left] (x),
+		};
+	\end{feynman}
+\end{tikzpicture}
++
+	\feynmandiagram[small, baseline=(x.base),layered layout]{
+		x1 -- x[crossed dot] -- x2;
+		x3 -- x -- x4;
+	}; \\
+	&= 
+	 -i\lambda\mu^{4-d} 
+	+ i\left(M(s) + M(t) + M(u)\right)
+	+  -i(Z_\lambda-1)\lambda\mu^{4-d} 
+	+ \mathcal{O}(\lambda^3)
+\end{align*}
 		with $Z=1$
 		\begin{align*}
-			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \left\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4}}_{Z^MS_\lambda \text{ minimal subtraction}} +\frac{1}{2} (\gamma_E -\log{4\pi} + \log{\frac{M}{\mu}})] + \mathcal{O})\lambda^2 \right\} \\
-			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \left\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4} +\frac{1}{2} (\gamma_E -\log{4\pi} }_{Z^{\bar{MS}}_\lambda \text{modified minimal subtraction}} + \log{\frac{M}{\mu}})] + \mathcal{O})\lambda^2 \right\} \\
+			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \bigg\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4}}_{Z^MS_\lambda \text{ minimal subtraction}} +\frac{1}{2} (\gamma_E -\log{4\pi} + \log{\frac{M}{\mu}})] + \mathcal{O}(\lambda^2) \bigg\} \\
+			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \bigg\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4} +\frac{1}{2} (\gamma_E -\log{4\pi} }_{Z^{\bar{MS}}_\lambda \text{modified minimal subtraction}} + \log{\frac{M}{\mu}})] + \mathcal{O}(\lambda^2) \bigg\} \\
 			\shortintertext{\text{these two $Z$ are mass-indepent}}
-			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \left\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4} +\frac{1}{2} (\gamma_E -\log{4\pi}  + \log{\frac{M}{\mu}})] }_{Z_\lambda \text{mass-dependent}}+ \mathcal{O})\lambda^2 \right\} 
+			\lambda_0 =  \lambda \mu^{4-d}Z_\lambda = \lambda \mu^{4-d} \bigg\{ \underbrace{1- \frac{3}{\lambda}{16\pi^2} [ \frac{1}{d-4} +\frac{1}{2} (\gamma_E -\log{4\pi}  + \log{\frac{M}{\mu}})] }_{Z_\lambda \text{mass-dependent}}+ \mathcal{O}(\lambda^2) \bigg\} 
 		\end{align*}
 \end{itemize}
 
@@ -563,7 +875,7 @@ Matrix element of an arbitary diagram generically
 \begin{align*}
 	\sim \lambda^V \int \frac{\dd^d k_1 \dd^d k_2 \dots \dd^d k_L}{(k_{i_1}^2 - M^2) \dots (k_{i_I}^2 - M^2)}
 \end{align*}
-ro clearly 
+So clearly 
 \begin{align}
 	D = d L - 2 I
 \end{align}
@@ -571,36 +883,34 @@ ro clearly
 $D \geq 0 $ divergend ($D=0$ logarithmically divergent) and $D < 0$ convergent.
 
 Express $L$ and $I$ in terms of $V$ and $E$
-\begin{itemize}
-	\item 
-		\begin{align}
-			L = \text{nuber of undetermined intergration momenta} \notag \\
-			= \text{number of propagators} - \text{number of momentum conservation at each vertex} + 1 \text{(because of overal momentum conservation)} \notag \\
-			L = I - V + 1 \label{math:super1}
-		\end{align}
-	\item vertex linked to 4 legs, internal lines attached to 2 vertices, external line to 1
-		\begin{align}
-			4V = 2I + E \label{math:super2}
-		\end{align}
-\end{itemize}
+\begin{align}
+	L &= \text{number of undetermined intergration momenta} \notag \\
+	  &= \text{number of internal propagators} - \text{number of momentum conservations at vertices} \notag\\
+	  &\quad+ 1 \text{ (because of overall momentum conservation)} \notag \\
+	L &= I - V + 1 \label{math:super1}
+\end{align}
+One vertex is linked to 4 legs. Internal lines are attached to 2 vertices and external line to 1.
+\begin{align}
+	4V = 2I + E \label{math:super2}
+\end{align}
 solve \ref{math:super1} and \ref{math:super2} for $L$ and $I$
 \begin{align}
-	D = d + (d-4) V - (\frac{d}{2} - 1)E \\
+	D &= d + (d-4) V - \left(\frac{d}{2} - 1\right)E \\
 	\shortintertext{in physical 4 dimension}
-	D = 4 - E
+	D &= 4 - E
 \end{align}
 
 \paragraph{Remarks}
 \begin{itemize}
 	\item for $d=4$, $D$ is \underline{independent} of $V$, only dependent on $E$.
-	\item only a few small $E$ produce $D \geq 0$, here (in $\phi^4$)
-		$E = 2 \feynmandiagram{a -- x[blob] -- b};$
-		$E = 4 \feynmandiagram{a -- x[blob] -- b, c -- x -- d};$
-	\item distringuish theories of different d
+	\item only a few small $E$ produce $D \geq 0$, here in $\phi^4$
+		$$E = 2 \quad \feynmandiagram[small, layered layout, inline=(x.base),horizontal=a to x]{a -- x[blob] -- b};$$
+		$$E = 4 \quad \feynmandiagram[small, layered layout, inline=(x.base)]{a -- x[blob] -- b, c -- x -- d};$$
+	\item distinguish theories of different d
 		\begin{itemize}
-			\item $d < 4$: $D$ \underline{decreases} with $V$, only finite number of digrams (not n-point functions) diverges 
+			\item $d < 4$: $D$ \underline{decreases} with $V$, only finite number of digrams (not n-point functions) diverges.
 				\textbf{super-renormalisable}
-			\item $d=4$: $D$ is independent of $V$, only a finite number of amplitudes diverges, but at each order in perturbation theory
+			\item $d=4$: $D$ is independent of $V$, only a finite number of amplitudes diverges, but at each order in perturbation theory.
 				\textbf{renormalisable}
 			\item $d>4$: $D$ frows with $V$, even ampitude becomes divergent at some prder in perturbation theory.
 				\textbf{non-renormalisable}
@@ -617,10 +927,12 @@ solve \ref{math:super1} and \ref{math:super2} for $L$ and $I$
 			\end{itemize}
 		\item why is this "superficial"? There can always be divergent subgraphs! These subgraphs are regularised and renormalised by the treatment of the "primitive divergences" we have already seen before.
 \end{itemize}
-\paragraph{conclusion for $\phi^4$}
+\paragraph{Conclusion for $\phi^4$}
 the only primitive divergences are $E=2$ and $E=4$ (and $E=0$ the vacuum graphs) and we renormalise the theory by  
-\begin{align}
-	M_0^2 = M^2 \left\{ 1 + c_m^{(1)}\frac{\lambda}{d-4} + c_m^{(2)}\frac{\lambda^2}{(d-4)^2} + \dots \right\} \\
-	\lambda_0 = \lambda \left\{ 1 + c_\lambda^{(1)}\frac{\lambda}{d-4} + c_\lambda^{(2)}\frac{\lambda^2}{(d-4)^2} + \dots \right\} \\
-	Z = 1 + c_z^{(2)} \frac{\lambda^2}{(d-4)^2} + \dots
-\end{align}
+\begin{align*}
+	M_0^2 &= M^2 \left\{ 1 + c_m^{(1)}\frac{\lambda}{d-4} + c_m^{(2)}\frac{\lambda^2}{(d-4)^2} + \dots \right\} \\
+	\lambda_0 &= \lambda \left\{ 1 + c_\lambda^{(1)}\frac{\lambda}{d-4} + c_\lambda^{(2)}\frac{\lambda^2}{(d-4)^2} + \dots \right\} \\
+	Z &= 1 + c_z^{(2)} \frac{\lambda^2}{(d-4)^2} + \dots
+\end{align*}
+
+\section{Sketch of renormlisation of QED}
