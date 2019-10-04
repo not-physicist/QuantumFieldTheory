@@ -2,7 +2,7 @@
 \setcounter{chapter}{3}
 \section{Dirac equation}
 \begin{align}
-	\left(i \gamma^\mu \partial_\mu - m \right) \phi(x) = 0
+	\left(i \gamma^\mu \partial_\mu - m \right) \psi(x) = 0
 \end{align}
 \paragraph{Standard representation (Dirac's)}
 \begin{align}
@@ -17,14 +17,14 @@
 with $\omega$ set of parameters and $M$ the generator of Lie algebra.
 \paragraph{Spinor representation}
 \begin{align}
-	S^{\rho\sigma} &= \frac{1}{4} \left[ \gamma^\rho, \gamma^\sigma \right] = \frac{1}{2i}\sigma^{\rho\sigma} \\
+	S^{\rho\sigma} &= \frac{1}{4} \left[ \gamma^\rho, \gamma^\sigma \right] = \frac{1}{2i}\sigma^{\rho\sigma}
 \end{align}
 \paragraph{Spinor transformation}
 \begin{align}
 	S(\Lambda) &= \exp(\frac{1}{2} \omega_{\mu\nu}S^{\mu\nu}) \\
 	\psi'_a(x) &= S_{ab}(\Lambda) \psi_b(\Lambda^{-1}x)
 \end{align}
-\paragraph{adjoint spinor}
+\paragraph{Adjoint spinor}
 \begin{align}
 	\bar{\psi} = \psi^\dagger \gamma^0
 \end{align}
@@ -34,7 +34,7 @@ with $\omega$ set of parameters and $M$ the generator of Lie algebra.
 	\left\{ \gamma^\mu, \gamma^5 \right\} &= 0 \\
 	(\gamma^5)^2 &= \id_4
 \end{align}
-\paragraph{Plane wavesolutions}
+\paragraph{Plane wave solutions}
 \begin{align}
 	\psi(x) = \begin{cases}
 		u(p) e^{-ipx} & \text{positive frequency} \\
@@ -42,8 +42,8 @@ with $\omega$ set of parameters and $M$ the generator of Lie algebra.
 	\end{cases}
 \end{align}
 \begin{align}
-	u_s	(p) = \sqrt{E_p+m} \begin{pmatrix} \chi_s \\ \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\chi_s\end{pmatrix} e^{-ipx}
-	v_s	(p) = \sqrt{E_p+m} \begin{pmatrix} \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\tilde{\chi}_s \\ \tilde{\chi}_s \end{pmatrix} e^{ipx}
+	(\slashed{p}-m)u(p) &= 0 \quad && u_s(p) = \sqrt{E_p+m} \begin{pmatrix} \chi_s \\ \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\chi_s\end{pmatrix}  \\
+	(\slashed{p}+m)v(p) &= 0 \quad && v_s(p) = \sqrt{E_p+m} \begin{pmatrix} \frac{\pmb{u}\cdot\pmb{p}}{E_p+m}\tilde{\chi}_s \\ \tilde{\chi}_s \end{pmatrix} 
 \end{align}
 with
 \begin{align*}

@@ -1,58 +1,58 @@
 \chapter{Quantum Electrodynamics (QED)}
 \setcounter{chapter}{5}
 \section{Classical Electrodynamics and Maxwell's equations}
-We have the gauge potential $A^\mu = (A^0, \pmb{A}) = (\phi, \pmb{A})$ \& $A_\mu = (A^0, -\pmb{A}) = (\phi, -\pmb{A})$ and the field strength tensor $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
+We have the gauge potential $A^\mu = (A^0, \pmb{A}) = (\phi, \pmb{A})$ (or $A_\mu = (A^0, -\pmb{A}) = (\phi, -\pmb{A})$) and the field strength tensor $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$.
 
 Then
 \begin{itemize}
-	\item electric field $E_i = F_{0i} = \partial_0 A_i - \partial_i A_0 \rightarrow \pmb{E} = -\dot{\pmb{A}} - \pmb{\nabla} \phi$
-	\item magnetic field $B^i = -\frac{1}{2} \epsilon^{ijk}F_{jk} \rightarrow \pmb{B} = \pmb{\nabla} \times \pmb{A}$
+	\item electric field is \\
+      $E_i = F_{0i} = \partial_0 A_i - \partial_i A_0 \rightarrow \pmb{E} = -\dot{\pmb{A}} - \pmb{\nabla} \phi$
+	\item magnetic field is \\
+      $B^i = -\frac{1}{2} \epsilon^{ijk}F_{jk} \rightarrow \pmb{B} = \pmb{\nabla} \times \pmb{A}$
 \end{itemize}
 
 Lagrangian density $\lag_{EM} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} = -\frac{1}{2} (\pmb{E}\cdot\pmb{E} - \pmb{B}\cdot \pmb{B})$. The field equation $\partial_\mu \left( \frac{\partial \lag}{\partial(\partial_\mu A_\nu)} \right) - \frac{\partial \lag}{\partial A_\nu} = 0$ leads to
 \begin{align}
 	\partial_\mu F^{\mu\nu} = 0
 \end{align}
-it is half of Maxwell's equations (in vacuum).
+It is half of Maxwell's equations (in vacuum).
 
-The other half are Bianchi identities following from the definition of $F_{\mu\nu}$:
+The other half is Bianchi identities following from the definition of $F_{\mu\nu}$:
 \begin{align*}
-	\partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0 \Leftrightarrow \epsilon^{\sigma \lambda \mu \nu}\partial_\lambda F_{\mu\nu} = 0\\
-	\text{or } \partial_\lambda \tilde{F}^{\sigma\lambda} = 0,\; \tilde{F}^{\sigma\lambda} = \frac{1}{2} \epsilon^{\sigma\lambda\mu\nu}F_{\mu\nu}
+   &\partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0 \; \Leftrightarrow \; \epsilon^{\sigma \lambda \mu \nu}\partial_\lambda F_{\mu\nu} = 0\\
+   &\text{or} \quad  \partial_\lambda \tilde{F}^{\sigma\lambda} = 0,\; \tilde{F}^{\sigma\lambda} = \frac{1}{2} \epsilon^{\sigma\lambda\mu\nu}F_{\mu\nu}
 \end{align*}
 
 In terms of $\pmb{E}$ and $\pmb{B}$:
 \begin{align*}
-	\pmb{\nabla}\cdot \pmb{E} = 0&,\; \dot{\pmb{E}} = \pmb{\nabla}\times \pmb{B} \quad \text{dynamical equations} \\
-	\pmb{\nabla}\cdot \pmb{B} = 0&,\; \dot{\pmb{B}} = -\pmb{\nabla}\times \pmb{E} \quad \text{Bianchi identities}
+   \pmb{\nabla}\cdot \pmb{E} = 0&,\; \dot{\pmb{E}} = \pmb{\nabla}\times \pmb{B} \quad && \text{dynamical equations} \\
+   \pmb{\nabla}\cdot \pmb{B} = 0&,\; \dot{\pmb{B}} = -\pmb{\nabla}\times \pmb{E} \quad && \text{Bianchi identities}
 \end{align*}
 
-Remarks
+\paragraph{Remarks}
 \begin{itemize}
 	\item Lagrangian density does not depend on $\dot{A}_0$, since $A_0$ is not really dynamical.
 	\begin{align*}
 		\pmb{\nabla}\cdot \pmb{E} = 0 \rightarrow \pmb{\nabla}^2 A_0 + \pmb{\nabla}\cdot \dot{\pmb{A}} = 0 
 	\end{align*}
 	Solve this \underline{Poisson} equation for $A_0(\pmb{x},t) = \frac{1}{4\pi}\int \dd^3 y \frac{\pmb{\nabla}\cdot \dot{\pmb{A}}(\pmb{y},t)}{|\pmb{y}-\pmb{x}|}$. Thus $A_0$ is given in terms of the other components of $A$.
-	\item \underline{gauge invariance}: field strength tensor invariant under the transformation $A_\mu \longmapsto A_\mu - \partial_\mu \text{X}$ due to commuting derivatives. This leads to gauge invariance of Maxwell equations.\\
+	\item Gauge invariance ensures field strength tensor invariant under the transformation $A_\mu \longmapsto A_\mu - \partial_\mu \text{X}$ due to commuting derivatives. This leads to gauge invariance of Maxwell equations.\\
 	Choose X to satisfy $\partial_\mu \partial^\mu \text{X} = \partial^2\text{X}=\partial_\mu A^\mu$ allows us to demand the condition  (Lorenz condition)
 		\begin{align}
 			\partial_\mu A^\mu = 0
 		\end{align}
 	such that $A_\mu$ belongs to the "Lorenz gauge" and reduces the degrees of freedom from 4 to 3.
-	\begin{itemize}
-		\item Further freedom is eliminated by adding any X with $\partial^2 \text{X} = 0$, e.g.~$\frac{\partial}{\partial t} \text{X} = A_0$. Then we get the \underline{Coulomb} or \underline{radiation gauge}
+		\item Further freedom is eliminated by adding any X with $\partial^2 \text{X} = 0$, e.g.~$\partial_t \text{X} = A_0$. Then we get the \underline{Coulomb} or \underline{radiation gauge}
 		\begin{align}
 			A_0 = 0,\; \pmb{\nabla}\cdot \pmb{A} = 0
 		\end{align}
-	\end{itemize}
 \end{itemize}
 
-Note: vice versa imposing $\pmb{\nabla} \cdot \pmb{A} = 0$ first, yields $A_0 = 0$ (using Lorenz condition?).
+Note: vice versa imposing $\pmb{\nabla} \cdot \pmb{A} = 0$ first, yields $A_0 = 0$.
 
 In Coulomb gauge:
 \begin{align*}
-	&\pmb{E} = -\dot{\pmb{A}}.\; \pmb{B} = \pmb{\nabla} \times \pmb{A},\; \pmb{\nabla}\times \pmb{A} = 0 \\
+	&\pmb{E} = -\dot{\pmb{A}},\; \pmb{B} = \pmb{\nabla} \times \pmb{A},\; \pmb{\nabla}\times \pmb{A} = 0 \\
 	&-\ddot{\pmb{A}} = \dot{\pmb{E}} \stackrel{\text{Maxwell}}{=} \pmb{\nabla} \times \pmb{B} =  \pmb{\nabla} \times (\pmb{\nabla} \times \pmb{A}) = \pmb{\nabla}(\underbrace{\pmb{\nabla}\cdot\pmb{A}}_{=0}) - \pmb{\nabla}^2 \pmb{A} \\
 	&\Rightarrow \partial^2 \pmb{A} = 0
 \end{align*}
@@ -82,7 +82,7 @@ However this cannot be true. Take either derivative of the last equation and it 
 \begin{align*}
 	[\partial^i A_i (\vecx), \Pi_k(\vecy)] =  i \delta_{ij} \partial^i \delta^{(3)}(\vecx-\vecy)
 \end{align*}
-here the derivative is takev with respect to $\vecx$, i.e.~$\partial^i = \frac{\partial}{\partial x_i}$.
+here the derivative is taken with respect to $\vecx$, i.e.~$\partial^i = \frac{\partial}{\partial x_i}$.
 
 
 Replace $\delta_{ij}$ by $\Delta_{ij}$
@@ -90,7 +90,7 @@ Replace $\delta_{ij}$ by $\Delta_{ij}$
 	& [\partial^i A_i (\vecx), {\Pi}_{j}(\vecy)] = i \Delta_{ij} \partial^i \frac{1}{(2\pi)^3} \int \dd^3 k e^{i\pmb{k}\cdot(\vecx - \vecy)} \\
 	& = -\frac{1}{(2\pi)^3} \int \dd^3 k (k^i\Delta_{ij}) e^{i\pmb{k}\cdot(\pmb{x}-\pmb{y})} \stackrel{!}{=} 0
 \end{align*}
-it works for $\Delta_{ij} = \delta_{ij}-\frac{k_ik_j}{\pmb{k}^2}$ in momentum space or $\Delta_{ij} = \delta_{ij} - \vecnab^{-2}\partial_i \partial_j$ in position space.
+It works for $\Delta_{ij} = \delta_{ij}-\frac{k_ik_j}{\pmb{k}^2}$ in momentum space or $\Delta_{ij} = \delta_{ij} - \vecnab^{-2}\partial_i \partial_j$ in position space.
 
 \begin{align}
 	[A_i(\pmb{x}), \Pi_j(\pmb{y})] = i \left( \delta_{ij} - \vecnab^{-2}\partial_i \partial_j \right) \delta^{(3)} (\pmb{x} - \pmb{y})
@@ -103,10 +103,10 @@ As before we have the mode expansion
 \end{align*}
 with $\veck\cdot\pmb{a}_{\veck} = \veck\cdot\pmb{a}^\dagger_{\veck} = 0$.
 
-Introduce 2 orthogonal polarization vectors $\pmb{\epsilon}^{(1)}(\veck)$ and $\pmb{\epsilon}^{(2)}(\veck)$ for each $\veck$.
+Introduce two orthogonal polarization vectors $\pmb{\epsilon}^{(1)}(\veck)$ and $\pmb{\epsilon}^{(2)}(\veck)$ for each $\veck$.
 \begin{align*}
 	&\pmb{a}_{\veck} = a_{\veck}^{(1)}\pmb{\epsilon}^{(1)} + a_{\veck}^{(2)}\pmb{\epsilon}^{(2)} = \sum_{\lambda=1}^2 a_{\veck}^{(\lambda)}\pmb{\epsilon}^{(\lambda)}(\veck) \\
-	& \text{with } \veck\cdot\pmb{\epsilon}^{(1)}(\veck) = \veck\cdot\pmb{\epsilon}^{(2)}(\veck) = 0,\; \pmb{\epsilon}^{(\lambda)}\cdot \pmb{\epsilon}^{(\lambda;)}=\delta_{\lambda \lambda'}
+	& \text{with} \quad \veck\cdot\pmb{\epsilon}^{(1)}(\veck) = \veck\cdot\pmb{\epsilon}^{(2)}(\veck) = 0,\; \pmb{\epsilon}^{(\lambda)}\cdot \pmb{\epsilon}^{(\lambda;)}=\delta_{\lambda \lambda'}
 \end{align*}
 
 Creation and annihilation operator have the standard commutation relations
@@ -121,7 +121,7 @@ and all other commutators vanish. Geometrically, still possible to write includi
 
 $a_{\veck}^{(\lambda)}$ and $a_{\veck}^{(\lambda)\dagger}$ create and destroy photons of momentum $\veck$, energy $|\veck|$ and (electric) polarization along $\pmb{\epsilon}^{(\lambda)}(\veck)$. 
 
-Next steps are analogout to KG theory. 
+Next steps are analogous to KG theory. 
 \paragraph{Hamiltonian}
 \begin{align*}
 	H &= \frac{1}{2} \int \dd^3 x \left(\pmb{E}^2 + \pmb{B}^2 \right)= \frac{1}{2} \int \dd^3 x \left( \dot{\pmb{A}}^2 + (\vecnab \times \pmb{A})\cdot (\vecnab \times \pmb{A}) \right) \\
