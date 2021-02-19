@@ -1425,7 +1425,7 @@ In short $\contraction{}{\psi}{|}{\;} \psi \ket{\;} $ contracts with a fermion, 
 \feynmandiagram[baseline=(x.base),small, horizontal=c to x]{a--[anti fermion] x[dot]; b--[anti fermion]x; x--[charged scalar, edge label={\(q\)}]c;};
 				= 1$
 			\item "in"-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=x to b]{a--[anti fermion] x[dot]; b--[fermion, edge label={\(p\)}]x; x--[scalar]c;};=u_s(p)$ and "out" fermion $\feynmandiagram[baseline=(x.base),small, horizontal=b to x]{a--[fermion] x[dot]; b--[anti fermion, edge label={\(p\)}]x; x--[scalar]c;};=\bar{u}_s(p)$
-			\item "in"-anti-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=x to b]{a--[fermion] x[dot]; b--[anti fermion, momentum={\(k\)}]x; x--[scalar]c;};=\bar{v}_s(k)$ and "out" anti-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=b to x]{a--[anti fermion] x[dot]; b--[fermion, momentum={\(k\)}]x; x--[scalar]c;};={v}_s(k)$
+			\item "in"-anti-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=x to b]{a--[fermion] x[dot]; b--[anti fermion, momentum={\(k\)}]x; x--[scalar]c;};=\bar{v}_s(k)$ and "out" anti-fermion $\feynmandiagram[baseline=(x.base),small, horizontal=b to x]{a--[anti fermion] x[dot]; b--[fermion, reversed momentum={\(k\)}]x; x--[scalar]c;};={v}_s(k)$
 		\end{itemize}
 	\item impose energy-momentum conservation at each vertex 
 	\item integrate over undetermined (loop) momenta 
